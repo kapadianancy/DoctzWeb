@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                 <div class="main-wrapper">
+<!-- Breadcrumb -->
+                <div class="breadcrumb-bar">
+                        <div class="container-fluid">
+                                <div class="row align-items-center">
+                                        <div class="col-md-8 col-12">
+                                                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                                        <ol class="breadcrumb">
+                                                                <li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
+                                                                <li class="breadcrumb-item active" aria-current="page">Hospitals</li>
+                                                        </ol>
+                                                </nav>
+                                                <h2 class="breadcrumb-title">Hospitals</h2>
+                                        </div>
+                                        <div class="col-md-4 col-12 d-md-block d-none">
+                                                <div class="sort-by">
+                                                        <span class="sort-title">Sort by</span>
+                                                        <span class="sortby-fliter">
+                                                                <select class="select" style="height:45px;">
+                                                                        <option>Select</option>
+                                                                        <option class="sorting">Experience</option>
+                                                                        <option class="sorting">Availability</option>
+                                                                        <option class="sorting">Low to high Fees</option>
+                                                                        <option class="sorting">High to low Fees</option>
+                                                                        
+                                                                </select>
+                                                        </span>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <!-- /Breadcrumb -->
+                
+         <!-- Page Content -->
+			<div class="content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+						
+							<!-- Search Filter -->
+							<div class="card search-filter">
+								<div class="card-header">
+									<h4 class="card-title mb-0">Search Filter</h4>
+								</div>
+								<div class="card-body">
+								<div class="filter-widget">
+									<div class="cal-icon">
+										<input type="text" class="form-control datetimepicker" placeholder="Select Date"/>
+									</div>			
+								</div>
+								<div class="filter-widget">
+									<h4>Area</h4>
+                                                                        <ui:repeat value="#{areaBean.allareas}" var="a">
+                                                                       
+									<div>
+										<label class="custom_check">
+											<input type="checkbox" name="select_specialist"/>
+                                                                                        <span class="checkmark"></span>#{a.areaName}
+										</label>
+									</div>
+                                                                        </ui:repeat>
+									
+								</div>
+								<div class="filter-widget">
+									<h4>Select Specialization</h4>
+                                                                        <ui:repeat value="#{specializationBean.allspec}" var="s">
+                                                                       
+									<div>
+										<label class="custom_check">
+											<input type="checkbox" name="select_specialist"/>
+                                                                                        <span class="checkmark"></span>#{s.name}
+										</label>
+									</div>
+                                                                        </ui:repeat>
+									
+								</div>
+									<div class="btn-search">
+										<button type="button" class="btn btn-block">Search</button>
+									</div>	
+								</div>
+							</div>
+							<!-- /Search Filter -->
+							
+						</div>
+						
+						<div class="col-md-12 col-lg-8 col-xl-9">
+
+							<!-- Doctor Widget -->
+                                                        <ui:repeat value="#{hospitalBean.allhos}" var="h">
+                                                        
+							<div class="card">
+								<div class="card-body">
+									<div class="doctor-widget">
+										<div class="doc-info-left">
+											<div class="doctor-img">
+												<a href="doctor-profile.html">
+                                                                                                    <img src="/doctzApp-war/#{h.logo}" class="img-fluid" alt="User Image" style="height: 165px;"/>
+												</a>
+											</div>
+                                                                                    <div class="doc-info-cont">
+                                                                                        <h4 class="doc-name"><a href="doctor-profile.html">#{h.hospitalName}</a></h4>
+                                                                                        <p class="doc-speciality">Opening Time : #{h.openingTime.toLocaleString().substring(12)}</p>
+                                                                                        <p class="doc-speciality">Closing Time : #{h.closingTime.toLocaleString().substring(12)}</p>
+                                                                                        <p class="doc-speciality">City : #{h.cityId.cityName}</p>
+                                                                                        
+											</div>
+											
+										</div>
+										<div class="doc-info-right">
+											<div class="clini-infos">
+												<ul>
+                                                                                                    
+													
+                                                                                                        <li><i class="fas fa-map-marker-alt"></i>#{h.address}</li>
+                                                                                                        <li><i class="fas fa-map-marker-alt"></i>#{h.areaId.areaName}</li>
+                                                                                                        <li><i class="fas fa-map-marker-alt"></i>#{h.pincode}</li>
+													
+												</ul>
+											</div>
+											<div class="clinic-booking">
+												<a class="view-pro-btn" href="doctor-profile.html">View Details</a>
+												<a class="apt-btn" href="booking.html">Book Appointment</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+                                                            
+                                                          
+                                                        </ui:repeat>
+							<!-- /Doctor Widget -->
+                                                        <h:panelGroup rendered="#{empty hospitalBean.allhos}">
+                                                            <div style="position: absolute;
+                                                                        text-align: center;
+                                                                        font-size: 60px;
+                                                                        color: #15558d;
+                                                                        padding: 224px;">No Data Found.</div>
+                                                        </h:panelGroup>
+
+                                                        </div>
+					</div>
+
+				</div>
+
+			</div>		
+			<!-- /Page Content -->
+    </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
