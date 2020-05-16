@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/doctz-git/doctz/DoctzWeb/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Admin/Desktop/doctz-git/doctz/DoctzWeb/src/java/rest/GenericResource.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctz-git/doctz/DoctzWeb/src/java/beans/doctzBean.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/web/specialization.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/specializationBean.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/web/hospitals.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/web/admin/editSpecialities.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/web/admin/specialities.xhtml</file>
         </group>
     </open-files>
 </project-private>

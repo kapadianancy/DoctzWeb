@@ -5839,8 +5839,8 @@
 	font-style: normal;
 	font-weight: normal;
 	font-display: auto;
-	src: url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-brands-400.eot);
-	src: url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-brands-400d41d.eot?#iefix) format("embedded-opentype"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-brands-400.html) format("woff2"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-brands-400.woff) format("woff"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-brands-400.ttf) format("truetype"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-brands-400.svg#fontawesome) format("svg")
+	src: url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-brands-400.eot);
+	src: url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-brands-400d41d.eot?#iefix) format("embedded-opentype"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-brands-400.html) format("woff2"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-brands-400.woff) format("woff"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-brands-400.ttf) format("truetype"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-brands-400.svg#fontawesome) format("svg")
 }
 
 .fab {
@@ -5852,8 +5852,8 @@
 	font-style: normal;
 	font-weight: 400;
 	font-display: auto;
-	src: url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-regular-400.eot);
-	src: url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-regular-400d41d.eot?#iefix) format("embedded-opentype"), url(../webfonts/fa-regular-400.html) format("woff2"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-regular-400.woff) format("woff"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-regular-400.ttf) format("truetype"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-regular-400.svg#fontawesome) format("svg")
+	src: url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-regular-400.eot);
+	src: url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-regular-400d41d.eot?#iefix) format("embedded-opentype"), url(../webfonts/fa-regular-400.html) format("woff2"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-regular-400.woff) format("woff"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-regular-400.ttf) format("truetype"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-regular-400.svg#fontawesome) format("svg")
 }
 
 .far {
@@ -5865,8 +5865,8 @@
 	font-style: normal;
 	font-weight: 900;
 	font-display: auto;
-	src: url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-solid-900.eot);
-	src: url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-solid-900d41d.eot?#iefix) format("embedded-opentype"), url(../webfonts/fa-solid-900.html) format("woff2"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-solid-900.woff) format("woff"), url(../webfonts/fa-solid-900.ttf) format("truetype"), url(/doctzApp-war/resources/plugins/fontawesome/webfonts/fa-solid-900.svg#fontawesome) format("svg")
+	src: url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-solid-900.eot);
+	src: url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-solid-900d41d.eot?#iefix) format("embedded-opentype"), url(../webfonts/fa-solid-900.html) format("woff2"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-solid-900.woff) format("woff"), url(../webfonts/fa-solid-900.ttf) format("truetype"), url(/DoctzWeb/resources/plugins/fontawesome/webfonts/fa-solid-900.svg#fontawesome) format("svg")
 }
 
 .fa,
