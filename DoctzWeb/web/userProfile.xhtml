@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+<ui:define name="content">
+    <h:form>
+<!-- Breadcrumb -->
+            <div class="breadcrumb-bar">
+                    <div class="container-fluid">
+                            <div class="row align-items-center">
+                                    <div class="col-md-12 col-12">
+                                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                                    <ol class="breadcrumb">
+                                                            <li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
+                                                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                                                    </ol>
+                                            </nav>
+                                            <h2 class="breadcrumb-title">Profile</h2>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+            <!-- /Breadcrumb -->
+            
+            <!-- Page Content -->
+<div class="content">
+        <div class="container-fluid">
+                <div class="row">
+
+                 <!-- Profile Sidebar -->
+               
+                        <div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+                                <div class="profile-sidebar">
+                                        <div class="widget-profile pro-widget-content">
+                                                <div class="profile-info-widget">
+                                                        <a href="#" class="booking-doc-img">
+                                                                <img src="/doctzApp-war/resources/img/patients/user.png" alt="User Image"/>
+                                                        </a>
+                                                        <div class="profile-det-info">
+                                                            <h3>#{patientBean.patientname}</h3>
+                                                                <div class="patient-details">
+                                                                    <h5><i class="fas fa-birthday-cake"></i>#{patientBean.age}</h5>
+                                                                    
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="dashboard-widget">
+                                                <nav class="dashboard-menu">
+                                                        <ul>
+                                                            <li>
+                                                                        <a href="dashboard.xhtml">
+                                                                                <i class="fas fa-columns"></i>
+                                                                                <span>Dashboard</span>
+                                                                        </a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="#">
+                                                                                <i class="fas fa-columns"></i>
+                                                                                <span>Medical History</span>
+                                                                        </a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="favourites.html">
+                                                                                <i class="fas fa-bookmark"></i>
+                                                                                <span>Favourites</span>
+                                                                        </a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="chat.html">
+                                                                                <i class="fas fa-comments"></i>
+                                                                                <span>Invoices/Attachments</span>
+                                                                                
+                                                                        </a>
+                                                                </li>
+                                                            
+                                                                <li  class="active">
+                                                                     
+                                                                    <h:commandLink  action="#{patientBean.display()}">
+                                                                                <i class="fas fa-user-cog"></i>
+                                                                                <span>Profile Settings</span>
+                                                                    </h:commandLink>
+                                                                   
+                                                                </li>
+                                                                 
+                                                                <li>
+                                                                        <a href="changePassword.xhtml">
+                                                                                <i class="fas fa-lock"></i>
+                                                                                <span>Change Password</span>
+                                                                        </a>
+                                                                </li>
+                                                                <li>
+                                                                        <a href="logout.jsp">
+                                                                                <i class="fas fa-sign-out-alt"></i>
+                                                                                <span>Logout</span>
+                                                                        </a>
+                                                                </li>
+                                                        </ul>
+                                                </nav>
+                                        </div>
+
+                                </div>
+                        </div>
+               
+	<!-- /Profile Sidebar -->
+        <div class="col-md-7 col-lg-8 col-xl-9">
+    <div class="card">
+            <div class="card-body">
+                
+    <!-- Profile Settings Form -->
+    
+            
+                
+                <h:inputHidden id="id" value="#{patientBean.patientid}"/>
+                    <div class="row form-row">
+                            <div class="col-12 col-md-12">
+                                    <div class="form-group">
+                                        <h2 style="color:#0de0fe;">Profile Setting</h2>  
+                                    </div>
+                            </div>
+                        
+                            <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>Patient Name</label>
+                                            <h:inputText id="fname" class="form-control" value="#{patientBean.patientname}"
+                                                         rendered="true" />
+                                            
+                                    </div>
+                            </div>
+                        <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>UserName</label>
+                                            <h:inputText id="username" class="form-control" value="#{patientBean.username}" rendered="true"/>
+                                    </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>Email ID</label>
+                                            <h:inputText  id="email" class="form-control" value="#{patientBean.email}"/>
+                                            <h:inputHidden value="#{patientBean.userid}"/>
+                                            
+                                    </div>
+                            </div>
+                        
+                            <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>Mobile</label>
+                                            <h:inputText  id="contact" class="form-control" value="#{patientBean.contact}" />
+                                    </div>
+                            </div>
+                        
+                        <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>Gender</label>
+                                            <h:inputText id="gender" class="form-control" value="#{patientBean.gender}"/>
+                                    </div>
+                            </div>
+                        
+                            <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                            <label>Age</label>
+                                            <h:inputText id="age" class="form-control" value="#{patientBean.age}"/>
+                                    </div>
+                            </div>
+                        
+                            <div class="col-12">
+                                    <div class="form-group">
+                                    <label>Address</label>
+                                    <h:inputText id="address" class="form-control" value="#{patientBean.address}"/>
+                                    </div>
+                            </div>
+                            
+                           
+                    </div>
+                    
+                    <div class="submit-section">
+                            
+                            <h:commandButton class="btn btn-primary submit-btn" value="Save Changes"
+                                             action="#{patientBean.editProfile()}"/>
+                            
+                            <span style="color: red;"><h:outputText value="#{patientBean.errorMsg}"/> </span>
+                    </div>
+               
+            
+	<!-- /Profile Settings Form -->
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+
+			</div>	
+    </h:form>
+			<!-- /Page Content --> 
+</ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
