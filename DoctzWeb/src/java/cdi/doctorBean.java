@@ -117,7 +117,8 @@ public class doctorBean {
        }
        
        spec=params.get("spec");
-       if(spec != null){
+       if(spec != null)
+       {
            
             if(spec.equals("all"))
             {
