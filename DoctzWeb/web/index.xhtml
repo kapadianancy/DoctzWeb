@@ -99,7 +99,7 @@
                                                                 <ui:repeat value="#{doctorBean.alldocs}" var="d">
 								<div class="profile-widget" style="height: 450px;">
 									<div class="doc-img">
-										<a href="doctor-profile.html">
+										<a href="faces/doctorProfile.xhtml?did=#{d.doctorId}">
                                                                                     <img class="img-fluid" alt="User Image" src="/DoctzWeb/#{d.profile}" />
 										</a>
 										<a href="javascript:void(0)" class="fav-btn">
@@ -108,7 +108,7 @@
 									</div>
 									<div class="pro-content">
 										<h3 class="title">
-                                                                                    <a href="doctor-profile.html">#{d.doctorName}</a> 
+                                                                                    <a href="faces/doctorProfile.xhtml?did=#{d.doctorId}">#{d.doctorName}</a> 
 											
 										</h3>
                                                                             
@@ -126,7 +126,7 @@
 										</ul>
                                                                             <div class="row row-sm">
 											<div class="col-6">
-												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+												<a href="faces/doctorProfile.xhtml?did=#{d.doctorId}" class="btn view-btn">View Profile</a>
 											</div>
 											<div class="col-6">
 												<a href="booking.html" class="btn book-btn">Book Now</a>

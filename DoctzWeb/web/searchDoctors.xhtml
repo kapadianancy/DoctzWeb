@@ -137,12 +137,12 @@
 									<div class="doctor-widget">
 										<div class="doc-info-left">
 											<div class="doctor-img">
-												<a href="doctor-profile.html">
+												<a href="doctorProfile.xhtml?did=#{d.doctorId}">
                                                                                                     <img src="/DoctzWeb/#{d.profile}" class="img-fluid" alt="User Image"/>
 												</a>
 											</div>
                                                                                     <div class="doc-info-cont">
-                                                                                        <h4 class="doc-name"><a href="doctor-profile.html">#{d.doctorName}</a></h4>
+                                                                                        <h4 class="doc-name"><a href="doctorProfile.xhtml?did=#{d.doctorId}">#{d.doctorName}</a></h4>
                                                                                         <p class="doc-speciality">#{d.education}</p>
                                                                                         
                                                                                         
@@ -161,7 +161,7 @@
 												</ul>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" href="doctor-profile.html">View Profile</a>
+												<a class="view-pro-btn" href="doctorProfile.xhtml?did=#{d.doctorId}">View Profile</a>
 												<a class="apt-btn" href="booking.html">Book Appointment</a>
 											</div>
 										</div>
