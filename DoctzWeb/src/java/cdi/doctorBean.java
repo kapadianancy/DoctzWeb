@@ -111,9 +111,20 @@ public class doctorBean {
          
        spec=params.get("spec");
        if(spec != null){
-           System.out.println(spec);
-           searchDocs=ejb.getDoctorBySpecializationName(spec);
+           
+            if(spec.equals("all"))
+            {
+                 res=c.getAllDoctor(Response.class);
+                searchDocs=res.readEntity(gdoc);
+
+            }
+            else
+            {
+                System.out.println(spec);
+                searchDocs=ejb.getDoctorBySpecializationName(spec);
+            }
        }
+      
         return searchDocs;
     }
 
