@@ -182,6 +182,8 @@ public interface doctzBeanLocal {
 // -------------------------------------------add schedule------------------------------------------------
         
         public long addSchedule(int hospitalId,int doctorId,Date date,Time fromTime,Time toTime,int numberOfPatients);
+        
+        public Collection<DoctorScheduleTb> getDoctorSchedule(int doctorId);
    
         
 //---------------------------------Doctor Attachment --------------------------------------------------------------------------------
@@ -193,6 +195,8 @@ public interface doctzBeanLocal {
         public Collection<DoctorAttachmentTb> viewAttachmentOfPatient(int patientId);
         
         public Collection<DoctorTb> getDoctorBySpecializationName (String specializationName);
+        
+        public DoctorTb getDoctorById(int doctorId);
         
  //----------------------Get Total Number of entity----------------------------------------------------------------------
         
@@ -209,4 +213,6 @@ public interface doctzBeanLocal {
        public Collection<DoctorTb> getDoctorByGender(String gender);
        
        public void changePassword(String email,String password);
+       
+       public Collection<ReviewTb> getReviewByDoctorId(int id);
 }

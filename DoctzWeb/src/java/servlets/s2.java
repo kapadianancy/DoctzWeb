@@ -52,8 +52,8 @@ public class s2 extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Test</h1>");
             
-            res=c1.patientRegistration(Response.class, "Alexa", "Female", "Alexa", "44", "alexa","alexa", "a4@gmail.com","9876543210");
-            out.println(res);
+//            res=c1.patientRegistration(Response.class, "Alexa", "Female", "Alexa", "44", "alexa","alexa", "a4@gmail.com","9876543210");
+//            out.println(res);
             
 //            int i=ejb.patientRegistration("Alexa", "Female", "Alexa", 44, "alexa","alexa", "a4@gmail.com",9876543210L);
 //            out.println(i);
@@ -99,7 +99,19 @@ public class s2 extends HttpServlet {
 //            PatientTb p=ejb.getPatientByEmail("kapadianancy21@gmail.com");
 //            out.println(p.getPatientName()+p.getUserId().getEmail());
             
-            out.print(pass);
+ //           out.print(pass);
+            
+//            Collection<DoctorScheduleTb> docs=ejb.getDoctorSchedule(4);
+//            for(DoctorScheduleTb d:docs)
+//            {
+//                out.println(d.getHospitalId().getHospitalName()+" "+d.getDate()+" "+d.getFromTime()+ " "+d.getToTime());
+//            }
+
+  Collection<ReviewTb> docs=ejb.getReviewByDoctorId(4);
+            for(ReviewTb d:docs)
+            {
+                out.println(d.getDoctorId().getDoctorName()+" "+d.getReview());
+            }
 
             out.println("</body>");
             out.println("</html>");
