@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DoctorScheduleTb.findByFromTime", query = "SELECT d FROM DoctorScheduleTb d WHERE d.fromTime = :fromTime"),
     @NamedQuery(name = "DoctorScheduleTb.findByToTime", query = "SELECT d FROM DoctorScheduleTb d WHERE d.toTime = :toTime"),
     @NamedQuery(name = "DoctorScheduleTb.findByNumberOfPatient", query = "SELECT d FROM DoctorScheduleTb d WHERE d.numberOfPatient = :numberOfPatient"),
+    @NamedQuery(name = "DoctorScheduleTb.findDoctorByHospital",query="SELECT DISTINCT d.doctorId FROM DoctorScheduleTb d WHERE d.hospitalId = :hospitalId"),
     @NamedQuery(name = "DoctorScheduleTb.findByIsActive", query = "SELECT d FROM DoctorScheduleTb d WHERE d.isActive = :isActive")})
 public class DoctorScheduleTb implements Serializable {
 

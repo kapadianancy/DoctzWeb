@@ -52,7 +52,8 @@ public class doctorBean {
     private String edu;
     private String profile;
     private int isActive;
-    String spec;
+    String spec,hos;
+   
    
     private Collection<DoctorTb> alldocs;
     private Collection<DoctorTb> searchDocs,serachGenderDocs;
@@ -108,7 +109,13 @@ public class doctorBean {
     
     public Collection<DoctorTb> getSearchDocs() 
     {
-         
+       hos=params.get("hos");
+       if(hos != null)
+       {
+           res=c.getDoctorOfHospital(Response.class, hos);
+           searchDocs=res.readEntity(gdoc);
+       }
+       
        spec=params.get("spec");
        if(spec != null){
            
