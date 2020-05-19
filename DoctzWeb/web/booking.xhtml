@@ -37,14 +37,27 @@
 								<div class="card-body">
 									<div class="booking-doc-info">
 										<a href="doctor-profile.html" class="booking-doc-img">
-											<img src="/DoctzWeb/resources/img/doctors/doctor-thumb-02.jpg" alt="User Image"/>
+                                                                                    <img src="/DoctzWeb/#{doctorBean.doctor.profile}" alt="User Image"/>
 										</a>
 										<div class="booking-info">
-											<h4><a href="doctor-profile.html">Dr. Darren Elder</a></h4>
-											
-											<p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</p>
-										</div>
-									</div>
+                                                                                    <h4 class="doc-name">#{doctorBean.doctor.doctorName}</h4>
+                                                                                    <p class="doc-speciality">#{doctorBean.doctor.education}</p>
+                                                                                    <p class="doc-department"><img src="/DoctzWeb/#{doctorBean.doctor.specializationId.image}" class="img-fluid" alt="Speciality"/>#{doctorBean.doctor.specializationId.name}</p>
+
+                                                                                </div>
+                                                                         
+									
+                                                                          <div class="doc-info-right">
+                                                                                <div class="clini-infos">
+                                                                                       <ul>
+
+                                                                                           <li><i class="far fa-comment"></i> #{doctorBean.doctor.experience} experience</li>
+                                                                                           <li><i class="fas fa-map-marker-alt"></i>#{doctorBean.doctor.gender}</li>
+
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 								</div>
 							</div>
 							<div class="row">
@@ -71,25 +84,25 @@
                                         <div class="schedule-nav">
                                                 <ul class="nav nav-tabs nav-justified">
                                                         <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_sunday">Sunday</a>
+                                                            <a class="nav-link" data-toggle="tab" href="#slot_sunday"> #{dateBean.date1} #{dateBean.day1}</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                                <a class="nav-link active" data-toggle="tab" href="#slot_monday">Monday</a>
+                                                            <a class="nav-link active" data-toggle="tab" href="#slot_monday">#{dateBean.date2} #{dateBean.day2}</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_tuesday">Tuesday</a>
+                                                                <a class="nav-link" data-toggle="tab" href="#slot_tuesday">#{dateBean.date3} #{dateBean.day3}</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_wednesday">Wednesday</a>
+                                                                <a class="nav-link" data-toggle="tab" href="#slot_wednesday">#{dateBean.date4} #{dateBean.day4}</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_thursday">Thursday</a>
+                                                                <a class="nav-link" data-toggle="tab" href="#slot_thursday">#{dateBean.date5} #{dateBean.day5}</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_friday">Friday</a>
+                                                                <a class="nav-link" data-toggle="tab" href="#slot_friday">#{dateBean.date6} #{dateBean.day6}</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#slot_saturday">Saturday</a>
+                                                                <a class="nav-link" data-toggle="tab" href="#slot_saturday">#{dateBean.date7} #{dateBean.day7}</a>
                                                         </li>
                                                 </ul>
                                         </div>

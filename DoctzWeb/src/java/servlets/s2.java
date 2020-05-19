@@ -113,6 +113,10 @@ public class s2 extends HttpServlet {
                 out.println(d.getDoctorId().getDoctorName()+" "+d.getReview());
             }
 
+
+        //    out.print(pass);
+
+
             out.println("</body>");
             out.println("</html>");
         }

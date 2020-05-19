@@ -32,7 +32,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "DoctorScheduleTb.findAll", query = "SELECT d FROM DoctorScheduleTb d"),
     @NamedQuery(name = "DoctorScheduleTb.findCount", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d"),
-    @NamedQuery(name = "DoctorScheduleTb.findByDoctorId", query = "SELECT d  FROM DoctorScheduleTb d WHERE d.doctorId.doctorId= :doctorId and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.verifySchedule", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d where d.doctorId.doctorId=:did and d.date=:d and (d.toTime<=:f1 or d.fromTime>=:f1) and (d.fromTime>= :t1 or d.toTime<= :t1)"),
     @NamedQuery(name = "DoctorScheduleTb.findByScheduleId", query = "SELECT d FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
     @NamedQuery(name = "DoctorScheduleTb.findByDate", query = "SELECT d FROM DoctorScheduleTb d WHERE d.date = :date"),
@@ -40,6 +39,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DoctorScheduleTb.findByToTime", query = "SELECT d FROM DoctorScheduleTb d WHERE d.toTime = :toTime"),
     @NamedQuery(name = "DoctorScheduleTb.findByNumberOfPatient", query = "SELECT d FROM DoctorScheduleTb d WHERE d.numberOfPatient = :numberOfPatient"),
     @NamedQuery(name = "DoctorScheduleTb.findDoctorByHospital",query="SELECT DISTINCT d.doctorId FROM DoctorScheduleTb d WHERE d.hospitalId = :hospitalId"),
+    @NamedQuery(name = "DoctorScheduleTb.findHospitalByDoctor",query="SELECT DISTINCT d.hospitalId FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId"),
+    @NamedQuery(name = "DoctorScheduleTb.findScheduleByHospitalAndDoctor",query="SELECT d FROM DoctorScheduleTb d WHERE d.hospitalId.hospitalId = :hospitalId and d.doctorId.doctorId= :doctorId"),
     @NamedQuery(name = "DoctorScheduleTb.findByIsActive", query = "SELECT d FROM DoctorScheduleTb d WHERE d.isActive = :isActive")})
 public class DoctorScheduleTb implements Serializable {
 
