@@ -98,8 +98,7 @@ public class s2 extends HttpServlet {
 //
 //            PatientTb p=ejb.getPatientByEmail("kapadianancy21@gmail.com");
 //            out.println(p.getPatientName()+p.getUserId().getEmail());
-            
-<<<<<<< HEAD
+
  //           out.print(pass);
             
 //            Collection<DoctorScheduleTb> docs=ejb.getDoctorSchedule(4);
@@ -113,9 +112,6 @@ public class s2 extends HttpServlet {
             {
                 out.println(d.getDoctorId().getDoctorName()+" "+d.getReview());
             }
-=======
-        //    out.print(pass);
->>>>>>> 8fb792d6fbf846e0e926a5e6f5a7754a029d3c9f
 
             out.println("</body>");
             out.println("</html>");
