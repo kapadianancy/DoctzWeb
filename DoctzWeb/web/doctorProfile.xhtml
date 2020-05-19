@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
@@ -188,15 +189,15 @@
                     <div role="tabpanel" id="doc_locations" class="tab-pane fade">
 
                             <!-- Location List -->
-                            <ui:repeat value="#{doctorScheduleBean.all}" var="s">
+                            <ui:repeat value="#{doctorScheduleBean.hos}" var="s">
                             <div class="location-list">
                             <div class="row">
 
                                     <!-- Clinic Content -->
                                     <div class="col-md-6">
                                             <div class="clinic-content">
-                                                <h4 class="clinic-name"><a href="#">#{s.hospitalId.hospitalName}</a></h4>
-                                                <p class="doc-speciality">#{s.doctorId.education}</p>
+                                                <h4 class="clinic-name"><a href="#">#{s.hospitalName}</a></h4>
+                                                <p class="doc-speciality">#{doctorBean.doctor.education}</p>
                                                    
                                        
                                             </div>
@@ -206,16 +207,17 @@
                                     <!-- Clinic Timing -->
                                     <div class="col-md-4">
                                             <div class="clinic-timing">
+                                                <ui:repeat value="#{doctorScheduleBean.getSchedule(s.hospitalId)}" var="t">
                                                     <div>
                                                             <p class="timings-days">
-                                                                <span> #{s.date.date}-#{s.date.month+1}-#{s.date.year} </span>
+                                                                <span> #{t.date.date}-#{t.date.month+1}-2020</span>
                                                             </p>
                                                             <p class="timings-times">
-                                                                <span>#{s.fromTime.toLocaleString().substring(12)} - #{s.toTime.toLocaleString().substring(12)}</span>
+                                                                <span>#{t.fromTime.toLocaleString().substring(12)} - #{t.toTime.toLocaleString().substring(12)}</span>
                                                                     
                                                             </p>
                                                     </div>
-                                                    
+                                                </ui:repeat>    
                                             </div>
                                     </div>
                                     <!-- /Clinic Timing -->
@@ -224,6 +226,7 @@
                             </div>
                     </div>
                             </ui:repeat>
+                            
                             <!-- /Location List -->
 
                     </div>
@@ -267,21 +270,23 @@
                                         <h4>Write a review for <strong>Dr. Darren Elder</strong></h4>
 
                                         <!-- Write Review Form -->
-                                        <form>
+                                        <h:form>
                                                 
                                                 <div class="form-group">
                                                         <label>Your review</label>
-                                                        <textarea id="review_desc" maxlength="100" class="form-control"></textarea>
+                                                        
+                                                        <h:inputTextarea id="review" class="form-control"></h:inputTextarea>
 
-                                                  <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
+                                                  
                                                 </div>
                                             <hr></hr>
                                                 
                                                 
                                                 <div class="submit-section">
-                                                        <button type="submit" class="btn btn-primary submit-btn">Add Review</button>
+                                                        
+                                                        <h:commandButton type="submit" class="btn btn-primary submit-btn" value="Add Review"/>
                                                 </div>
-                                        </form>
+                                        </h:form>
                                         <!-- /Write Review Form -->
 
                                 </div>

@@ -215,4 +215,8 @@ public interface doctzBeanLocal {
        public void changePassword(String email,String password);
        
        public Collection<ReviewTb> getReviewByDoctorId(int id);
+       
+       public Collection<HospitalTb> getHospitalByDoctorId(int id);
+       
+       public Collection<DoctorScheduleTb> getScheduleByHospitalAndDoctorId(int hid,int did);
 }
