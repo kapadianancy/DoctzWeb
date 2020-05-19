@@ -58,6 +58,8 @@ public class doctorBean {
     private Collection<DoctorTb> alldocs;
     private Collection<DoctorTb> searchDocs,serachGenderDocs;
     private String ajaxvalue="";
+    
+    private DoctorTb doctor;
 
     public String getAjaxvalue() {
         return ajaxvalue;
@@ -71,11 +73,11 @@ public class doctorBean {
 
     public doctorBean() {
         //c=new myclient();
-         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         String token="";
 
-          HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession(false);
         if(null != session.getAttribute("token"))
         {
           token = request.getSession().getAttribute("token").toString();
@@ -166,6 +168,20 @@ public class doctorBean {
         
 
     }
+
+    public DoctorTb getDoctor() {
+        
+        int did=Integer.parseInt(params.get("did"));
+        doctor=ejb.getDoctorById(did);
+        return doctor;
+    }
+
+    public void setDoctor(DoctorTb doctor) {
+        
+        this.doctor = doctor;
+    }
+    
+    
     
     
      public Collection<DoctorTb> getAlldocs() {

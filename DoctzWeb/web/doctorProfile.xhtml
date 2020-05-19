@@ -1,17 +1,312 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
-        <ui:composition template="./masterPage.xhtml">
+<ui:composition template="./masterPage.xhtml">
 
-            <ui:define name="content">
-                content
-            </ui:define>
+    <ui:define name="content">
 
-        </ui:composition>
+    <div class="main-wrapper">
+<!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+            <div class="container-fluid">
+                    <div class="row align-items-center">
+                            <div class="col-md-12 col-12">
+                                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                            <ol class="breadcrumb">
+                                                    <li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Doctor Profile</li>
+                                            </ol>
+                                    </nav>
+                                    <h2 class="breadcrumb-title">Doctor Profile</h2>
+                            </div>
+                    </div>
+            </div>
+    </div>
+<!-- /Breadcrumb -->
+<!-- Page Content -->
+<div class="content">
+        <div class="container">
+
+                <!-- Doctor Widget -->
+                <div class="card">
+                        <div class="card-body">
+                                <div class="doctor-widget">
+                                        <div class="doc-info-left">
+                                                <div class="doctor-img">
+                                                    <img src="/DoctzWeb/#{doctorBean.doctor.profile}" class="img-fluid" alt="User Image"/>
+                                                </div>
+                                                <div class="doc-info-cont">
+                                                    <h4 class="doc-name">#{doctorBean.doctor.doctorName}</h4>
+                                                    <p class="doc-speciality">#{doctorBean.doctor.education}</p>
+                                                    <p class="doc-department"><img src="/DoctzWeb/#{doctorBean.doctor.specializationId.image}" class="img-fluid" alt="Speciality"/>#{doctorBean.doctor.specializationId.name}</p>
+                                                     
+                                                      
+                                                </div>
+                                        </div>
+                                        <div class="doc-info-right">
+                                                <div class="clini-infos">
+                                                       <ul>
+
+                                                           <li><i class="far fa-comment"></i> #{doctorBean.doctor.experience} experience</li>
+                                                           <li><i class="fas fa-map-marker-alt"></i>#{doctorBean.doctor.gender}</li>
+
+                                                    </ul>
+                                                </div>
+                                                
+                                                <div class="clinic-booking">
+                                                        <a class="apt-btn" href="booking.html">Book Appointment</a>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <!-- /Doctor Widget -->
+
+                <!-- Doctor Details Tab -->
+                <div class="card">
+                        <div class="card-body pt-0">
+
+                                <!-- Tab Menu -->
+                                <nav class="user-tabs mb-3">
+                                        <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                                                <li class="nav-item">
+                                                        <a class="nav-link active" href="#doc_overview" data-toggle="tab">Overview</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                        <a class="nav-link" href="#doc_locations" data-toggle="tab">Schedule</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                        <a class="nav-link" href="#doc_reviews" data-toggle="tab">Reviews</a>
+                                                </li>
+                                               
+                                        </ul>
+                                </nav>
+                                <!-- /Tab Menu -->
+                                
+                            <!-- Tab Content -->
+                                <div class="tab-content pt-0">
+
+                                        <!-- Overview Content -->
+                                        <div role="tabpanel" id="doc_overview" class="tab-pane fade show active">
+                                                <div class="row">
+                                                        <div class="col-md-12 col-lg-9">
+
+                                                               
+
+                            <!-- Education Details -->
+                            <div class="widget education-widget">
+                                    <h4 class="widget-title">Education</h4>
+                                    <div class="experience-box">
+                                            <ul class="experience-list">
+                                                    <li>
+                                                            <div class="experience-user">
+                                                                    <div class="before-circle"></div>
+                                                            </div>
+                                                            <div class="experience-content">
+                                                                    <div class="timeline-content">
+                                                                            
+                                                                        <div>#{doctorBean.doctor.education}</div>
+                                                                           
+                                                                    </div>
+                                                            </div>
+                                                    </li>
+                                                   
+                                            </ul>
+                                    </div>
+                            </div>
+                            <!-- /Education Details -->
+
+                            <!-- Experience Details -->
+                            <div class="widget experience-widget">
+                                    <h4 class="widget-title">Work and Experience</h4>
+                                    <div class="experience-box">
+                                            <ul class="experience-list">
+                                                    <li>
+                                                            <div class="experience-user">
+                                                                    <div class="before-circle"></div>
+                                                            </div>
+                                                            <div class="experience-content">
+                                                                    <div class="timeline-content">
+                                                                           
+                                                                        <span class="time">#{doctorBean.doctor.experience}</span>
+                                                                    </div>
+                                                            </div>
+                                                    </li>
+                                                   
+                                                   
+                                            </ul>
+                                    </div>
+                            </div>
+                            <!-- /Experience Details -->
+
+                            <!-- Awards Details -->
+                            <div class="widget awards-widget">
+                                    <h4 class="widget-title">Certificates</h4>
+                                    <div class="experience-box">
+                                            <ul class="experience-list">
+                                                    <li>
+                                                            <div class="experience-user">
+                                                                    <div class="before-circle"></div>
+                                                            </div>
+                                                            <div class="experience-content">
+                                                                    <div class="timeline-content">
+                                                                            
+                                                                        <p>#{doctorBean.doctor.certificates}</p>
+                                                                    </div>
+                                                            </div>
+                                                    </li>
+                                                    
+                                            </ul>
+                                    </div>
+                            </div>
+                            <!-- /Awards Details -->
+
+                                             
+
+                                            <!-- Specializations List -->
+                                            <div class="service-list">
+                                                    <h4>Specializations</h4>
+                                                    <ul class="clearfix">
+                                                        
+                                                        <li>#{doctorBean.doctor.specializationId.name}</li>
+                                                        <p>#{doctorBean.doctor.specializationId.description}</p>
+                                                           	
+                                                    </ul>
+                                            </div>
+                                            <!-- /Specializations List -->
+
+                                    </div>
+                            </div>
+                    </div>
+                    <!-- /Overview Content -->
+                    <!-- Locations Content -->
+                    <div role="tabpanel" id="doc_locations" class="tab-pane fade">
+
+                            <!-- Location List -->
+                            <ui:repeat value="#{doctorScheduleBean.all}" var="s">
+                            <div class="location-list">
+                            <div class="row">
+
+                                    <!-- Clinic Content -->
+                                    <div class="col-md-6">
+                                            <div class="clinic-content">
+                                                <h4 class="clinic-name"><a href="#">#{s.hospitalId.hospitalName}</a></h4>
+                                                <p class="doc-speciality">#{s.doctorId.education}</p>
+                                                   
+                                       
+                                            </div>
+                                    </div>
+                                    <!-- /Clinic Content -->
+
+                                    <!-- Clinic Timing -->
+                                    <div class="col-md-4">
+                                            <div class="clinic-timing">
+                                                    <div>
+                                                            <p class="timings-days">
+                                                                <span> #{s.date.date}-#{s.date.month+1}-#{s.date.year} </span>
+                                                            </p>
+                                                            <p class="timings-times">
+                                                                <span>#{s.fromTime.toLocaleString().substring(12)} - #{s.toTime.toLocaleString().substring(12)}</span>
+                                                                    
+                                                            </p>
+                                                    </div>
+                                                    
+                                            </div>
+                                    </div>
+                                    <!-- /Clinic Timing -->
+
+                                   
+                            </div>
+                    </div>
+                            </ui:repeat>
+                            <!-- /Location List -->
+
+                    </div>
+                    <!-- /Locations Content -->
+                    
+                       <!-- Reviews Content -->
+     <div role="tabpanel" id="doc_reviews" class="tab-pane fade">
+
+                                                <!-- Review Listing -->
+                                                <div class="widget review-listing">
+                                                        <ul class="comments-list">
+                                    <!-- Comment List -->
+                                   <ui:repeat value="#{reviewBean.all}" var="r">
+                                                <li>
+                                                        <div class="comment">
+                                                                <img class="avatar avatar-sm rounded-circle" alt="User Image" src="/DoctzWeb/resources/img/patients/patient2.jpg"/>
+                                                                <div class="comment-body">
+                                                                        <div class="meta-data">
+                                                                            <span class="comment-author">#{r.patientId.patientName}</span>
+                                                                                
+                                                                        </div>
+                                                                        <p class="comment-content">
+                                                                                #{r.review}
+                                                                        </p>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                        </ui:repeat>
+                                                <!-- /Comment List -->
+
+                                        </ul>
+
+                                       
+
+                                </div>
+                                                
+                                                
+                                                <!-- Write Review -->
+                                <div class="write-review">
+                                        <h4>Write a review for <strong>Dr. Darren Elder</strong></h4>
+
+                                        <!-- Write Review Form -->
+                                        <form>
+                                                
+                                                <div class="form-group">
+                                                        <label>Your review</label>
+                                                        <textarea id="review_desc" maxlength="100" class="form-control"></textarea>
+
+                                                  <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
+                                                </div>
+                                            <hr></hr>
+                                                
+                                                
+                                                <div class="submit-section">
+                                                        <button type="submit" class="btn btn-primary submit-btn">Add Review</button>
+                                                </div>
+                                        </form>
+                                        <!-- /Write Review Form -->
+
+                                </div>
+                                <!-- /Write Review -->
+     </div>
+                                <!-- /Review Listing -->
+                             <!-- /review content -->
+                    
+                                </div>
+                        </div>
+                </div>
+                
+                <!-- /doctor detail -->
+                
+
+        </div>
+                            </div>
+</div>
+		
+			<!-- /Page Content -->
+    
+
+    </ui:define>
+
+</ui:composition>
 
     </body>
 </html>
