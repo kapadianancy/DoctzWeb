@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
@@ -84,10 +85,10 @@
                                         <div class="schedule-nav">
                                                 <ul class="nav nav-tabs nav-justified">
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#slot_sunday"> #{dateBean.date1} #{dateBean.day1}</a>
+                                                            <a class="nav-link active" data-toggle="tab" href="#slot_sunday"> #{dateBean.date1} #{dateBean.day1}</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#slot_monday">#{dateBean.date2} #{dateBean.day2}</a>
+                                                            <a class="nav-link" data-toggle="tab" href="#slot_monday">#{dateBean.date2} #{dateBean.day2}</a>
                                                         </li>
                                                         <li class="nav-item">
                                                                 <a class="nav-link" data-toggle="tab" href="#slot_tuesday">#{dateBean.date3} #{dateBean.day3}</a>
@@ -115,43 +116,171 @@
                                 <div class="tab-content schedule-cont">
 
                                         <!-- Sunday Slot -->
-                                        <div id="slot_sunday" class="tab-pane fade">
-                                                <h4 class="card-title d-flex justify-content-between">
+                                        <div id="slot_sunday" class="tab-pane fade show active">
+                                                 <h4 class="card-title d-flex justify-content-between">
                                                         <span>Time Slots</span> 
                                                 </h4>
-                                                <p class="text-muted mb-0">Not Available</p>
+
+                                                <!-- Slot List -->
+                                                <div class="doc-times">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date1)}" var="s">
+                                                        <div class="doc-slot-list"> 
+                                                               #{s.hospitalId.hospitalName}
+                                                               <br/>
+                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                        </div>
+                                                    </ui:repeat>
+                                               
+                                                    <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
+                                                        <p class="text-muted mb-0">Not Available</p>
+                                                     </h:panelGroup>
+                                                </div>
+                                                <!-- /Slot List -->
+
                                         </div>
                                         <!-- /Sunday Slot -->
 
                                         <!-- Monday Slot -->
-                                        <div id="slot_monday" class="tab-pane fade show active">
+                                        <div id="slot_monday" class="tab-pane fade">
                                                 <h4 class="card-title d-flex justify-content-between">
                                                         <span>Time Slots</span> 
                                                 </h4>
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
-                                                        <div class="doc-slot-list">
-                                                                8:00 pm - 11:30 pm
-
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date2)}" var="s">
+                                                        <div class="doc-slot-list"> 
+                                                               #{s.hospitalId.hospitalName}
+                                                               <br/>
+                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                         </div>
-                                                        <div class="doc-slot-list">
-                                                                11:30 pm - 1:30 pm
+                                                    </ui:repeat>
 
-                                                        </div>
-                                                        <div class="doc-slot-list">
-                                                                3:00 pm - 5:00 pm
-
-                                                        </div>
-                                                        <div class="doc-slot-list">
-                                                                6:00 pm - 11:00 pm
-
-                                                        </div>
+                                                    <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
+                                                        <p class="text-muted mb-0">Not Available</p>
+                                                     </h:panelGroup>
                                                 </div>
                                                 <!-- /Slot List -->
 
                                         </div>
                                         <!-- /Monday Slot -->
+                                        
+                                        <!-- Tuesday Slot -->
+                                        <div id="slot_tuesday" class="tab-pane fade">
+                                                <h4 class="card-title d-flex justify-content-between">
+                                                        <span>Time Slots</span> 
+                                                </h4>
+
+                                                <!-- Slot List -->
+                                                <div class="doc-times">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date3)}" var="s">
+                                                        <div class="doc-slot-list"> 
+                                                               #{s.hospitalId.hospitalName}
+                                                               <br/>
+                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                        </div>
+                                                    </ui:repeat>
+
+                                                    <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
+                                                        <p class="text-muted mb-0">Not Available</p>
+                                                     </h:panelGroup>
+                                                </div>
+                                                <!-- /Slot List -->
+
+                                        </div>
+                                        <!-- /Tuesday Slot -->
+                                        
+                                        <!-- Wednesday Slot -->
+                                        <div id="slot_wednesday" class="tab-pane fade">
+                                                <h4 class="card-title d-flex justify-content-between">
+                                                        <span>Time Slots</span> 
+                                                </h4>
+
+                                                <!-- Slot List -->
+                                                <div class="doc-times">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date4)}" var="s">
+                                                        <div class="doc-slot-list"> 
+                                                               #{s.hospitalId.hospitalName}
+                                                               <br/>
+                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                        </div>
+                                                    </ui:repeat>
+
+                                                    <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
+                                                        <p class="text-muted mb-0">Not Available</p>
+                                                     </h:panelGroup>
+                                        </div>
+                                        </div>
+                                        <!-- /Wednesday Slot -->
+
+                                        <!-- Thursday Slot -->
+                                        <div id="slot_thursday" class="tab-pane fade">
+                                           <h4 class="card-title d-flex justify-content-between">
+                                                        <span>Time Slots</span> 
+                                                </h4>
+
+                                                <!-- Slot List -->
+                                                <div class="doc-times">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date5)}" var="s">
+                                                        <div class="doc-slot-list"> 
+                                                               #{s.hospitalId.hospitalName}
+                                                               <br/>
+                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                        </div>
+                                                    </ui:repeat>
+
+                                                    <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
+                                                        <p class="text-muted mb-0">Not Available</p>
+                                                     </h:panelGroup>
+                                        </div>
+                                        </div>
+                                        <!-- /Thursday Slot -->
+
+                                        <!-- Friday Slot -->
+                                        <div id="slot_friday" class="tab-pane fade">
+                                          <h4 class="card-title d-flex justify-content-between">
+                                                        <span>Time Slots</span> 
+                                                </h4>
+
+                                                <!-- Slot List -->
+                                                <div class="doc-times">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date6)}" var="s">
+                                                        <div class="doc-slot-list"> 
+                                                               #{s.hospitalId.hospitalName}
+                                                               <br/>
+                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                        </div>
+                                                    </ui:repeat>
+
+                                                    <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
+                                                        <p class="text-muted mb-0">Not Available</p>
+                                                     </h:panelGroup>
+                                        </div>
+                                        </div>
+                                        <!-- /Friday Slot -->
+
+                                        <!-- Saturday Slot -->
+                                        <div id="slot_saturday" class="tab-pane fade">
+                                              <h4 class="card-title d-flex justify-content-between">
+                                                        <span>Time Slots</span> 
+                                                </h4>
+
+                                                <!-- Slot List -->
+                                                <div class="doc-times">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date7)}" var="s">
+                                                        <div class="doc-slot-list"> 
+                                                               #{s.hospitalId.hospitalName}
+                                                               <br/>
+                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                        </div>
+                                                    </ui:repeat>
+
+                                                    <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
+                                                        <p class="text-muted mb-0">Not Available</p>
+                                                     </h:panelGroup>
+                                        </div>
+                                        </div>
+                                        <!-- /Saturday Slot -->
 
 
 

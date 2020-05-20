@@ -119,6 +119,14 @@ public class doctorScheduleBean {
         
         return all;
     }
+    
+    public Collection<DoctorScheduleTb> getScheduleByDoctorAndDate(int did,String date)
+    {
+        java.sql.Date d1 = java.sql.Date.valueOf(date);
+        System.out.println(did+" "+d1);
+        this.setAll(ejb.getScheduleByDoctorAndDate(did, d1));
+        return all;
+    }
 
     public void setAll(Collection<DoctorScheduleTb> all) {
         

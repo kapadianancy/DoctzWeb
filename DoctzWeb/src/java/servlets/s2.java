@@ -13,6 +13,9 @@ import entity.*;
 import entity.SpecializationTb;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
@@ -100,18 +103,20 @@ public class s2 extends HttpServlet {
 //            out.println(p.getPatientName()+p.getUserId().getEmail());
 
  //           out.print(pass);
-            
-//            Collection<DoctorScheduleTb> docs=ejb.getDoctorSchedule(4);
-//            for(DoctorScheduleTb d:docs)
-//            {
-//                out.println(d.getHospitalId().getHospitalName()+" "+d.getDate()+" "+d.getFromTime()+ " "+d.getToTime());
-//            }
-
-  Collection<ReviewTb> docs=ejb.getReviewByDoctorId(4);
-            for(ReviewTb d:docs)
+             String string = "2020-05-21";
+             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+             java.sql.Date d1 = Date.valueOf(string);
+            Collection<DoctorScheduleTb> docs=ejb.getScheduleByDoctorAndDate(4,d1);
+            for(DoctorScheduleTb d:docs)
             {
-                out.println(d.getDoctorId().getDoctorName()+" "+d.getReview());
+                out.println(d.getHospitalId().getHospitalName()+" "+d.getDate()+"   "+d.getFromTime()+ "   "+d.getToTime()+"<br/>");
             }
+
+//  Collection<ReviewTb> docs=ejb.getReviewByDoctorId(4);
+//            for(ReviewTb d:docs)
+//            {
+//                out.println(d.getDoctorId().getDoctorName()+" "+d.getReview());
+//            }
 
 
         //    out.print(pass);
