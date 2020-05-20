@@ -27,6 +27,8 @@ public class myclient {
     private Client client;
     private static final String BASE_URI = "http://localhost:8001/DoctzWeb/webresources";
 
+   
+    
      public myclient(String token) {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         client.register(new RestFilter(token));

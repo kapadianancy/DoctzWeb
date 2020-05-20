@@ -608,6 +608,7 @@ public class doctzBean implements doctzBeanLocal {
     @Override
     public int addReview(int patientId, int doctorId, int hospitalId, String review) {
         int status=0;
+        System.err.println(patientId+" "+doctorId+" "+hospitalId+" "+review);
         
         PatientTb p=em.find(PatientTb.class,patientId);
         Collection<ReviewTb> r2=p.getReviewTbCollection();

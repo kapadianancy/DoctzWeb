@@ -160,7 +160,7 @@ public class GenericResource {
     }
     
 //  public int addReview(int patientId,int doctorId,int hospitalId,String review);
-    @RolesAllowed({"admin","patient"})
+    //@RolesAllowed("patient")
     @POST
     @Path("/addReview/{patientId}/{doctorId}/{hospitalId}/{review}")
     @Produces(MediaType.APPLICATION_JSON)
