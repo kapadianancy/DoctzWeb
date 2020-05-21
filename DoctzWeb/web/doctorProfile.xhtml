@@ -6,10 +6,13 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
+       
 
 <ui:composition template="./masterPage.xhtml">
 
     <ui:define name="content">
+        
+        <h:form id="frm">
 
     <div class="main-wrapper">
 <!-- Breadcrumb -->
@@ -267,26 +270,20 @@
                                                 
                                                 <!-- Write Review -->
                                 <div class="write-review">
-                                        <h4>Write a review for <strong>Dr. Darren Elder</strong></h4>
+                                    <h4>Give a review for <strong>#{doctorBean.doctor.doctorName}</strong></h4>
 
                                         <!-- Write Review Form -->
-                                        <h:form>
-                                                
-                                                <div class="form-group">
-                                                        <label>Your review</label>
-                                                        
-                                                        <h:inputTextarea id="review" class="form-control"></h:inputTextarea>
-
-                                                  
-                                                </div>
+                                        
                                             <hr></hr>
                                                 
                                                 
                                                 <div class="submit-section">
-                                                        
-                                                        <h:commandButton type="submit" class="btn btn-primary submit-btn" value="Add Review"/>
+                                                     
+                                                    
+                                                    <a class="btn btn-primary submit-btn" href="review.xhtml?did=#{doctorBean.doctor.doctorId}">Give Review</a>
+                                                    
                                                 </div>
-                                        </h:form>
+                                        
                                         <!-- /Write Review Form -->
 
                                 </div>
@@ -308,7 +305,7 @@
 		
 			<!-- /Page Content -->
     
-
+</h:form>
     </ui:define>
 
 </ui:composition>

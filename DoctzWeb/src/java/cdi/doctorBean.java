@@ -172,6 +172,9 @@ public class doctorBean {
     public DoctorTb getDoctor() {
         
         int did=Integer.parseInt(params.get("did"));
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession(true);
+        session.setAttribute("did",did);
         doctor=ejb.getDoctorById(did);
         return doctor;
     }
@@ -186,6 +189,7 @@ public class doctorBean {
     
      public Collection<DoctorTb> getAlldocs() {
     
+        
         res=c.getAllDoctor(Response.class);
         alldocs=res.readEntity(gdoc);
          

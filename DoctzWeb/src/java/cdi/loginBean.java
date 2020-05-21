@@ -390,5 +390,10 @@ public class loginBean {
         }
         return "faces/changePassword.xhtml";
     }
+   
+   public String temp()
+   {
+       return "index.xhtml?faces-redirect=true";
+   }
 
 }

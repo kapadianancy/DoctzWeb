@@ -8,6 +8,7 @@ package cdi;
 import beans.doctzBeanLocal;
 import entity.DoctorScheduleTb;
 import entity.DoctorTb;
+import entity.FeesTb;
 import entity.HospitalTb;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -39,6 +40,7 @@ public class doctorScheduleBean {
     int patients;
     
     Collection<HospitalTb> hos;
+    Collection<FeesTb> fees;
     
     Collection<DoctorScheduleTb> all;
     GenericType<Collection<DoctorScheduleTb>> gall;
@@ -50,6 +52,7 @@ public class doctorScheduleBean {
         gall=new GenericType<Collection<DoctorScheduleTb>>(){};
         all=new ArrayList<DoctorScheduleTb>();
         hos=new ArrayList<HospitalTb>();
+        fees=new ArrayList<FeesTb>();
     }
 
     public int getSid() {
@@ -123,7 +126,7 @@ public class doctorScheduleBean {
     public Collection<DoctorScheduleTb> getScheduleByDoctorAndDate(int did,String date)
     {
         java.sql.Date d1 = java.sql.Date.valueOf(date);
-        System.out.println(did+" "+d1);
+       // System.out.println(did+" "+d1);
         this.setAll(ejb.getScheduleByDoctorAndDate(did, d1));
         return all;
     }
@@ -143,7 +146,22 @@ public class doctorScheduleBean {
         this.hos = hos;
     }
     
+    public Collection<FeesTb> getFeesBySpecialityandHospital(int spe,int hos)
+    {
+       
+        fees=ejb.getFeesBySpecialityandHospital(spe, hos); 
+        return fees;
+    }
+
+    public Collection<FeesTb> getFees() {
+        return fees;
+    }
+
+    public void setFees(Collection<FeesTb> fees) {
+        this.fees = fees;
+    }
     
+   
     
     
 }
