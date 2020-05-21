@@ -92,6 +92,7 @@ public class s2 extends HttpServlet {
                 out.println("\n"+s1.getDoctorName()+"<br>");
             }
 
+<<<<<<< HEAD
             PatientTb p=new PatientTb();
             HttpSession session= request.getSession(true);
             String str=session.getAttribute("username").toString();
@@ -100,19 +101,29 @@ public class s2 extends HttpServlet {
             res=c1.addReview(Response.class,String.valueOf(p.getPatientId()),String.valueOf(4),"0","nancy");
             System.out.println(res.toString());
         
+=======
+//            PatientTb p=new PatientTb();
+//            HttpSession session= request.getSession(true);
+//            String str=session.getAttribute("username").toString();
+//            p=ejb.getPatientByEmail(str);
+//            //System.err.println(p.getPatientName());
+//            res=c1.addReview(Response.class,String.valueOf(p.getPatientId()),String.valueOf(4),"0","nancy");
+//            System.out.println(res.toString());
+            
+>>>>>>> b89e429879f7d8979ca853437097ff4555b472a8
 //
 //            PatientTb p=ejb.getPatientByEmail("kapadianancy21@gmail.com");
 //            out.println(p.getPatientName()+p.getUserId().getEmail());
 
  //           out.print(pass);
-             String string = "2020-05-21";
-             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-             java.sql.Date d1 = Date.valueOf(string);
-            Collection<DoctorScheduleTb> docs=ejb.getScheduleByDoctorAndDate(4,d1);
-            for(DoctorScheduleTb d:docs)
-            {
-                out.println(d.getHospitalId().getHospitalName()+" "+d.getDate()+"   "+d.getFromTime()+ "   "+d.getToTime()+"<br/>");
-            }
+//             String string = "2020-05-21";
+//             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//             java.sql.Date d1 = Date.valueOf(string);
+//            Collection<DoctorScheduleTb> docs=ejb.getScheduleByDoctorAndDate(4,d1);
+//            for(DoctorScheduleTb d:docs)
+//            {
+//                out.println(d.getHospitalId().getHospitalName()+" "+d.getDate()+"   "+d.getFromTime()+ "   "+d.getToTime()+"<br/>");
+//            }
 
 //  Collection<ReviewTb> docs=ejb.getReviewByDoctorId(4);
 //            for(ReviewTb d:docs)
@@ -120,10 +131,17 @@ public class s2 extends HttpServlet {
 //                out.println(d.getDoctorId().getDoctorName()+" "+d.getReview());
 //            }
 
+<<<<<<< HEAD
 
                 PatientTb p1=ejb.getPatientByEmail("kapadianancy21@gmail.com");
 
 //  Collection<ReviewTb> docs=ejb.getReviewByDoctorId(4);
+=======
+
+//                PatientTb p1=ejb.getPatientByEmail("kapadianancy21@gmail.com");
+//
+//            Collection<ReviewTb> docs=ejb.getReviewByDoctorId(4);
+>>>>>>> b89e429879f7d8979ca853437097ff4555b472a8
 //            for(ReviewTb d:docs)
 //            {
 //                out.println(d.getDoctorId().getDoctorName()+" "+d.getReview());
@@ -132,6 +150,12 @@ public class s2 extends HttpServlet {
 
         //    out.print(pass);
 
+             Collection<FeesTb> docs=ejb.getFeesBySpecialityandHospital(8,5);
+            for(FeesTb d:docs)
+            {
+                out.println(d.getFees());
+            }
+        
 
             out.println("</body>");
             out.println("</html>");

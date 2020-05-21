@@ -54,9 +54,9 @@ public class specializationBean {
     private Part uploadedFile;
     private SpecializationTb spec;
     
-  private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\specialities\\";
+ // private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\specialities\\";
     
- // private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\specialities\\";
+  private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\specialities\\";
 	
      public specializationBean() {
          

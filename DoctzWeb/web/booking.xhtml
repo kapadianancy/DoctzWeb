@@ -123,11 +123,16 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
+                                                   
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date1)}" var="s">
                                                         <div class="doc-slot-list"> 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
-                                                              #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                               <br/>
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                 Rs. #{f.fees}
+                                                                </ui:repeat>
                                                         </div>
                                                     </ui:repeat>
                                                
@@ -148,11 +153,18 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
+                                                     
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date2)}" var="s">
                                                         <div class="doc-slot-list"> 
+                                                             
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                                <br/>
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                 Rs. #{f.fees}
+                                                                </ui:repeat>
+                                                           
                                                         </div>
                                                     </ui:repeat>
 
@@ -178,6 +190,10 @@
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                                <br/>
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                 Rs. #{f.fees}
+                                                                </ui:repeat>
                                                         </div>
                                                     </ui:repeat>
 
@@ -203,6 +219,10 @@
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                                 <br/>
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                 Rs. #{f.fees}
+                                                                </ui:repeat>
                                                         </div>
                                                     </ui:repeat>
 
@@ -226,6 +246,11 @@
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                                <br/>
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                 Rs. #{f.fees}
+                                                               </ui:repeat>
+                                                        
                                                         </div>
                                                     </ui:repeat>
 
@@ -249,6 +274,10 @@
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                                <br/>
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                 Rs. #{f.fees}
+                                                                </ui:repeat>
                                                         </div>
                                                     </ui:repeat>
 
@@ -272,6 +301,10 @@
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
+                                                                <br/>
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                 Rs. #{f.fees}
+                                                              </ui:repeat>
                                                         </div>
                                                     </ui:repeat>
 

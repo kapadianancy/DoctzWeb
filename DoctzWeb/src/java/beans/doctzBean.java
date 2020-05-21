@@ -594,6 +594,14 @@ public class doctzBean implements doctzBeanLocal {
         SpecializationTb s=em.find(SpecializationTb.class,specializaionId);
         return em.createNamedQuery("FeesTb.findFeesBySpeciality").setParameter("specializationId",s).getResultList();
     }
+
+    @Override
+    public Collection<FeesTb> getFeesBySpecialityandHospital(int specializaionId, int hospitalId) {
+       HospitalTb h=em.find(HospitalTb.class,hospitalId);
+       SpecializationTb s=em.find(SpecializationTb.class,specializaionId);
+       return em.createNamedQuery("FeesTb.findFeesBySpecialityAndHospital").setParameter("specializationId",s).setParameter("hospitalId", h).getResultList();
+    }
+    
     
 
     @Override
