@@ -236,7 +236,7 @@ public class PatientBean {
         this.address=this.p.getAddress();
         this.patientid=this.p.getPatientId();
         this.userid=this.p.getUserId().getUserId();
-        return "userProfile.xhtml";
+        return "/userProfile.xhtml";
     }
     
         public String editProfile()

@@ -199,8 +199,9 @@
                                     <!-- Clinic Content -->
                                     <div class="col-md-6">
                                             <div class="clinic-content">
-                                                <h4 class="clinic-name"><a href="#">#{s.hospitalName}</a></h4>
-                                                <p class="doc-speciality">#{doctorBean.doctor.education}</p>
+                                                <h4 class="clinic-name"><a href="hospitals.xhtml">#{s.hospitalName}</a></h4>
+                                                <h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i>&nbsp; #{s.address}</h5>
+                                                
                                                    
                                        
                                             </div>
@@ -216,14 +217,21 @@
                                                                 <span> #{t.date.date}-#{t.date.month+1}-2020</span>
                                                             </p>
                                                             <p class="timings-times">
-                                                                <span>#{t.fromTime.toLocaleString().substring(12)} - #{t.toTime.toLocaleString().substring(12)}</span>
+                                                                <span>#{t.fromTime.toLocaleString().substring(12,20)} - #{t.toTime.toLocaleString().substring(12,20)}</span>
                                                                     
                                                             </p>
                                                     </div>
                                                 </ui:repeat>    
                                             </div>
                                     </div>
-                                    <!-- /Clinic Timing -->
+                                    <div class="col-md-2">
+                                            <div class="consult-price">
+                                                <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId , s.hospitalId)}" var="f">      
+                                                     Rs. #{f.fees}
+                                               </ui:repeat>
+                                            </div>
+                                    </div>
+<!-- /Clinic Timing -->
 
                                    
                             </div>
