@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "FeesTb.getHospitalByLowToHighFees", query = "SELECT f FROM FeesTb f WHERE f.specializationId.name = :spcializationName ORDER BY f.fees"),
     @NamedQuery(name = "FeesTb.getHospitalByHighToLowFees", query = "SELECT f FROM FeesTb f WHERE f.specializationId.name = :spcializationName ORDER BY f.fees desc"),
     @NamedQuery(name = "FeesTb.getHospitalByFees", query = "SELECT f FROM FeesTb f WHERE f.specializationId.name = :spcializationName and f.fees between :from and :to "),
+    @NamedQuery(name = "FeesTb.findFeesBySpecialityAndHospital", query = "SELECT f FROM FeesTb f WHERE f.specializationId = :specializationId and f.hospitalId = :hospitalId"),
     @NamedQuery(name = "FeesTb.findFeesBySpeciality", query = "SELECT f FROM FeesTb f WHERE f.specializationId = :specializationId")
         
     })

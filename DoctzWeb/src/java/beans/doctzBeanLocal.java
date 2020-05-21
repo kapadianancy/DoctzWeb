@@ -101,6 +101,8 @@ public interface doctzBeanLocal {
         
         public Collection<FeesTb> getFeesBySpeciality(int specializaionId);
         
+        public Collection<FeesTb> getFeesBySpecialityandHospital(int specializaionId,int hospitalId);
+        
         public int deleteFees(int feesId);
         
 //  --------------------------review-----------------------
