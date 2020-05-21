@@ -9,7 +9,10 @@
         <ui:composition template="./masterPage.xhtml">
 
             <ui:define name="content">
-                <h:form>
+              
+                
+                
+            <h:form>
                 <!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
@@ -28,9 +31,10 @@
 			</div>
 			<!-- /Breadcrumb -->
 			<!-- Page Content -->
+                    
 			<div class="content">
 				<div class="container">
-				
+                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByHospital()}" var="h">
 					<div class="row">
 						<div class="col-12">
 						
@@ -38,12 +42,12 @@
 								<div class="card-body">
 									<div class="booking-doc-info">
 										<a href="doctor-profile.html" class="booking-doc-img">
-                                                                                    <img src="/DoctzWeb/#{doctorBean.doctor.profile}" alt="User Image"/>
+                                                                                    <img src="/DoctzWeb/#{h.profile}" alt="User Image"/>
 										</a>
 										<div class="booking-info">
-                                                                                    <h4 class="doc-name">#{doctorBean.doctor.doctorName}</h4>
-                                                                                    <p class="doc-speciality">#{doctorBean.doctor.education}</p>
-                                                                                    <p class="doc-department"><img src="/DoctzWeb/#{doctorBean.doctor.specializationId.image}" class="img-fluid" alt="Speciality"/>#{doctorBean.doctor.specializationId.name}</p>
+                                                                                    <h4 class="doc-name">#{h.doctorName}</h4>
+                                                                                    <p class="doc-speciality">#{h.education}</p>
+                                                                                    <p class="doc-department"><img src="/DoctzWeb/#{h.specializationId.image}" class="img-fluid" alt="Speciality"/>#{h.specializationId.name}</p>
 
                                                                                 </div>
                                                                          
@@ -52,8 +56,8 @@
                                                                                 <div class="clini-infos">
                                                                                        <ul>
 
-                                                                                           <li><i class="far fa-comment"></i> #{doctorBean.doctor.experience} experience</li>
-                                                                                           <li><i class="fas fa-map-marker-alt"></i>#{doctorBean.doctor.gender}</li>
+                                                                                           <li><i class="far fa-comment"></i> #{h.experience} experience</li>
+                                                                                           <li><i class="fas fa-map-marker-alt"></i>#{h.gender}</li>
 
                                                                                     </ul>
                                                                                 </div>
@@ -124,13 +128,13 @@
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
                                                    
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date1)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(h.doctorId,dateBean.date1)}" var="s">
                                                         <h:commandLink class="doc-slot-list btn-outline-info" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                                #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                <br/>
-                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(h.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                                 </ui:repeat>
                                                         </h:commandLink>
@@ -154,14 +158,14 @@
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
                                                      
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date2)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(h.doctorId,dateBean.date2)}" var="s">
                                                        <h:commandLink class="doc-slot-list btn-outline-info" > 
                                                              
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                 <br/>
-                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                                <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(h.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                                 </ui:repeat>
                                                            
@@ -185,13 +189,13 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date3)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(h.doctorId,dateBean.date3)}" var="s">
                                                         <h:commandLink class="doc-slot-list btn-outline-info" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                 <br/>
-                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(h.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                                 </ui:repeat>
                                                         </h:commandLink>
@@ -214,13 +218,13 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date4)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(h.doctorId,dateBean.date4)}" var="s">
                                                          <h:commandLink class="doc-slot-list btn-outline-info" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                  <br/>
-                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(h.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                                 </ui:repeat>
                                                          </h:commandLink>
@@ -241,13 +245,13 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date5)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(h.doctorId,dateBean.date5)}" var="s">
                                                         <h:commandLink class="doc-slot-list btn-outline-info" >  
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                 <br/>
-                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(h.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                                </ui:repeat>
                                                         
@@ -269,13 +273,13 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date6)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(h.doctorId,dateBean.date6)}" var="s">
                                                         <h:commandLink class="doc-slot-list btn-outline-info" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                 <br/>
-                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(h.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                                 </ui:repeat>
                                                         </h:commandLink>
@@ -296,13 +300,13 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date7)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(h.doctorId,dateBean.date7)}" var="s">
                                                         <h:commandLink class="doc-slot-list btn-outline-info" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                 <br/>
-                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
+                                                               <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(h.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                               </ui:repeat>
                                                         </h:commandLink>
@@ -332,6 +336,7 @@
 								
 								
                             </div>
+
                             <!-- /Schedule Widget -->
 
 <!--                             Submit Section 
@@ -342,12 +347,15 @@
 
                     </div>
                 </div>
+                                         </ui:repeat>
         </div>
 
 </div>		
+                           
 <!-- /Page Content -->
    
                 </h:form>
+                
                 
             </ui:define>
 

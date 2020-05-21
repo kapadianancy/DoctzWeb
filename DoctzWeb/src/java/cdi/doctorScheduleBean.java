@@ -41,6 +41,7 @@ public class doctorScheduleBean {
     
     Collection<HospitalTb> hos;
     Collection<FeesTb> fees;
+    Collection<DoctorTb> hall;
     
     Collection<DoctorScheduleTb> all;
     GenericType<Collection<DoctorScheduleTb>> gall;
@@ -51,6 +52,7 @@ public class doctorScheduleBean {
     public doctorScheduleBean() {
         gall=new GenericType<Collection<DoctorScheduleTb>>(){};
         all=new ArrayList<DoctorScheduleTb>();
+        hall=new ArrayList<DoctorTb>();
         hos=new ArrayList<HospitalTb>();
         fees=new ArrayList<FeesTb>();
     }
@@ -111,6 +113,16 @@ public class doctorScheduleBean {
         this.patients = patients;
     }
 
+    public Collection<DoctorTb> getHall() {
+        return hall;
+    }
+
+    public void setHall(Collection<DoctorTb> hall) {
+        this.hall = hall;
+    }
+    
+    
+
     public Collection<DoctorScheduleTb> getAll() {
         return all;
     }
@@ -126,11 +138,18 @@ public class doctorScheduleBean {
     public Collection<DoctorScheduleTb> getScheduleByDoctorAndDate(int did,String date)
     {
         java.sql.Date d1 = java.sql.Date.valueOf(date);
-       // System.out.println(did+" "+d1);
+        System.out.println(did+" "+d1);
         this.setAll(ejb.getScheduleByDoctorAndDate(did, d1));
         return all;
     }
 
+    public Collection<DoctorTb> getScheduleByHospital()
+    {
+        int hospital=Integer.parseInt(params.get("hos"));
+        this.setHall(ejb.getScheduleByHospital(hospital));
+        return hall;
+    }
+    
     public void setAll(Collection<DoctorScheduleTb> all) {
         
         this.all = all;

@@ -223,4 +223,7 @@ public interface doctzBeanLocal {
        public Collection<DoctorScheduleTb> getScheduleByHospitalAndDoctorId(int hid,int did);
        
        public Collection<DoctorScheduleTb> getScheduleByDoctorAndDate(int did,Date date);
+       
+       public Collection<DoctorTb> getScheduleByHospital(int hid);
+       
 }
