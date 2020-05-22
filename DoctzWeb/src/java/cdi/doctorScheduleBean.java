@@ -138,8 +138,17 @@ public class doctorScheduleBean {
     public Collection<DoctorScheduleTb> getScheduleByDoctorAndDate(int did,String date)
     {
         java.sql.Date d1 = java.sql.Date.valueOf(date);
-        System.out.println(did+" "+d1);
+        //System.out.println(did+" "+d1);
         this.setAll(ejb.getScheduleByDoctorAndDate(did, d1));
+        return all;
+    }
+    
+    public Collection<DoctorScheduleTb> getScheduleByDoctorAndHospitalAndDate(int did,String date)
+    {
+        int hid=Integer.parseInt(params.get("hos"));
+        java.sql.Date d1 = java.sql.Date.valueOf(date);
+        //System.out.println(did+" "+d1);
+        this.setAll(ejb.getScheduleByDoctorAndHospitalAndDate(did,hid, d1));
         return all;
     }
 
@@ -180,7 +189,10 @@ public class doctorScheduleBean {
         this.fees = fees;
     }
     
-   
+   public String display()
+   {
+       return "Nidhi";
+   }
     
     
 }

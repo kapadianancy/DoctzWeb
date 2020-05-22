@@ -42,6 +42,8 @@ public class doctorBean {
     
     GenericType<Collection<DoctorTb>> gdoc;
    
+    
+    private int hosId;
     private int id;
     private String name;
     private int sid;
@@ -52,6 +54,7 @@ public class doctorBean {
     private String edu;
     private String profile;
     private int isActive;
+    
     String spec,hos;
    
    
@@ -108,6 +111,14 @@ public class doctorBean {
        ajaxvalue="hello "+str;
     }
      
+      public int getHosId() {
+        hosId=Integer.parseInt(params.get("hos"));
+        return hosId;
+    }
+
+    public void setHosId(int hosId) {
+        this.hosId = hosId;
+    }
     
     public Collection<DoctorTb> getSearchDocs() 
     {
