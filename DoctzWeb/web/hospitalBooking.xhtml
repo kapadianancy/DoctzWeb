@@ -190,7 +190,7 @@
 
                                                 <!-- Slot List -->
                                                 <div class="doc-times">
-                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndHospitalAndDate(doctorBean.doctor.doctorId,dateBean.date1)}" var="s">
+                                                    <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndHospitalAndDate(doctorBean.doctor.doctorId,dateBean.date3)}" var="s">
                                                         <h:commandLink class="doc-slot-list btn-outline-info" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
