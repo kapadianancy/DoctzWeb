@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "AppointmentTb.findByAppointmentId", query = "SELECT a FROM AppointmentTb a WHERE a.appointmentId = :appointmentId"),
     @NamedQuery(name = "AppointmentTb.findByDate", query = "SELECT a FROM AppointmentTb a WHERE a.date = :date"),
     @NamedQuery(name = "AppointmentTb.findByTime", query = "SELECT a FROM AppointmentTb a WHERE a.time = :time"),
-    @NamedQuery(name = "AppointmentTb.findByAmPm", query = "SELECT a FROM AppointmentTb a WHERE a.amPm = :amPm"),
+    
     @NamedQuery(name = "AppointmentTb.findByStatus", query = "SELECT a FROM AppointmentTb a WHERE a.status = :status"),
     @NamedQuery(name = "AppointmentTb.findByDoctorId", query = "SELECT a FROM AppointmentTb a WHERE a.doctorId = :doctorId and a.hospitalId =:hospitalId and a.isActive=1"),
     @NamedQuery(name = "AppointmentTb.findPatientOfDoctor", query = "SELECT distinct(a.patientId) FROM AppointmentTb a WHERE a.doctorId = :doctorId"),
@@ -59,9 +59,7 @@ public class AppointmentTb implements Serializable {
     @Column(name = "time")
     @Temporal(TemporalType.TIME)
     private Date time;
-    @Basic(optional = false)
-    @Column(name = "amPm")
-    private String amPm;
+   
     @Basic(optional = false)
     @Lob
     @Column(name = "invoice")
@@ -89,11 +87,11 @@ public class AppointmentTb implements Serializable {
         this.appointmentId = appointmentId;
     }
 
-    public AppointmentTb(Integer appointmentId, Date date, Date time, String amPm, String invoice, String status, int isActive) {
+    public AppointmentTb(Integer appointmentId, Date date, Date time, String invoice, String status, int isActive) {
         this.appointmentId = appointmentId;
         this.date = date;
         this.time = time;
-        this.amPm = amPm;
+       
         this.invoice = invoice;
         this.status = status;
         this.isActive = isActive;
@@ -123,13 +121,7 @@ public class AppointmentTb implements Serializable {
         this.time = time;
     }
 
-    public String getAmPm() {
-        return amPm;
-    }
-
-    public void setAmPm(String amPm) {
-        this.amPm = amPm;
-    }
+   
 
     public String getInvoice() {
         return invoice;

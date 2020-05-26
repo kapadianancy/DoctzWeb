@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -180,16 +181,27 @@ public class doctorBean {
 
     }
 
-    public DoctorTb getDoctor() {
+    public DoctorTb getDoctor()
+    {
         
-        int did=Integer.parseInt(params.get("did"));
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession(true);
+       // int did=4;
+       if(null != params.get("did"))
+       {
+           session.setAttribute("did", params.get("did"));
+       }
+       int did=Integer.parseInt(session.getAttribute("did").toString());
+       // int did=Integer.parseInt(params.get("did"));
+        
         session.setAttribute("did",did);
         doctor=ejb.getDoctorById(did);
+        
         return doctor;
     }
 
+   
+    
     public void setDoctor(DoctorTb doctor) {
         
         this.doctor = doctor;

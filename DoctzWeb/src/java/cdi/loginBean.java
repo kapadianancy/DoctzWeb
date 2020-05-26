@@ -9,6 +9,8 @@ import beans.doctzBeanLocal;
 import client.myclient;
 import entity.*;
 import java.nio.charset.Charset;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
@@ -63,9 +65,15 @@ public class loginBean {
     private String password,message,color,npass,cpass;
     private AuthenticationStatus status;
     private Set<String> roles;
+    private PatientTb patient;
+    
+          
    
     public loginBean() {
-        //c=new myclient();
+       
+          
+       
+        patient=new PatientTb();
         
     }
 
@@ -109,6 +117,18 @@ public class loginBean {
         this.cpass = cpass;
     }
 
+    public PatientTb getPatient() {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+          
+       // HttpSession session = request.getSession(true);
+        patient=ejb.getPatientByEmail(request.getSession().getAttribute("username").toString());
+        return patient;
+    }
+
+    public void setPatient(PatientTb patient) {
+        this.patient = patient;
+    }
+
     
     
     
@@ -148,9 +168,10 @@ public class loginBean {
     public String checklogin(){
         //System.out.println("In Checking");
         try{
-             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-                Credential credential = new UsernamePasswordCredential(getUsername(), new Password(getPassword()));
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+          
+             Credential credential = new UsernamePasswordCredential(getUsername(), new Password(getPassword()));
                 AuthenticationStatus status = sc.authenticate(request,response, withParams().credential(credential));
                    System.err.println(status);
                 if(status.equals(SUCCESS)){
@@ -161,7 +182,18 @@ public class loginBean {
                     if(sc.isCallerInRole("admin")){
                         return "admin/dashboard.xhtml?faces-redirect=true";
                     }
-                    else if(sc.isCallerInRole("patient")){
+                    else if(sc.isCallerInRole("patient"))
+                    {
+                        
+                        if(null != session.getAttribute("flag"))
+                        {
+                            if(session.getAttribute("flag").equals("1"))
+                            { 
+                                res=c.bookAppointment(Response.class, session.getAttribute("doctorId").toString(),this.getPatient().getPatientId().toString(), session.getAttribute("hospitalId").toString() , session.getAttribute("date").toString(),session.getAttribute("time").toString() );
+                                return "bookingSuccess.xhtml?faces-redirect=true";
+                            }
+                        }
+                        
                         return "index.xhtml";
                     }
                     else{
@@ -189,7 +221,8 @@ public class loginBean {
         
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-      
+        HttpSession session= request.getSession(true);
+        
         request.getSession().setAttribute("logged-group", ""); 
         
         Credential credential = new UsernamePasswordCredential(username, new Password(password));
@@ -220,11 +253,33 @@ public class loginBean {
         //   else if(securityContext.isCallerInRole("Supervisor"))
        else if(roles.contains("patient"))
            {
+                 String token="";
                System.out.println("In patient");
                request.getSession().setAttribute("logged-group", "patient");
                request.getSession().setAttribute("username", this.username);
                request.getSession().setAttribute("password", this.password);
-               return "/faces/index.xhtml?faces-redirect=true";
+               
+                    if(null != session.getAttribute("token"))
+                    {
+                      token = request.getSession().getAttribute("token").toString();
+                      c = new myclient(token); 
+                    } 
+               
+                        if(null != request.getSession().getAttribute("flag"))
+                        {
+                            System.out.println("Flag------------"+session.getAttribute("flag"));
+                            if(session.getAttribute("flag").toString().equals("1"))
+                            { 
+                                
+                                res=c.bookAppointment(Response.class,session.getAttribute("doctorId").toString(),this.getPatient().getPatientId().toString(),session.getAttribute("hospitalId").toString(),session.getAttribute("date").toString(),session.getAttribute("time").toString());
+                                ejb.decreaseTotalPatient(Integer.parseInt(session.getAttribute("doctorId").toString()),Integer.parseInt(session.getAttribute("hospitalId").toString()) , Date.valueOf(session.getAttribute("date").toString()),Time.valueOf(session.getAttribute("time").toString()));
+                                return "/faces/bookingSuccess.xhtml?faces-redirect=true";
+                            }
+                        }
+                        
+                        return "/faces/index.xhtml?faces-redirect=true";
+                        
+   
            }
          else
        {

@@ -55,6 +55,9 @@ public class s2 extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Test</h1>");
             
+            Integer s=ejb.getTotalPatientByScheduleId(4);
+            out.println("Total Patient :"+s+"<br>");
+            
 //            res=c1.patientRegistration(Response.class, "Alexa", "Female", "Alexa", "44", "alexa","alexa", "a4@gmail.com","9876543210");
 //            out.println(res);
             
@@ -93,13 +96,13 @@ public class s2 extends HttpServlet {
             }
 
 
-            PatientTb p=new PatientTb();
-            HttpSession session= request.getSession(true);
-            String str=session.getAttribute("username").toString();
-            p=ejb.getPatientByEmail(str);
-            //System.err.println(p.getPatientName());
-            res=c1.addReview(Response.class,String.valueOf(p.getPatientId()),String.valueOf(4),"0","nancy");
-            System.out.println(res.toString());
+//            PatientTb p=new PatientTb();
+//            HttpSession session= request.getSession(true);
+//            String str=session.getAttribute("username").toString();
+//            p=ejb.getPatientByEmail(str);
+//            //System.err.println(p.getPatientName());
+//            res=c1.addReview(Response.class,String.valueOf(p.getPatientId()),String.valueOf(4),"0","nancy");
+//            System.out.println(res.toString());
 
 //            PatientTb p=new PatientTb();
 //            HttpSession session= request.getSession(true);
@@ -132,7 +135,7 @@ public class s2 extends HttpServlet {
 
 
 
-                PatientTb p1=ejb.getPatientByEmail("kapadianancy21@gmail.com");
+              //  PatientTb p1=ejb.getPatientByEmail("kapadianancy21@gmail.com");
 
 //  Collection<ReviewTb> docs=ejb.getReviewByDoctorId(4);
 
@@ -148,13 +151,13 @@ public class s2 extends HttpServlet {
 
 
         //    out.print(pass);
-
-             Collection<FeesTb> docs=ejb.getFeesBySpecialityandHospital(8,5);
-            for(FeesTb d:docs)
-            {
-                out.println(d.getFees());
-            }
-        
+//
+//             Collection<FeesTb> docs=ejb.getFeesBySpecialityandHospital(8,5);
+//            for(FeesTb d:docs)
+//            {
+//                out.println(d.getFees());
+//            }
+//        
 
             out.println("</body>");
             out.println("</html>");

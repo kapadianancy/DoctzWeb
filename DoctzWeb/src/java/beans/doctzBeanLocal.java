@@ -115,7 +115,7 @@ public interface doctzBeanLocal {
         
 // ----------------------------manage appointment ---------------------
 
-        public int bookAppointment(int doctorId,int patientId,int hospitalId,Date date,Time time,String amPm);
+        public int bookAppointment(int doctorId,int patientId,int hospitalId,Date date,Time time);
 
         public int cancelAppointment(int appointmentId);
 
@@ -227,5 +227,9 @@ public interface doctzBeanLocal {
        public Collection<DoctorScheduleTb> getScheduleByDoctorAndHospitalAndDate(int did,int hid,Date date);
        
        public Collection<DoctorTb> getScheduleByHospital(int hid);
+       
+       public Integer getTotalPatientByScheduleId(int sid);
+       
+       public void decreaseTotalPatient(int did,int hid,Date date,Time time);
        
 }

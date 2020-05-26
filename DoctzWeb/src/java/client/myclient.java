@@ -19,7 +19,7 @@ import javax.ws.rs.client.WebTarget;
  *        client.close();
  * </pre>
  *
- * @author Admin
+ * @author ADMIN
  */
 public class myclient {
 
@@ -27,8 +27,6 @@ public class myclient {
     private Client client;
     private static final String BASE_URI = "http://localhost:8001/DoctzWeb/webresources";
 
-   
-    
      public myclient(String token) {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         client.register(new RestFilter(token));
@@ -105,8 +103,8 @@ public class myclient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T bookAppointment(Class<T> responseType, String doctorId, String patientId, String hospitalId, String date, String time, String amPm) throws ClientErrorException {
-        return webTarget.path(java.text.MessageFormat.format("bookAppointment/{0}/{1}/{2}/{3}/{4}/{5}", new Object[]{doctorId, patientId, hospitalId, date, time, amPm})).request().post(null, responseType);
+    public <T> T bookAppointment(Class<T> responseType, String doctorId, String patientId, String hospitalId, String date, String time) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("bookAppointment/{0}/{1}/{2}/{3}/{4}", new Object[]{doctorId, patientId, hospitalId, date, time})).request().post(null, responseType);
     }
 
     public <T> T getFeesBySpeciality(Class<T> responseType, String specializaionId) throws ClientErrorException {
