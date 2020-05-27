@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+    <div class="main-wrapper">
+<!-- Breadcrumb -->
+                <div class="breadcrumb-bar">
+                        <div class="container-fluid">
+                                <div class="row align-items-center">
+                                        <div class="col-md-8 col-12">
+                                                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                                        <ol class="breadcrumb">
+                                                                <li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
+                                                                <li class="breadcrumb-item active" aria-current="page">Doctors</li>
+                                                        </ol>
+                                                </nav>
+                                                <h2 class="breadcrumb-title">Doctors</h2>
+                                        </div>
+                                       
+                                </div>
+                        </div>
+                </div>
+                <!-- /Breadcrumb -->
+                
+               
+
+
+                <div class="row" style="padding:50px;">
+                    <ui:repeat value="#{doctorBean.searchDocs}" var="d">
+                        <div class="col-sm-3 col-md-3 col-xl-3">
+                                <div class="profile-widget">
+                                        <div class="doc-img">
+                                            <a href="doctorProfile.xhtml?did=#{d.doctorId}">
+                                                <img class="img-fluid" alt="User Image" src="/DoctzWeb/#{d.profile}"/>
+                                                </a>
+                                               
+                                        </div>
+                                        <div class="pro-content">
+                                                <h3 class="title">
+                                                    <a href="doctorProfile.xhtml?did=#{d.doctorId}">#{d.doctorName}</a> 
+                                                        <i class="fas fa-check-circle verified"></i>
+                                                </h3>
+                                            <h5 class="doc-department"><img src="/DoctzWeb/#{d.specializationId.image}" class="img-fluid" alt="Speciality"/>#{d.specializationId.name}</h5>
+                                            <p class="speciality">#{d.education}</p>
+                                            <p class="speciality">#{d.experience} years</p>
+                                               
+                                                <div class="row row-sm">
+                                                        <div class="col-6">
+                                                                <a href="doctorProfile.xhtml?did=#{d.doctorId}" class="btn view-btn">View Profile</a>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <a href="bookingHospital?did=#{d.doctorId};hid=#{doctorBean.hosId}" class="btn book-btn">Book Now</a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                    </ui:repeat>
+                   		
+					
+	            </div>
+    </div>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
