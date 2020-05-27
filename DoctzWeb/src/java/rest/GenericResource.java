@@ -181,10 +181,10 @@ public class GenericResource {
 //  public int bookAppointment(int doctorId,int patientId,int hospitalId,Date date,Time time,String amPm);
     @RolesAllowed("patient")
     @POST
-    @Path("/bookAppointment/{doctorId}/{patientId}/{hospitalId}/{date}/{time}/{amPm}")
+    @Path("/bookAppointment/{doctorId}/{patientId}/{hospitalId}/{date}/{time}")
     @Produces(MediaType.APPLICATION_JSON)
-    public int bookAppointment(@PathParam("doctorId") int doctorId,@PathParam("patientId") int patientId,@PathParam("hospitalId") int hospitalId,@PathParam("date") Date date,@PathParam("time") Time time,@PathParam("amPm") String amPm){
-        return ejb.bookAppointment(doctorId, patientId, hospitalId, date, time, amPm);
+    public int bookAppointment(@PathParam("doctorId") int doctorId,@PathParam("patientId") int patientId,@PathParam("hospitalId") int hospitalId,@PathParam("date") Date date,@PathParam("time") Time time){
+        return ejb.bookAppointment(doctorId, patientId, hospitalId, date, time);
     }
     
 //  public int cancelAppointment(int appointmentId);

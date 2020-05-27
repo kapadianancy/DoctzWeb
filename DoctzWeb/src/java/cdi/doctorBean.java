@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -42,6 +43,8 @@ public class doctorBean {
     
     GenericType<Collection<DoctorTb>> gdoc;
    
+    
+    private int hosId;
     private int id;
     private String name;
     private int sid;
@@ -52,6 +55,7 @@ public class doctorBean {
     private String edu;
     private String profile;
     private int isActive;
+    
     String spec,hos;
    
    
@@ -109,8 +113,13 @@ public class doctorBean {
     {
        ajaxvalue="hello "+str;
     }
+<<<<<<< HEAD
 
     public int getHosId() {
+=======
+     
+      public int getHosId() {
+>>>>>>> 76362f41a4362b6edcaf7029d1b8d5f1b0ff4551
         hosId=Integer.parseInt(params.get("hos"));
         return hosId;
     }
@@ -118,8 +127,11 @@ public class doctorBean {
     public void setHosId(int hosId) {
         this.hosId = hosId;
     }
+<<<<<<< HEAD
     
     
+=======
+>>>>>>> 76362f41a4362b6edcaf7029d1b8d5f1b0ff4551
     
     public Collection<DoctorTb> getSearchDocs() 
     {
@@ -181,16 +193,27 @@ public class doctorBean {
 
     }
 
-    public DoctorTb getDoctor() {
+    public DoctorTb getDoctor()
+    {
         
-        int did=Integer.parseInt(params.get("did"));
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession(true);
+       // int did=4;
+       if(null != params.get("did"))
+       {
+           session.setAttribute("did", params.get("did"));
+       }
+       int did=Integer.parseInt(session.getAttribute("did").toString());
+       // int did=Integer.parseInt(params.get("did"));
+        
         session.setAttribute("did",did);
         doctor=ejb.getDoctorById(did);
+        
         return doctor;
     }
 
+   
+    
     public void setDoctor(DoctorTb doctor) {
         
         this.doctor = doctor;

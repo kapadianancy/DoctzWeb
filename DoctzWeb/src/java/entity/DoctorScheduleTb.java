@@ -41,8 +41,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DoctorScheduleTb.findDoctorByHospital",query="SELECT DISTINCT d.doctorId FROM DoctorScheduleTb d WHERE d.hospitalId = :hospitalId"),
     @NamedQuery(name = "DoctorScheduleTb.findHospitalByDoctor",query="SELECT DISTINCT d.hospitalId FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByDoctorAndDate",query="SELECT d FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId and d.date=:date and d.isActive=1"),
+    @NamedQuery(name = "DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDate",query="SELECT d FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId and d.hospitalId.hospitalId=:hospitalId and d.date=:date and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByHospitalAndDoctor",query="SELECT d FROM DoctorScheduleTb d WHERE d.hospitalId.hospitalId = :hospitalId and d.doctorId.doctorId= :doctorId"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByHospital",query="SELECT DISTINCT d.doctorId FROM DoctorScheduleTb d WHERE d.hospitalId.hospitalId = :hospitalId"),
+    @NamedQuery(name = "DoctorScheduleTb.findTotalPatientByScheduleId",query="SELECT d.numberOfPatient FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
+    @NamedQuery(name = "DoctorScheduleTb.findTotalPatientByScheduleId",query="SELECT d.numberOfPatient FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
+    @NamedQuery(name = "DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDateAndTime",query="SELECT d FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId and d.hospitalId.hospitalId=:hospitalId and d.date=:date and d.fromTime=:time and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.findByIsActive", query = "SELECT d FROM DoctorScheduleTb d WHERE d.isActive = :isActive")})
 public class DoctorScheduleTb implements Serializable {
 

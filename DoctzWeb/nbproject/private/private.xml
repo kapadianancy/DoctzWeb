@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospitalDoctors.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/bookingHospital.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospitals.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/doctorBean.java</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/searchDoctors.xhtml</file>
+=======
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/booking.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/loginBean.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/servlets/test.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/bookingBean.java</file>
+>>>>>>> 76362f41a4362b6edcaf7029d1b8d5f1b0ff4551
         </group>
     </open-files>
 </project-private>

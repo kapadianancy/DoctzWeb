@@ -664,7 +664,7 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int bookAppointment(int doctorId, int patientId, int hospitalId, Date date, Time time, String amPm) 
+    public int bookAppointment(int doctorId, int patientId, int hospitalId, Date date, Time time) 
     {
         int status=0;
         PatientTb p=em.find(PatientTb.class,patientId);
@@ -682,7 +682,7 @@ public class doctzBean implements doctzBeanLocal {
         a.setHospitalId(h);
         a.setDate(date);
         a.setTime(time);
-        a.setAmPm(amPm);
+       
         a.setInvoice(null);
         a.setStatus("Incomplete");
         a.setIsActive(1);
@@ -1237,8 +1237,39 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
+    public Collection<DoctorScheduleTb> getScheduleByDoctorAndHospitalAndDate(int did, int hid, Date date) {
+       return em.createNamedQuery("DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDate").setParameter("doctorId", did).setParameter("hospitalId", hid).setParameter("date", date).getResultList();
+   
+    }
+    
+    
+
+    @Override
     public Collection<DoctorTb> getScheduleByHospital(int hid) {
         return em.createNamedQuery("DoctorScheduleTb.findScheduleByHospital").setParameter("hospitalId",hid).getResultList();
+    }
+
+    @Override
+    public Integer getTotalPatientByScheduleId(int sid) {
+        List<Integer> temp=em.createNamedQuery("DoctorScheduleTb.findTotalPatientByScheduleId").setParameter("scheduleId", sid).getResultList();
+        Integer count=0;
+        for(Integer i:temp)
+        {
+            count=i;
+        }
+        return count;
+    }
+
+    @Override
+    public void decreaseTotalPatient(int did,int hid,Date date,Time time) {
+      Collection<DoctorScheduleTb> ds=em.createNamedQuery("DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDateAndTime").setParameter("doctorId", did).setParameter("hospitalId",hid).setParameter("date", date).setParameter("time", time).getResultList();
+       DoctorScheduleTb d=new DoctorScheduleTb();
+       for(DoctorScheduleTb d1:ds)
+       {
+           d=em.find(DoctorScheduleTb.class, d1.getScheduleId());
+           d.setNumberOfPatient(d.getNumberOfPatient()-1);
+       }
+
     }
     
     

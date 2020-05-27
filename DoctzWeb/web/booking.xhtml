@@ -2,14 +2,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
+ 
         <ui:composition template="./masterPage.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form id="frm">
                 <!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
@@ -113,6 +114,7 @@
                                 <!-- /Schedule Header -->
 
 				<!-- Schedule Content -->
+                              
                                 <div class="tab-content schedule-cont">
 
                                         <!-- Sunday Slot -->
@@ -120,21 +122,27 @@
                                                  <h4 class="card-title d-flex justify-content-between">
                                                         <span>Time Slots</span> 
                                                 </h4>
-
+   
+                                           
                                                 <!-- Slot List -->
+                                               
                                                 <div class="doc-times">
                                                    
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date1)}" var="s">
-                                                        <h:commandLink class="doc-slot-list btn-outline-info" > 
-                                                               #{s.hospitalId.hospitalName}
+                                                        
+                                                        <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date1,s.fromTime.toLocaleString().substring(12,20))}">
+                                                              #{s.hospitalId.hospitalName}
                                                                <br/>
                                                                #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                <br/>
                                                                <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
                                                                 </ui:repeat>
+                                                          
                                                         </h:commandLink>
+                                                       
                                                     </ui:repeat>
+                                                   
                                                
                                                     <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
                                                         <p class="text-muted mb-0">Not Available</p>
@@ -152,11 +160,11 @@
                                                 </h4>
 
                                                 <!-- Slot List -->
+                                                
                                                 <div class="doc-times">
-                                                     
+                                                    
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date2)}" var="s">
-                                                       <h:commandLink class="doc-slot-list btn-outline-info" > 
-                                                             
+                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date2,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -165,13 +173,13 @@
                                                                  Rs. #{f.fees}
                                                                 </ui:repeat>
                                                            
-                                                       </h:commandLink>
+                                                         </h:commandLink>
                                                     </ui:repeat>
-
+                                                    
                                                     <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
                                                         <p class="text-muted mb-0">Not Available</p>
                                                      </h:panelGroup>
-                                                </div>
+                                                </div> 
                                                 <!-- /Slot List -->
 
                                         </div>
@@ -184,18 +192,21 @@
                                                 </h4>
 
                                                 <!-- Slot List -->
+                                              
                                                 <div class="doc-times">
+                                                  
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date3)}" var="s">
-                                                        <h:commandLink class="doc-slot-list btn-outline-info" > 
+                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date3,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
                                                                 <br/>
                                                                <ui:repeat value="#{doctorScheduleBean.getFeesBySpecialityandHospital(doctorBean.doctor.specializationId.specializationId,s.hospitalId.hospitalId)}" var="f">      
                                                                  Rs. #{f.fees}
-                                                                </ui:repeat>
-                                                        </h:commandLink>
-                                                    </ui:repeat>
+                                                     
+                                                               </ui:repeat>
+                                                         </h:commandLink>
+                                                    </ui:repeat>    
 
                                                     <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
                                                         <p class="text-muted mb-0">Not Available</p>
@@ -213,9 +224,11 @@
                                                 </h4>
 
                                                 <!-- Slot List -->
+                                              
                                                 <div class="doc-times">
+                                                   
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date4)}" var="s">
-                                                         <h:commandLink class="doc-slot-list btn-outline-info" > 
+                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date4,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -225,11 +238,11 @@
                                                                 </ui:repeat>
                                                          </h:commandLink>
                                                     </ui:repeat>
-
+                                                   
                                                     <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
                                                         <p class="text-muted mb-0">Not Available</p>
                                                      </h:panelGroup>
-                                        </div>
+                                        </div> 
                                         </div>
                                         <!-- /Wednesday Slot -->
 
@@ -240,9 +253,11 @@
                                                 </h4>
 
                                                 <!-- Slot List -->
+                                                
                                                 <div class="doc-times">
+                                               
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date5)}" var="s">
-                                                        <h:commandLink class="doc-slot-list btn-outline-info" >  
+                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date5,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -251,13 +266,13 @@
                                                                  Rs. #{f.fees}
                                                                </ui:repeat>
                                                         
-                                                        </h:commandLink>
+                                                         </h:commandLink>
                                                     </ui:repeat>
-
+                                              
                                                     <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
                                                         <p class="text-muted mb-0">Not Available</p>
                                                      </h:panelGroup>
-                                        </div>
+                                        </div>     
                                         </div>
                                         <!-- /Thursday Slot -->
 
@@ -268,9 +283,11 @@
                                                 </h4>
 
                                                 <!-- Slot List -->
+                                            
                                                 <div class="doc-times">
+                                                    
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date6)}" var="s">
-                                                        <h:commandLink class="doc-slot-list btn-outline-info" > 
+                                                        <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date6,s.fromTime.toLocaleString().substring(12,20))}" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -280,6 +297,7 @@
                                                                 </ui:repeat>
                                                         </h:commandLink>
                                                     </ui:repeat>
+                                                    
 
                                                     <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
                                                         <p class="text-muted mb-0">Not Available</p>
@@ -295,9 +313,11 @@
                                                 </h4>
 
                                                 <!-- Slot List -->
+                                               
                                                 <div class="doc-times">
+                                                   
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date7)}" var="s">
-                                                        <h:commandLink class="doc-slot-list btn-outline-info" > 
+                                                        <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date7,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -307,17 +327,18 @@
                                                               </ui:repeat>
                                                         </h:commandLink>
                                                     </ui:repeat>
-
+                                                  
                                                     <h:panelGroup rendered="#{empty doctorScheduleBean.all}">
                                                         <p class="text-muted mb-0">Not Available</p>
                                                      </h:panelGroup>
-                                        </div>
+                                        </div>  
                                         </div>
                                         <!-- /Saturday Slot -->
 
 
 
                                      </div>
+                               
                              <!-- /Schedule Content -->
 
                                                         </div>
@@ -332,23 +353,19 @@
 								
 								
                             </div>
-                            <!-- /Schedule Widget -->
 
-<!--                             Submit Section 
-                            <div class="submit-section proceed-btn text-right">
-                                    <a href="checkout.html" class="btn btn-primary submit-btn">Book Appointment</a>
-                            </div>
-                             /Submit Section -->
+                         
 
                     </div>
                 </div>
         </div>
 
-</div>		
+</div>	
+                        
 <!-- /Page Content -->
    
-                </h:form>
-                
+             
+            </h:form>
             </ui:define>
 
         </ui:composition>

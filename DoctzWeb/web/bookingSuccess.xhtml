@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+               <!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Booking Success</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">Booking Success</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			
+			<!-- Page Content -->
+			<div class="content success-page-cont">
+				<div class="container-fluid">
+				
+					<div class="row justify-content-center">
+						<div class="col-lg-6">
+						
+							<!-- Success Card -->
+							<div class="card success-card">
+								<div class="card-body">
+									<div class="success-cont">
+										<i class="fas fa-check"></i>
+										<h3>Appointment booked Successfully!</h3>
+                                                                                #{bookingBean.display()}
+                                                                                <p>Appointment booked with <strong>#{bookingBean.dname}</strong><br/> on <strong>#{bookingBean.adate} </strong> at <strong> #{bookingBean.atime}</strong></p>
+															</div>
+								</div>
+							</div>
+							<!-- /Success Card -->
+							
+						</div>
+					</div>
+					
+				</div>
+			</div>		
+			<!-- /Page Content -->
+   
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

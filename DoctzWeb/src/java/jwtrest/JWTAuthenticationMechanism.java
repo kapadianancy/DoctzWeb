@@ -53,7 +53,7 @@ private String token;
     public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext context) {
         
         
-        System.out.println("In JWT Auth Mechanism");
+       // System.out.println("In JWT Auth Mechanism");
        // LOGGER.log(Level.INFO, "validateRequest: {0}", request.getRequestURI()+ " "+ loginBean.getUsername()+"dsdsds");
         
         
