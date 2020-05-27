@@ -21,6 +21,8 @@ import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
 
 
@@ -145,7 +147,13 @@ public class doctorScheduleBean {
     
     public Collection<DoctorScheduleTb> getScheduleByDoctorAndHospitalAndDate(int did,String date)
     {
-        int hid=Integer.parseInt(params.get("hos"));
+       HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession(true);
+       if(null != params.get("hos"))
+       {
+           session.setAttribute("hid", params.get("hos"));
+       }
+       int hid=Integer.parseInt(session.getAttribute("hid").toString());
         java.sql.Date d1 = java.sql.Date.valueOf(date);
         //System.out.println(did+" "+d1);
         this.setAll(ejb.getScheduleByDoctorAndHospitalAndDate(did,hid, d1));

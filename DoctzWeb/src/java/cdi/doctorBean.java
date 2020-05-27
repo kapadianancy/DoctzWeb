@@ -63,7 +63,7 @@ public class doctorBean {
     private Collection<DoctorTb> searchDocs,serachGenderDocs;
     private String ajaxvalue="";
     
-    private int hosId;
+   
     
     private DoctorTb doctor;
 
@@ -113,13 +113,12 @@ public class doctorBean {
     {
        ajaxvalue="hello "+str;
     }
-<<<<<<< HEAD
 
-    public int getHosId() {
-=======
+
+
      
       public int getHosId() {
->>>>>>> 76362f41a4362b6edcaf7029d1b8d5f1b0ff4551
+
         hosId=Integer.parseInt(params.get("hos"));
         return hosId;
     }
@@ -127,12 +126,7 @@ public class doctorBean {
     public void setHosId(int hosId) {
         this.hosId = hosId;
     }
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> 76362f41a4362b6edcaf7029d1b8d5f1b0ff4551
-    
+
     public Collection<DoctorTb> getSearchDocs() 
     {
        hos=params.get("hos");
