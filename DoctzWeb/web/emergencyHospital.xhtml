@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+<ui:composition template="./masterPage.xhtml">
+
+    <ui:define name="content">
+         <h:head>
+                    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                    <script type = "text/javascript">
+                     $(document).ready(function()
+                    {        
+                       
+                        //alert("hi");
+                         var x = document.getElementById("demo");
+                       
+                          if (navigator.geolocation) {
+                             
+                            navigator.geolocation.getCurrentPosition(showPosition);
+                            
+                          } else { 
+                            x.innerHTML = "Geolocation is not supported by this browser.";
+                          }
+                          
+                        function showPosition(position) {
+                      
+                        //alert(position.coords.longitude+" "+position.coords.latitude);
+                        document.getElementById('frm:lati').value = position.coords.latitude;
+                        document.getElementById('frm:longi').value = position.coords.longitude;
+                        //alert("yoour current location has been taken");
+                        var status=document.getElementById('frm:status').value;
+                        //alert(status);
+                        if(status!=1)
+                        {
+                        var button = document.getElementById('frm:clickButton').click();
+                        }
+                        //alert(document.getElementById('frm:lati').value );
+                         
+                        
+                         
+                       
+                        
+                    } 
+                    });
+                     </script>
+                   
+                </h:head>  
+        <p id="demo"></p>
+        
+            
+             <div class="main-wrapper">
+<!-- Breadcrumb -->
+                <div class="breadcrumb-bar">
+                        <div class="container-fluid">
+                                <div class="row align-items-center">
+                                        <div class="col-md-8 col-12">
+                                                <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                                        <ol class="breadcrumb">
+                                                                <li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
+                                                                <li class="breadcrumb-item active" aria-current="page">Nearest Hospitals</li>
+                                                        </ol>
+                                                </nav>
+                                                <h2 class="breadcrumb-title">Nearest Hospitals</h2>
+                                        </div>
+                                        
+                                </div>
+                        </div>
+                </div>
+                <!-- /Breadcrumb -->
+                
+         <!-- Page Content -->
+			<div class="content">
+				<div class="container-fluid">
+                <h:form id="frm">
+                    <h:inputHidden id="lati" binding="#{lati}"></h:inputHidden>
+                    <h:inputHidden id="longi" binding="#{longi}"></h:inputHidden>
+                    <h:inputHidden id="status" value="#{locationBean.status}"></h:inputHidden>
+                    <h:commandButton id="clickButton" value="click" action="#{locationBean.display(lati.value,longi.value)}" style="visibility: hidden"></h:commandButton>  
+                   
+                    
+                </h:form>
+					<div class="row">
+					
+						
+                                                    
+							<!-- Doctor Widget -->
+                     <div class="col-md-12 col-lg-7 col-xl-7">
+
+                                 <!-- Doctor Widget -->
+                                 <ui:repeat value="#{locationBean.nearHospitals}" var="h">
+
+                                 <div class="card">
+                                         <div class="card-body">
+                                                 <div class="doctor-widget">
+                                                         <div class="doc-info-left">
+                                                                 <div class="doctor-img">
+                                                                         <a href="doctor-profile.html">
+                                                                             <img src="/DoctzWeb/#{h.logo}" class="img-fluid" alt="User Image" style="height: 165px;"/>
+                                                                         </a>
+                                                                 </div>
+                                                             <div class="doc-info-cont">
+                                                                 <h4 class="doc-name"><a href="doctor-profile.html">#{h.hospitalName}</a></h4>
+                                                                 <p class="doc-speciality">Opening Time : #{h.openingTime.toLocaleString().substring(12)}</p>
+                                                                 <p class="doc-speciality">Closing Time : #{h.closingTime.toLocaleString().substring(12)}</p>
+                                                                 <p class="doc-speciality">City : #{h.cityId.cityName}</p>
+
+                                                                 </div>
+
+                                                         </div>
+                                                         <div class="doc-info-right">
+                                                                 <div class="clini-infos">
+                                                                         <ul>
+
+
+                                                                                 <li><i class="fas fa-map-marker-alt"></i>#{h.address}</li>
+                                                                                 <li><i class="fas fa-map-marker-alt"></i>#{h.areaId.areaName}</li>
+                                                                                 <li><i class="fas fa-map-marker-alt"></i>#{h.pincode}</li>
+
+                                                                         </ul>
+                                                                 </div>
+                                                                 <div class="clinic-booking">
+                                                                     <a class="view-pro-btn" href="emergencyDoctor.xhtml?hos=#{h.hospitalId}">View Doctors</a>
+                                                                 
+                                                                 </div>
+                                                         </div>
+                                                 </div>
+                                         </div>
+                                 </div>
+
+
+                                 </ui:repeat>
+                                 <!-- /Doctor Widget -->
+
+                                 </div>
+                            <div class="col-md-12 col-lg-5 col-xl-5">
+                              
+                            <ui:repeat value="#{locationBean.nearHospitals}" var="h">
+                              <div class="card">
+                                         <div class="card-body">    
+                                             <iframe src="#{h.maplink}" width="100%" height="175px" frameborder="0" style="border:0" ></iframe>
+                                         </div>
+                              </div>
+                                </ui:repeat>
+                            </div>
+                                                
+                     <h:panelGroup rendered="#{empty locationBean.nearHospitals}">
+                                     <div style="position: absolute;
+                                                 text-align: center;
+                                                 font-size: 50px;
+                                                 color: #15558d;
+                                                padding-top: 10px;
+                                                padding-left: 190px;
+                                                padding-bottom: 10px;">No Hospital found in 4 km range.</div>
+                                 </h:panelGroup>
+					</div>
+
+				</div>
+
+			</div>		
+			<!-- /Page Content -->
+    </div>
+        
+    </ui:define>
+
+</ui:composition>
+
+    </body>
+</html>
