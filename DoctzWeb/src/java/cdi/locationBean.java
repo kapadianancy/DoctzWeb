@@ -37,9 +37,10 @@ public class locationBean {
    private Collection<HospitalTb> hospitals;
     GenericType<Collection<HospitalTb>> ghos;
     private Collection<HospitalTb> nearHospitals;
+    private int status;
    
     public locationBean() {
-         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         String token="";
 
@@ -75,6 +76,16 @@ public class locationBean {
         return longi;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
+    
+
     public void setLongi(String longi) {
         this.longi = longi;
     }
@@ -97,19 +108,20 @@ public class locationBean {
     
     
     
-    public void display(String s1,String s2,String s3,String s4)
+    public void display(String lat,String lon)
     {
         System.out.println("in method----------------");
-        System.out.println("lati----------"+s1+"\nlongi-------"+s2);
-        System.out.println("newlati----------"+s3+"\nnewlongi-------"+s4);
+        System.out.println("lati----------"+lat+"\nlongi-------"+lon);
+        this.setStatus(1);
+        
         res=c.getAllHospital(Response.class);
         this.setHospitals(res.readEntity(ghos));
         System.out.println(this.getHospitals());
         for(HospitalTb h:this.getHospitals())
         {
-            double dist=this.distance(Double.parseDouble(s1),Double.parseDouble(s2) , h.getLatitude(),h.getLongitude(),"K");
+            double dist=this.distance(Double.parseDouble(lat),Double.parseDouble(lon) , h.getLatitude(),h.getLongitude(),"K");
             System.out.println(h.getHospitalName()+"----"+dist);
-            if(dist<=5.0)
+            if(dist<=4.0) // in range of 4 km
             {
                 this.nearHospitals.add(h);
             }

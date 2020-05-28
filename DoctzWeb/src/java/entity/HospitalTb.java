@@ -6,9 +6,9 @@
 package entity;
 
 import java.io.Serializable;
-import javax.json.bind.annotation.JsonbTransient;
 import java.util.Collection;
 import java.util.Date;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +26,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -75,6 +74,10 @@ public class HospitalTb implements Serializable {
     @Column(name = "longitude")
     private double longitude;
     @Basic(optional = false)
+    @Lob
+    @Column(name = "maplink")
+    private String maplink;
+    @Basic(optional = false)
     @Column(name = "openingTime")
     @Temporal(TemporalType.TIME)
     private Date openingTime;
@@ -120,13 +123,14 @@ public class HospitalTb implements Serializable {
         this.hospitalId = hospitalId;
     }
 
-    public HospitalTb(Integer hospitalId, String hospitalName, String address, int pincode, double latitude, double longitude, Date openingTime, Date closingTime, String logo, String documents, int isActive) {
+    public HospitalTb(Integer hospitalId, String hospitalName, String address, int pincode, double latitude, double longitude, String maplink, Date openingTime, Date closingTime, String logo, String documents, int isActive) {
         this.hospitalId = hospitalId;
         this.hospitalName = hospitalName;
         this.address = address;
         this.pincode = pincode;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.maplink = maplink;
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.logo = logo;
@@ -182,6 +186,14 @@ public class HospitalTb implements Serializable {
         this.longitude = longitude;
     }
 
+    public String getMaplink() {
+        return maplink;
+    }
+
+    public void setMaplink(String maplink) {
+        this.maplink = maplink;
+    }
+
     public Date getOpeningTime() {
         return openingTime;
     }
@@ -221,7 +233,7 @@ public class HospitalTb implements Serializable {
     public void setIsActive(int isActive) {
         this.isActive = isActive;
     }
-
+    
     @JsonbTransient
     public Collection<HospitalFacilityTb> getHospitalFacilityTbCollection() {
         return hospitalFacilityTbCollection;

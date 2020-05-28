@@ -246,7 +246,7 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int hospitalRegistration(String hospitalName, String address, int areaId, int cityId, int pincode, double latitude, double longitude, Time openingTime, Time closingTime, String logo, String documents,String email,long contact) {
+    public int hospitalRegistration(String hospitalName, String address, int areaId, int cityId, int pincode, double latitude, double longitude,String maplink, Time openingTime, Time closingTime, String logo, String documents,String email,long contact) {
         int status=0;
         int userid=this.authenticateUser(email, contact);
         
@@ -274,6 +274,7 @@ public class doctzBean implements doctzBeanLocal {
                 h.setLatitude(latitude);
                 h.setLogo(logo);
                 h.setLongitude(longitude);
+                h.setMaplink(maplink);
                 h.setOpeningTime(openingTime);
                 h.setPincode(pincode);
                 h.setUserId(u);
@@ -932,7 +933,7 @@ public class doctzBean implements doctzBeanLocal {
     }    
 
     @Override
-    public int editHospitalProfile(int hospitalId,String hospitalName, String address, int areaId, int cityId, int pincode, Time openingTime, Time closingTime, String logo, String email, long contact, String username,int userId) {
+    public int editHospitalProfile(int hospitalId,String hospitalName, String address, int areaId, int cityId, int pincode,double latitude,double longitude,String maplink, Time openingTime, Time closingTime, String logo, String email, long contact, String username,int userId) {
         int status=0;
         HospitalTb h=em.find(HospitalTb.class,hospitalId);
         CityTb c=em.find(CityTb.class,cityId);
@@ -963,6 +964,9 @@ public class doctzBean implements doctzBeanLocal {
             h.setLogo(logo);
             h.setOpeningTime(openingTime);
             h.setPincode(pincode);
+            h.setLatitude(latitude);
+            h.setLongitude(longitude);
+            h.setMaplink(maplink);
             h.setUserId(u);
             
             
