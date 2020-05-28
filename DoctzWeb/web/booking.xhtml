@@ -130,7 +130,7 @@
                                                    
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date1)}" var="s">
                                                         
-                                                        <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date1,s.fromTime.toLocaleString().substring(12,20))}">
+                                                        <h:commandLink class="doc-slot-list btn-outline-info" disabled="#{bookingBean.getDisable(s.scheduleId)}" style="background-color: #{bookingBean.getColor(s.scheduleId)};" action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date1,s.fromTime.toLocaleString().substring(12,20))}">
                                                               #{s.hospitalId.hospitalName}
                                                                <br/>
                                                                #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -164,7 +164,7 @@
                                                 <div class="doc-times">
                                                     
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date2)}" var="s">
-                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date2,s.fromTime.toLocaleString().substring(12,20))}" >
+                                                         <h:commandLink class="doc-slot-list btn-outline-info" disabled="#{bookingBean.getDisable(s.scheduleId)}" style="background-color: #{bookingBean.getColor(s.scheduleId)};"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date2,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -196,7 +196,7 @@
                                                 <div class="doc-times">
                                                   
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date3)}" var="s">
-                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date3,s.fromTime.toLocaleString().substring(12,20))}" >
+                                                         <h:commandLink class="doc-slot-list btn-outline-info" disabled="#{bookingBean.getDisable(s.scheduleId)}" style="background-color: #{bookingBean.getColor(s.scheduleId)};"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date3,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -228,7 +228,7 @@
                                                 <div class="doc-times">
                                                    
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date4)}" var="s">
-                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date4,s.fromTime.toLocaleString().substring(12,20))}" >
+                                                         <h:commandLink class="doc-slot-list btn-outline-info" disabled="#{bookingBean.getDisable(s.scheduleId)}" style="background-color: #{bookingBean.getColor(s.scheduleId)};"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date4,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -257,7 +257,7 @@
                                                 <div class="doc-times">
                                                
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date5)}" var="s">
-                                                         <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date5,s.fromTime.toLocaleString().substring(12,20))}" >
+                                                         <h:commandLink class="doc-slot-list btn-outline-info" disabled="#{bookingBean.getDisable(s.scheduleId)}" style="background-color: #{bookingBean.getColor(s.scheduleId)};"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date5,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -287,7 +287,7 @@
                                                 <div class="doc-times">
                                                     
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date6)}" var="s">
-                                                        <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date6,s.fromTime.toLocaleString().substring(12,20))}" > 
+                                                        <h:commandLink class="doc-slot-list btn-outline-info" disabled="#{bookingBean.getDisable(s.scheduleId)}" style="background-color: #{bookingBean.getColor(s.scheduleId)};" action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date6,s.fromTime.toLocaleString().substring(12,20))}" > 
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}
@@ -317,7 +317,7 @@
                                                 <div class="doc-times">
                                                    
                                                     <ui:repeat value="#{doctorScheduleBean.getScheduleByDoctorAndDate(doctorBean.doctor.doctorId,dateBean.date7)}" var="s">
-                                                        <h:commandLink class="doc-slot-list btn-outline-info"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date7,s.fromTime.toLocaleString().substring(12,20))}" >
+                                                        <h:commandLink class="doc-slot-list btn-outline-info" disabled="#{bookingBean.getDisable(s.scheduleId)}" style="background-color: #{bookingBean.getColor(s.scheduleId)};"  action="#{bookingBean.bookAppointment(doctorBean.doctor.doctorId,s.hospitalId.hospitalId,dateBean.date7,s.fromTime.toLocaleString().substring(12,20))}" >
                                                                #{s.hospitalId.hospitalName}
                                                                <br/>
                                                               #{s.fromTime.toLocaleString().substring(12,20)} - #{s.toTime.toLocaleString().substring(12,20)}

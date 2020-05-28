@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/searchDoctors.xhtml</file>
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/servlets/location.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/temp.xhtml</file>
+=======
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/servlets/s2.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/servlets/location.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/locationBean.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/temp.xhtml</file>
+>>>>>>> 2ffa4e001bb0ed471a407abb50cdff08ce4f5879
         </group>
     </open-files>
 </project-private>

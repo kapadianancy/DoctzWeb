@@ -197,5 +197,31 @@ public class bookingBean {
         this.setAtime(session.getAttribute("time").toString());
                     
     }
+    public String getDisable(int sid)
+    {
+        int i=ejb.getTotalPatientByScheduleId(sid);
+        //System.out.println("i--------------"+i);
+        if(i==0)
+        {
+            return "true";
+        }
+        else
+        {
+            return "false";
+        }
+    }
+    public String getColor(int sid)
+    {
+         int i=ejb.getTotalPatientByScheduleId(sid);
+        //System.out.println("i--------------"+i);
+        if(i==0)
+        {
+            return "grey";
+        }
+        else
+        {
+            return "#17a2b8";
+        }
+    }
     
 }
