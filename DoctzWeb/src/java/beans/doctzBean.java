@@ -1271,6 +1271,12 @@ public class doctzBean implements doctzBeanLocal {
        }
 
     }
+
+    @Override
+    public Collection<HospitalTb> nearMeHospital(double currentlati, double currentlongi, double newlati, double newlongi) {
+        return em.createNamedQuery("HospitalTb.NearMeHospital").setParameter("currentlati",currentlati).setParameter("newlati",newlati).setParameter("currentlongi",currentlongi).setParameter("newlongi",newlongi).getResultList();
+                
+    }
     
     
     

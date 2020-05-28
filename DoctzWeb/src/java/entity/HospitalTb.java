@@ -48,6 +48,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "HospitalTb.getHospitalByArea", query = "SELECT h FROM HospitalTb h WHERE h.areaId.areaName = :areaName and h.isActive = 1"),
     @NamedQuery(name = "HospitalTb.getHospitalBystate", query = "SELECT h FROM HospitalTb h WHERE h.cityId.stateId.stateName = :stateName and h.isActive = 1"),
     @NamedQuery(name = "HospitalTb.getTotalHospitals", query = "SELECT count(h.hospitalId) FROM HospitalTb h WHERE h.isActive = 1"),
+    @NamedQuery(name = "HospitalTb.NearMeHospital", query = "SELECT h FROM HospitalTb h WHERE h.isActive = 1 and h.latitude >= :currentlati and h.latitude <= :newlati and h.longitude >= :currentlongi and h.longitude <= :newlongi"),       
     @NamedQuery(name = "HospitalTb.findByIsActive", query = "SELECT h FROM HospitalTb h WHERE h.isActive = :isActive")})
 public class HospitalTb implements Serializable {
 
