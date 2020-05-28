@@ -20,13 +20,18 @@
                        
                           if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition(showPosition);
+                            
                           } else { 
                             x.innerHTML = "Geolocation is not supported by this browser.";
+                          }
+                          function temp()
+                          {
+                              alert("hi");
                           }
 
                         function showPosition(position) {
                             //x.innerHTML="show";
-                          //alert(position.coords.latitude);
+                         alert(position.coords.latitude);
                           
                         var lati=position.coords.latitude;
                         var longi=position.coords.longitude;
@@ -49,10 +54,17 @@
                           document.getElementById('frm:longi').value = position.coords.longitude;
                           document.getElementById('frm:newlati').value = new_latitude;
                           document.getElementById('frm:newlongi').value = new_longitude;
+                          temp();
+                         // distance(21.1597606, 72.7959122, 21.2190018,72.8366558, "K");
+                          
                           //alert(document.getElementById("frm:lati").value);
                         }
+                        
+                        
+                        
                      });
-                     </script>   
+                     </script>
+                   
                 </h:head>   
                 
                 <p id="demo"></p>
