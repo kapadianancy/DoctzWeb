@@ -232,4 +232,8 @@ public interface doctzBeanLocal {
        
        public void decreaseTotalPatient(int did,int hid,Date date,Time time);
        
+       
+       // --------------------------emergency module ------------------------------
+       
+       public Collection<HospitalTb> nearMeHospital(double currentlati,double currentlongi,double newlati,double newlongi);
 }
