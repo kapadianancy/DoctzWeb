@@ -920,17 +920,24 @@ public class doctzBean implements doctzBeanLocal {
 
     @Override
     public Collection<DoctorTb> getDoctorByAvailability(Date date) {
-        Collection<DoctorScheduleTb> ds=em.createNamedQuery("DoctorScheduleTb.findByDate").setParameter("date",date).getResultList();
-        Collection<DoctorTb> d=new ArrayList<DoctorTb>();
-        for(DoctorScheduleTb d1:ds)
-        {
-            d.add(d1.getDoctorId());
-        }
+       // Collection<DoctorScheduleTb> ds=em.createNamedQuery("DoctorScheduleTb.findByDate").setParameter("date",date).getResultList();
+        Collection<DoctorTb> d=em.createNamedQuery("DoctorScheduleTb.findByDate").setParameter("date",date).getResultList();
+//        for(DoctorScheduleTb d1:ds)
+//        {
+//            d.add(d1.getDoctorId());
+//        }
         
         return d;
 
 
     }    
+
+    @Override
+    public Collection<DoctorTb> getDoctorByAvailabilityOfBooking() {
+        return em.createNamedQuery("DoctorScheduleTb.findByAvailabilityOfBooking").getResultList();
+    }
+    
+    
 
     @Override
     public int editHospitalProfile(int hospitalId,String hospitalName, String address, int areaId, int cityId, int pincode,double latitude,double longitude,String maplink, Time openingTime, Time closingTime, String logo, String email, long contact, String username,int userId) {

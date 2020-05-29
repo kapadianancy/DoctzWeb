@@ -141,25 +141,25 @@ public interface doctzBeanLocal {
         
         public Collection<HospitalTb> getHospitalByArea(String areaName);
 
-        public Collection<DoctorTb> getDoctorByArea(String areaName);
+        public Collection<DoctorTb> getDoctorByArea(String areaName);           //no
 
-        public Collection<HospitalTb> getHospitalBySpecialization(int specializaionId);
+        public Collection<HospitalTb> getHospitalBySpecialization(int specializaionId);     
         
-        public Collection<DoctorTb> getDoctorOfHospital(int hospitalId);
+        public Collection<DoctorTb> getDoctorOfHospital(int hospitalId);    
         
         public Collection<DoctorTb> getDoctorBySpecialization(int specializaionId);
         
-        public Collection<HospitalTb> getHospitalByName(String hospitalName);
+        public Collection<HospitalTb> getHospitalByName(String hospitalName);       //no
         
-        public Collection<DoctorTb> getDoctorByName(String doctorName);
+        public Collection<DoctorTb> getDoctorByName(String doctorName);             //no
         
-        public Collection<HospitalTb> getHospitalByFeesAndSpecialization(int specializaionId,int fromFees,int toFees);
+        public Collection<HospitalTb> getHospitalByFeesAndSpecialization(int specializaionId,int fromFees,int toFees);  //no
         
         public Collection<HospitalTb> emergency(int specializaionId);
 
-        public Collection<HospitalTb> getHospitalByCity(String cityName);
+        public Collection<HospitalTb> getHospitalByCity(String cityName);   //no
 
-        public Collection<HospitalTb> getHospitalByState(String stateName);
+        public Collection<HospitalTb> getHospitalByState(String stateName);     //no
         
         public Collection<DoctorTb> getDoctorByExperience();
 
@@ -167,9 +167,11 @@ public interface doctzBeanLocal {
 
         public Collection<HospitalTb> getHospitalByHighToLowFees(String spcializationName);
         
-        public Collection<HospitalTb> getHospitalByFees(String name,int fromFees,int toFees);
+        public Collection<HospitalTb> getHospitalByFees(String name,int fromFees,int toFees);   //no
         
         public Collection<DoctorTb> getDoctorByAvailability(Date date);
+        
+        public Collection<DoctorTb> getDoctorByAvailabilityOfBooking();
         
         public Collection<HospitalTb> getHospitalByAreaAndSpecializationName(String areaName,String specializationName);
         

@@ -11,8 +11,11 @@ import client.myclient;
 import entity.DoctorTb;
 import entity.SpecializationTb;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
@@ -55,6 +58,7 @@ public class doctorBean {
     private String edu;
     private String profile;
     private int isActive;
+    private String date;
     
     String spec,hos;
    
@@ -127,6 +131,16 @@ public class doctorBean {
         this.hosId = hosId;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    
+    
     public Collection<DoctorTb> getSearchDocs() 
     {
        hos=params.get("hos");
@@ -178,13 +192,50 @@ public class doctorBean {
         this.serachGenderDocs=ejb.getDoctorByGender(str);
         this.setSearchDocs(serachGenderDocs);
        
-        for(DoctorTb d:this.searchDocs)
-        {
-            System.out.println(d.getDoctorName()+" "+d.getGender());
-        }
+//        for(DoctorTb d:this.searchDocs)
+//        {
+//            System.out.println(d.getDoctorName()+" "+d.getGender());
+//        }
        
+    }
+    
+    public void getDoctorByExperience()
+    {
+        if(this.ajaxvalue.equals("Experience"))
+        {
+            res=c.getDoctorByExperience(Response.class);
+            this.setSearchDocs(res.readEntity(gdoc));
+        }
+        else if(this.ajaxvalue.equals("Availability"))
+        { 
+            this.setSearchDocs(ejb.getDoctorByAvailabilityOfBooking());         
+        }
+        else
+        {
+            res=c.getAllDoctor(Response.class);
+            this.setSearchDocs(res.readEntity(gdoc));
+        }
         
-
+    }
+    
+    public void getDoctorBySpecializaton(int sid)
+    {
+        res=c.getDoctorBySpecialization(Response.class, String.valueOf(sid));
+        this.setSearchDocs(res.readEntity(gdoc));
+       
+    }
+    
+    public void getDoctorByAvailability()
+    {
+       java.sql.Date d = java.sql.Date.valueOf(this.date);
+       // System.out.println("Date--->"+this.getDate());
+        res=c.getDoctorByAvailability(Response.class, d.toString());
+        this.setSearchDocs(res.readEntity(gdoc));
+//         for(DoctorTb d1:this.searchDocs)
+//        {
+//            System.out.println(d1.getDoctorName()+" "+d1.getGender());
+//        }
+              
     }
 
     public DoctorTb getDoctor()

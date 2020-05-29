@@ -3,13 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
     <body>
 
         <ui:composition template="./masterPage.xhtml">
 
             <ui:define name="content">
+                
                <h:head>
          
          <script type = "text/javascript">
@@ -20,6 +24,17 @@
              function femaletoggle() { 
                // alert("Hello");
                document.getElementById('searchfrm:male').checked=false;
+            }
+            
+          
+            
+            function setDate()
+            {
+                //alert(document.getElementById("date").value);
+                document.getElementById('searchfrm:availableDate').value=document.getElementById("date").value.toString();
+                //alert(document.getElementById('searchfrm:availableDate').value);
+               
+                document.getElementById('searchfrm:availableDate').click();
             }
          </script>
       </h:head>
@@ -39,19 +54,24 @@
                                                 <h2 class="breadcrumb-title">Doctors</h2>
                                         </div>
                                         <div class="col-md-4 col-12 d-md-block d-none">
+                                            
                                                 <div class="sort-by">
                                                         <span class="sort-title">Sort by</span>
                                                         <span class="sortby-fliter">
-                                                                <select class="select" style="height:45px;">
-                                                                        <option>Select</option>
-                                                                        <option class="sorting">Experience</option>
-                                                                        <option class="sorting">Availability</option>
-                                                                        <option class="sorting">Low to high Fees</option>
-                                                                        <option class="sorting">High to low Fees</option>
-                                                                        
-                                                                </select>
+                                                          <h:form id="sortfrm">
+                                                               <f:ajax event="click" render="result" listener="#{doctorBean.getDoctorByExperience()}"></f:ajax>
+                                                            <h:selectOneMenu  class="select" style="height:45px;" id="sort" value="#{doctorBean.ajaxvalue}">
+                                                               
+                                                                <f:selectItem itemLabel="Select" itemValue="Select"></f:selectItem>
+                                                                <f:selectItem itemLabel="Experience" itemValue="Experience" class="sorting"></f:selectItem>
+                                                                <f:selectItem itemLabel="Availability" itemValue="Availability" class="sorting"></f:selectItem>
+                                                               
+                                                            </h:selectOneMenu>
+                                                            
+                                                          </h:form>
                                                         </span>
-                                                </div>
+                                                </div> 
+                                           
                                         </div>
                                 </div>
                         </div>
@@ -67,18 +87,23 @@
 						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
 						
 							<!-- Search Filter -->
-                                                        <h:form id="searchfrm">
+                                                       
+                                                       <h:form id="searchfrm">
 							<div class="card search-filter">
 								<div class="card-header">
 									<h4 class="card-title mb-0">Search Filter</h4>
 								</div>
 								<div class="card-body">
 								<div class="filter-widget">
-									<div class="cal-icon">
-										<input type="text" class="form-control datetimepicker" placeholder="Select Date"/>
+									<div>
+                                                                           
+                                                                            <input type="date" id="date" class="form-control datetimepicker" placeholder="Select Date" onchange="setDate()"/>
+                                                                            <h:inputText id = "availableDate" value="#{doctorBean.date}" style="visibility: hidden;">
+                                                                                <f:ajax event="click" execute="availableDate" render="result" listener="#{doctorBean.getDoctorByAvailability()}"></f:ajax>
+                                                                            </h:inputText>
 									</div>			
 								</div>
-								
+								 
                                                                     	<div class="filter-widget">
 									<h4>Gender</h4>
                                                                         
@@ -103,15 +128,21 @@
 								<div class="filter-widget">
 									<h4>Select Specialist</h4>
                                                                        
-                                                                        <ui:repeat value="#{specializationBean.allspec}" var="s">
-                                                                       
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist"/>
-                                                                                        <span class="checkmark"></span>#{s.name}
+                                                                        <div>
+                                                                            <ui:repeat value="#{specializationBean.allspec}" var="s">
+                                                                                <div>
+                                                                            <label class="custom_check">
+                                                                                <h:selectBooleanCheckbox>                                                                                        
+                                                                                    <f:ajax render="result"  listener="#{doctorBean.getDoctorBySpecializaton(s.specializationId)}"></f:ajax>
+                                                                                    </h:selectBooleanCheckbox>  
+                                                                                <span class="checkmark"></span> #{s.name}
 										</label>
+                                                                                </div>
+                                                                            </ui:repeat>
 									</div>
-                                                                        </ui:repeat>
+                                                                       
+									
+                                                                   
                                                                        
 									
 								</div>
@@ -120,7 +151,8 @@
 									</div>	
 								</div>
 							</div>
-                                                        </h:form>
+                                                       </h:form>
+                                                  
 							<!-- /Search Filter -->
 							
 						</div>
@@ -192,7 +224,7 @@
 			</div>		
 			<!-- /Page Content -->
     </div>
-
+   
             
             </ui:define>
             

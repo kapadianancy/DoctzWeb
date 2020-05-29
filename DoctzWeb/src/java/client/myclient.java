@@ -149,7 +149,7 @@ public class myclient {
 
     public <T> T getDoctorByExperience(Class<T> responseType) throws ClientErrorException {
         WebTarget resource = webTarget;
-        resource = resource.path("getDoctorByExperience}");
+        resource = resource.path("getDoctorByExperience");
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 

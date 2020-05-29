@@ -336,7 +336,7 @@ public class GenericResource {
 //  public Collection<DoctorTb> getDoctorByExperience();
   //  @RolesAllowed({"admin","patient"})
     @GET
-    @Path("/getDoctorByExperience}")
+    @Path("/getDoctorByExperience")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<DoctorTb> getDoctorByExperience()
     {

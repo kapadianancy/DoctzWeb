@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/emergencyHospital.xhtml</file>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/entity/HospitalTb.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/servlets/location.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/emergencyDocProfile.xhtml</file>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/locationBean.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/header.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/searchDoctors.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/doctorBean.java</file>
         </group>
     </open-files>
 </project-private>

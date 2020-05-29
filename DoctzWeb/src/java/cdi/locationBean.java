@@ -120,7 +120,7 @@ public class locationBean {
         for(HospitalTb h:this.getHospitals())
         {
             double dist=this.distance(Double.parseDouble(lat),Double.parseDouble(lon) , h.getLatitude(),h.getLongitude(),"K");
-            System.out.println(h.getHospitalName()+"----"+dist);
+         //   System.out.println(h.getHospitalName()+"----"+dist);
             if(dist<=4.0) // in range of 4 km
             {
                 this.nearHospitals.add(h);

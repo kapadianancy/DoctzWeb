@@ -197,6 +197,8 @@ public class doctorScheduleBean {
         this.fees = fees;
     }
     
+    
+    
    public String display()
    {
        return "Nidhi";

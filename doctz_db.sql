@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2020 at 03:46 PM
+-- Generation Time: May 29, 2020 at 08:01 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `appointment_tb` (
   KEY `doctorId` (`doctorId`),
   KEY `patientId` (`patientId`),
   KEY `hospitalId` (`hospitalId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `appointment_tb`
@@ -49,7 +49,11 @@ CREATE TABLE IF NOT EXISTS `appointment_tb` (
 INSERT INTO `appointment_tb` (`appointmentId`, `doctorId`, `patientId`, `hospitalId`, `date`, `time`, `invoice`, `status`, `isActive`) VALUES
 (1, 5, 14, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1),
 (2, 4, 12, 8, '2020-05-27', '01:00:00', NULL, 'Incomplete', 1),
-(3, 9, 12, 7, '2020-05-30', '02:00:00', NULL, 'Incomplete', 1);
+(3, 9, 12, 7, '2020-05-30', '02:00:00', NULL, 'Incomplete', 1),
+(4, 4, 12, 8, '2020-05-29', '01:00:00', NULL, 'Incomplete', 1),
+(5, 5, 12, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1),
+(6, 5, 12, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1),
+(7, 5, 12, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1);
 
 -- --------------------------------------------------------
 
@@ -157,9 +161,9 @@ INSERT INTO `doctor_schedule_tb` (`scheduleId`, `hospitalId`, `doctorId`, `date`
 (1, 8, 4, '2020-05-27', '01:00:00', '03:00:00', 9, 1),
 (2, 10, 4, '2020-05-27', '05:00:00', '06:00:00', 5, 1),
 (3, 8, 4, '2020-05-28', '12:30:00', '03:00:00', 25, 1),
-(4, 8, 4, '2020-05-29', '01:00:00', '05:00:00', 30, 1),
-(5, 10, 4, '2020-05-29', '10:00:00', '11:00:00', 10, 1),
-(6, 5, 5, '2020-05-29', '10:00:00', '03:00:00', 24, 1),
+(4, 8, 4, '2020-05-29', '01:00:00', '05:00:00', 29, 1),
+(5, 10, 4, '2020-05-29', '10:00:00', '11:00:00', 0, 1),
+(6, 5, 5, '2020-05-29', '10:00:00', '03:00:00', 21, 1),
 (7, 5, 5, '2020-05-30', '10:00:00', '03:00:00', 25, 1),
 (8, 5, 11, '2020-05-27', '10:00:00', '11:00:00', 15, 1),
 (9, 6, 11, '2020-05-28', '10:00:00', '11:00:00', 15, 1),
@@ -337,6 +341,7 @@ CREATE TABLE IF NOT EXISTS `hospital_tb` (
   `pincode` int(10) NOT NULL,
   `latitude` double NOT NULL,
   `longitude` double NOT NULL,
+  `maplink` text NOT NULL,
   `openingTime` time NOT NULL,
   `closingTime` time NOT NULL,
   `logo` text NOT NULL,
@@ -353,12 +358,12 @@ CREATE TABLE IF NOT EXISTS `hospital_tb` (
 -- Dumping data for table `hospital_tb`
 --
 
-INSERT INTO `hospital_tb` (`hospitalId`, `hospitalName`, `address`, `areaId`, `cityId`, `pincode`, `latitude`, `longitude`, `openingTime`, `closingTime`, `logo`, `documents`, `userId`, `isActive`) VALUES
-(5, 'Shalby Hospital', 'Nr. Navyug College, Rander Road, \r\n\r\n', 1, 1, 395009, 21.1968399, 72.7789305, '08:00:00', '11:45:00', 'resources/img/hospital/h3.jpg', 'resources/img/hospital/h3.jpg', 21, 1),
-(6, 'Malvia Hospital', 'Aditya Complex, Anand Mahal Rd', 1, 1, 395009, 21.2012498, 72.7925257, '07:00:00', '11:30:00', 'resources/img/hospital/h4.jpg', 'resources/img/hospital/h4.jpg', 22, 1),
-(7, 'New City Hospital', '101 bhagwati ashish appartment 2, City Light Rd', 3, 1, 395007, 21.1888568, 72.7734796, '11:00:00', '08:00:00', 'resources/img/hospital/h5.jpg', 'resources/img/hospital/h5.jpg', 23, 1),
-(8, 'Mahavir Hospital', 'Opposite Jivan Bharti School', 7, 1, 395001, 21.184108, 72.8115983, '06:00:00', '12:00:00', 'resources/img/hospital/h6.jpg', 'resources/img/hospital/h6.jpg', 24, 1),
-(10, 'Kiran Hospital', 'Nr Sumul DairyTunki, Katargam', 6, 1, 395004, 21.2190018, 72.8366558, '06:00:00', '12:00:00', 'resources/img/hospital/h7.jpg', 'resources/img/hospital/h7.jpg', 25, 1);
+INSERT INTO `hospital_tb` (`hospitalId`, `hospitalName`, `address`, `areaId`, `cityId`, `pincode`, `latitude`, `longitude`, `maplink`, `openingTime`, `closingTime`, `logo`, `documents`, `userId`, `isActive`) VALUES
+(5, 'Shalby Hospital', 'Nr. Navyug College, Rander Road, \r\n\r\n', 1, 1, 395009, 21.1968399, 72.7789305, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.744379513282!2d72.79880851398555!3d21.202311185904588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04c2bd38b220d%3A0xfd16cdc3f794f73b!2sShalby%20Hospital%2C%20Surat!5e0!3m2!1sen!2sin!4v1590676954938!5m2!1sen!2sin', '08:00:00', '11:45:00', 'resources/img/hospital/h3.jpg', 'resources/img/hospital/h3.jpg', 21, 1),
+(6, 'Malvia Hospital', 'Aditya Complex, Anand Mahal Rd', 1, 1, 395009, 21.2012498, 72.7925257, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.712479898504!2d72.79204231398562!3d21.203577785903892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04c2e416c01ab%3A0x332fb4a506074c14!2sMalvia%20Hospital!5e0!3m2!1sen!2sin!4v1590775020053!5m2!1sen!2sin', '07:00:00', '11:30:00', 'resources/img/hospital/h4.jpg', 'resources/img/hospital/h4.jpg', 22, 1),
+(7, 'New City Hospital', '101 bhagwati ashish appartment 2, City Light Rd', 3, 1, 395007, 21.1888568, 72.7734796, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.562287827078!2d72.78711011398481!3d21.169810785922124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04de9ab07e3ef%3A0xb4baf36339271b87!2sNew%20City%20Hospital!5e0!3m2!1sen!2sin!4v1590775099206!5m2!1sen!2sin', '11:00:00', '08:00:00', 'resources/img/hospital/h5.jpg', 'resources/img/hospital/h5.jpg', 23, 1),
+(8, 'Mahavir Hospital', 'Opposite Jivan Bharti School', 7, 1, 395001, 21.184108, 72.8115983, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.2026305273985!2d72.81159831398513!3d21.184107985914437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e705192d03f%3A0xe4fc1330863e2f25!2sMahavir%20Hospital!5e0!3m2!1sen!2sin!4v1590775150931!5m2!1sen!2sin', '06:00:00', '12:00:00', 'resources/img/hospital/h6.jpg', 'resources/img/hospital/h6.jpg', 24, 1),
+(10, 'Kiran Hospital', 'Nr Sumul DairyTunki, Katargam', 6, 1, 395004, 21.2190018, 72.8366558, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.3238770368093!2d72.834467113986!3d21.21900178589565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f393048f2ad%3A0xfd28539e974e241a!2sKiran%20Hospital!5e0!3m2!1sen!2sin!4v1590775197174!5m2!1sen!2sin', '06:00:00', '12:00:00', 'resources/img/hospital/h7.jpg', 'resources/img/hospital/h7.jpg', 25, 1);
 
 -- --------------------------------------------------------
 
@@ -411,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `review_tb` (
   KEY `patientId` (`patientId`),
   KEY `doctorId` (`doctorId`),
   KEY `hospitalId` (`hospitalId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `review_tb`
@@ -419,7 +424,8 @@ CREATE TABLE IF NOT EXISTS `review_tb` (
 
 INSERT INTO `review_tb` (`reviewId`, `patientId`, `doctorId`, `hospitalId`, `review`) VALUES
 (1, 12, 4, NULL, 'Great Work'),
-(2, 12, 4, NULL, 'nancy');
+(2, 12, 4, NULL, 'nancy'),
+(3, 12, 9, NULL, 'Great Work');
 
 -- --------------------------------------------------------
 
