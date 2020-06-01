@@ -139,6 +139,7 @@ public interface doctzBeanLocal {
         
 // ---------------------------------------------search--------------------------------------------------------------
         
+        
         public Collection<HospitalTb> getHospitalByArea(String areaName);
 
         public Collection<DoctorTb> getDoctorByArea(String areaName);           //no
@@ -162,6 +163,8 @@ public interface doctzBeanLocal {
         public Collection<HospitalTb> getHospitalByState(String stateName);     //no
         
         public Collection<DoctorTb> getDoctorByExperience();
+        
+        public Collection<DoctorTb> getDoctorByExperienceAndSpec(String spec);
 
         public Collection<HospitalTb> getHospitalByLowToHighFees(String spcializationName);
 
@@ -172,6 +175,8 @@ public interface doctzBeanLocal {
         public Collection<DoctorTb> getDoctorByAvailability(Date date);
         
         public Collection<DoctorTb> getDoctorByAvailabilityOfBooking();
+        
+        public Collection<DoctorTb> getDoctorByAvailabilityOfBookingAndSpec(String spec);
         
         public Collection<HospitalTb> getHospitalByAreaAndSpecializationName(String areaName,String specializationName);
         
@@ -238,4 +243,7 @@ public interface doctzBeanLocal {
        // --------------------------emergency module ------------------------------
        
        public Collection<HospitalTb> nearMeHospital(double currentlati,double currentlongi,double newlati,double newlongi);
+        
+       public AppointmentTb getAppointmentById(int id);
+
 }

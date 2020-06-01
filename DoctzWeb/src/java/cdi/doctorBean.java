@@ -150,19 +150,29 @@ public class doctorBean {
            searchDocs=res.readEntity(gdoc);
        }
        
+       HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+       HttpSession session = request.getSession(true);
+       
+       if(null != params.get("spec"))
+       {
+           session.setAttribute("spec", params.get("spec"));
+       }
        spec=params.get("spec");
+      
+        
+       //System.out.println("cdi.doctorBean.getSearchDocs()-------------"+spec);
        if(spec != null)
        {
-           
+            
             if(spec.equals("all"))
             {
-                 res=c.getAllDoctor(Response.class);
+                res=c.getAllDoctor(Response.class);
                 searchDocs=res.readEntity(gdoc);
 
             }
             else
             {
-                System.out.println(spec);
+                //System.out.println(spec);
                 searchDocs=ejb.getDoctorBySpecializationName(spec);
             }
        }
@@ -200,22 +210,54 @@ public class doctorBean {
     }
     
     public void getDoctorByExperience()
-    {
+    { 
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+      
+        HttpSession session = request.getSession(true);
+        spec=session.getAttribute("spec").toString();
+       // System.out.println("spec----------"+spec);
         if(this.ajaxvalue.equals("Experience"))
         {
-            res=c.getDoctorByExperience(Response.class);
-            this.setSearchDocs(res.readEntity(gdoc));
+            if(spec != null)
+            {
+           
+                if(spec.equals("all"))
+                {
+                     res=c.getDoctorByExperience(Response.class);
+                     this.setSearchDocs(res.readEntity(gdoc));
+                }
+                else
+                {
+                   this.setSearchDocs(ejb.getDoctorByExperienceAndSpec(spec));  
+                }
+            }
+          
+           
         }
+        
         else if(this.ajaxvalue.equals("Availability"))
         { 
-            this.setSearchDocs(ejb.getDoctorByAvailabilityOfBooking());         
+           if(spec != null)
+            {
+           
+                if(spec.equals("all"))
+                {
+                    this.setSearchDocs(ejb.getDoctorByAvailabilityOfBooking()); 
+                }
+                else
+                {
+                   this.setSearchDocs(ejb.getDoctorByAvailabilityOfBookingAndSpec(spec));  
+                }
+            }
+           
         }
         else
         {
             res=c.getAllDoctor(Response.class);
             this.setSearchDocs(res.readEntity(gdoc));
         }
-        
+       
+       
     }
     
     public void getDoctorBySpecializaton(int sid)

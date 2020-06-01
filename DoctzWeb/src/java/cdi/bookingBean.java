@@ -15,6 +15,8 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -26,6 +28,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import servlets.test;
 
@@ -44,6 +47,11 @@ public class bookingBean {
     private AppointmentTb app;
     private PatientTb currpatient;
     private String dname,hname,adate,atime;
+    
+    Collection<AppointmentTb> all;
+    GenericType<Collection<AppointmentTb>> gall;
+   
+    
 
      HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
      HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
@@ -65,8 +73,12 @@ public class bookingBean {
         }
          app=new AppointmentTb();
          currpatient=new PatientTb();
+         all=new ArrayList<AppointmentTb>();
+         gall=new GenericType<Collection<AppointmentTb>>(){};
+         
     }
 
+   
     public int getPatientId() {
         return patientId;
     }
@@ -78,6 +90,19 @@ public class bookingBean {
     public int getDoctorId() {
         return doctorId;
     }
+
+    public Collection<AppointmentTb> getAll() {
+        res=c.getAllPatientAppointment(Response.class, this.getCurrpatient().getPatientId().toString());
+        all=res.readEntity(gall);
+        
+        return all;
+    }
+
+    public void setAll(Collection<AppointmentTb> all) {
+        this.all = all;
+    }
+    
+    
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
@@ -222,6 +247,31 @@ public class bookingBean {
         {
             return "#17a2b8";
         }
+    }
+    
+    public String getStatus(int id)
+    {
+        String status="";
+        AppointmentTb a=ejb.getAppointmentById(id);
+        if(a.getStatus().equals("Incomplete"))
+        {
+            status="bg-danger-light";
+        }
+        else if(a.getStatus().equals("pending"))
+        {
+            status="bg-warning-light";
+        }
+        else if(a.getStatus().equals("cancel"))
+        {
+             status="bg-danger-light";
+        }
+        else if(a.getStatus().equals("complete"))
+        {
+            status="bg-success-light";
+        }
+        System.out.println("cdi.bookingBean.getStatus()------"+status);
+        return status;
+        
     }
     
 }

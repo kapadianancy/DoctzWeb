@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -26,19 +27,7 @@
                                                 <h2 class="breadcrumb-title">Hospitals</h2>
                                         </div>
                                         <div class="col-md-4 col-12 d-md-block d-none">
-                                                <div class="sort-by">
-                                                        <span class="sort-title">Sort by</span>
-                                                        <span class="sortby-fliter">
-                                                                <select class="select" style="height:45px;">
-                                                                        <option>Select</option>
-                                                                       
-                                                                        <option class="sorting">Availability</option>
-                                                                        <option class="sorting">Low to high Fees</option>
-                                                                        <option class="sorting">High to low Fees</option>
-                                                                        
-                                                                </select>
-                                                        </span>
-                                                </div>
+                                                
                                         </div>
                                 </div>
                         </div>
@@ -52,41 +41,45 @@
 					<div class="row">
 						<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
 						
+                                                        
 							<!-- Search Filter -->
+                                                        <h:form id="searchfrm">
 							<div class="card search-filter">
 								<div class="card-header">
 									<h4 class="card-title mb-0">Search Filter</h4>
 								</div>
 								<div class="card-body">
-								<div class="filter-widget">
-									<div class="cal-icon">
-										<input type="text" class="form-control datetimepicker" placeholder="Select Date"/>
-									</div>			
-								</div>
+								
 								<div class="filter-widget">
 									<h4>Area</h4>
-                                                                        <ui:repeat value="#{areaBean.allareas}" var="a">
-                                                                       
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist"/>
-                                                                                        <span class="checkmark"></span>#{a.areaName}
+                                                                        <div>
+                                                                            <ui:repeat value="#{areaBean.allareas}" var="a">
+                                                                                <div>
+                                                                            <label class="custom_check">
+                                                                                <h:selectBooleanCheckbox>                                                                                        
+                                                                                    <f:ajax render="result"  listener="#{hospitalBean.getHospitalByArea(a.areaName)}"></f:ajax>
+                                                                                    </h:selectBooleanCheckbox>  
+                                                                                <span class="checkmark"></span> #{a.areaName}
 										</label>
+                                                                                </div>
+                                                                            </ui:repeat>
 									</div>
-                                                                        </ui:repeat>
 									
 								</div>
 								<div class="filter-widget">
 									<h4>Select Specialization</h4>
-                                                                        <ui:repeat value="#{specializationBean.allspec}" var="s">
-                                                                       
-									<div>
-										<label class="custom_check">
-											<input type="checkbox" name="select_specialist"/>
-                                                                                        <span class="checkmark"></span>#{s.name}
+                                                                        <div>
+                                                                            <ui:repeat value="#{specializationBean.allspec}" var="s">
+                                                                                <div>
+                                                                            <label class="custom_check">
+                                                                                <h:selectBooleanCheckbox>                                                                                        
+                                                                                    <f:ajax render="result"  listener="#{hospitalBean.getHospitalBySpec(s.specializationId)}"></f:ajax>
+                                                                                    </h:selectBooleanCheckbox>  
+                                                                                <span class="checkmark"></span> #{s.name}
 										</label>
+                                                                                </div>
+                                                                            </ui:repeat>
 									</div>
-                                                                        </ui:repeat>
 									
 								</div>
 									<div class="btn-search">
@@ -94,13 +87,15 @@
 									</div>	
 								</div>
 							</div>
+                                                        </h:form>
 							<!-- /Search Filter -->
 							
 						</div>
 						
 						<div class="col-md-12 col-lg-8 col-xl-9">
-
+                                                    
 							<!-- Doctor Widget -->
+                                                        <h:panelGroup id="result">
                                                         <ui:repeat value="#{hospitalBean.allhos}" var="h">
                                                         
 							<div class="card">
@@ -143,14 +138,16 @@
                                                             
                                                           
                                                         </ui:repeat>
-							<!-- /Doctor Widget -->
-                                                        <h:panelGroup rendered="#{empty hospitalBean.allhos}">
+                                                            <h:panelGroup rendered="#{empty hospitalBean.allhos}">
                                                             <div style="position: absolute;
                                                                         text-align: center;
                                                                         font-size: 60px;
                                                                         color: #15558d;
                                                                         padding: 224px;">No Data Found.</div>
                                                         </h:panelGroup>
+                                                        </h:panelGroup>
+							<!-- /Doctor Widget -->
+                                                        
 
                                                         </div>
 					</div>
