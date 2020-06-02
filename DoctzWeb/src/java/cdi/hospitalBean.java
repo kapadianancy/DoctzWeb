@@ -95,49 +95,30 @@ public class hospitalBean {
 
 
     public Collection<HospitalTb> getAllhos() {
-        if(! params.isEmpty())
-        {
-            if(! params.get("area").equals(""))
-            {
-                if(! params.get("spec").equals("null"))
-                {
-                    spec=params.get("spec");
-                }
-                else
-                {
-                    spec="";
-                }
-                area=params.get("area");
-
-            }
-           
-        }
-        else
+        area=params.get("area");
+        spec=params.get("spec");
+//        System.out.println("area-----------"+area);
+//        System.out.println("spec-----------"+spec);
+        if(area != null && spec.equals("null"))
         {  
-            area="";
-            spec="";
-        }
-        
-       System.out.println("area : "+area+"spec : "+spec);
-       
-        if(! area.equals("") && ! spec.equals(""))
-        {
-            allhos=ejb.getHospitalByAreaAndSpecializationName(area, spec);
-        }
-        else if(! area.equals("") && spec.equals(""))
-        {
             res=c.getHospitalByArea(Response.class, area);
             allhos=res.readEntity(ghos);
-          //  System.out.println(allhos);
+          
         }
-        else
+        else if(area != null && spec != null)
         {
-            res=c.getAllHospital(Response.class);
-            allhos=res.readEntity(ghos);
+            if(area.equals("all") && spec.equals("all"))
+            {
+                //System.err.println("allhos--------");
+                res=c.getAllHospital(Response.class);
+                allhos=res.readEntity(ghos);
+            }
+            else
+            {
+            allhos=ejb.getHospitalByAreaAndSpecializationName(area, spec);
+            }
         }
-//        
-//        res=c.getAllHospital(Response.class);
-//        allhos=res.readEntity(ghos);
+       
         return allhos;
     }
 
@@ -259,6 +240,20 @@ public class hospitalBean {
         this.isActive = isActive;
     }
     
-    
+    public void getHospitalByArea(String area)
+    {
+        //System.out.println("area------------"+area);
+         res=c.getHospitalByArea(Response.class, area);
+        // System.out.println("res------------"+res);
+         this.setAllhos(res.readEntity(ghos));
+         
+    }
+    public void getHospitalBySpec(int sid)
+    {
+        //System.out.println("sid------------"+sid);
+        res=c.getHospitalBySpecialization(Response.class, String.valueOf(sid));
+        this.setAllhos(res.readEntity(ghos));
+        
+    }
     
 }

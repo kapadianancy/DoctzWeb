@@ -2,14 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <body>
+<body>
 
-        <ui:composition template="./masterPage.xhtml">
+<ui:composition template="./masterPage.xhtml">
 
-            <ui:define name="content">
-                <!-- Breadcrumb -->
+    <ui:define name="content">
+        <h:form>
+        <div class="main-wrapper">
+             <!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
 					<div class="row align-items-center">
@@ -17,16 +20,16 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+									<li class="breadcrumb-item active" aria-current="page">Appoinment Tracking</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Dashboard</h2>
+							<h2 class="breadcrumb-title">Appoinment Tracking</h2>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- /Breadcrumb -->
-                 <h:form>
+               
            <div class="content">
         <div class="container-fluid">
                 <div class="row">
@@ -97,42 +100,70 @@
                                 </div>
                         </div>
 	<!-- /Profile Sidebar -->
-        
-        <div class="card widget-profile pat-widget-profile col-md-7 col-lg-8 col-xl-9">
+<div class="col-md-7 col-lg-8 col-xl-9">
+            <div class="card">
+                    <div class="card-body pt-0">
+                        <h2 style="color:#0de0fe; padding-top: 10px; padding-bottom: 5px;">Appointment Tracking</h2>
+                        <div class="tab-content pt-0" style="padding-top: 10px;">
+                        <div id="pat_appointments" class="tab-pane fade show active">
+                       <div class="card card-table mb-0">
                             <div class="card-body">
-                                    <div class="pro-widget-content">
-                                            <div class="profile-info-widget">
-                                                    <a href="#" class="booking-doc-img">
-                                                            <img src="/DoctzWeb/resources/img/patients/user.png" alt="User Image" />
-                                                    </a>
-                                                    <div class="profile-det-info">
-                                                        <h3>#{patientBean.currentUser.patientName}</h3>
+                                    <div class="table-responsive"> 
+                                        
+                                         <h:dataTable class="table table-hover table-center mb-0" value="#{bookingBean.all}" var="a">
+                               <h:column>    				
+                        <f:facet name = "header">Doctor</f:facet>    				
+                        <h2 class="table-avatar">
+                            <a class="avatar avatar-sm mr-2">
+                                <img class="avatar-img rounded-circle" src="/DoctzWeb/#{a.doctorId.profile}" alt="User Image"/>
+                            </a>
+                            <a>#{a.doctorId.doctorName}<span>#{a.doctorId.specializationId.name}</span></a>
+                    </h2>
+                     </h:column>
 
-                                                            <div class="patient-details">
-                                                                    
-                                                                <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i>#{patientBean.currentUser.address}</h5>
-                                                            </div>
-                                                    </div>
-                                            </div>
-                                    </div>
-                                    <div class="patient-info">
-                                            <ul>
-                                                <li>Phone <span>#{patientBean.currentUser.userId.contact}</span></li>
-                                                <li>Age <span>#{patientBean.currentUser.age}</span></li>
-                                                <li>Gender <span>#{patientBean.currentUser.gender}</span></li>
-                                                <li>Username <span>#{patientBean.currentUser.userId.userName}</span></li>
-                                                <li>Email <span>#{patientBean.currentUser.userId.email}</span></li>
-                                            </ul>
+                     <h:column>
+                        <f:facet name = "header">Hospital</f:facet>
+                        <h2 class="table-avatar">
+                            <a class="avatar avatar-sm mr-2">
+                                <img class="avatar-img rounded-circle" src="/DoctzWeb/#{a.hospitalId.logo}" alt="User Image"/>
+                            </a>
+                            <a>#{a.hospitalId.hospitalName}</a>
+                    </h2>
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name = "header">Date</f:facet>
+                        #{a.date.toLocaleString().substring(0,12)}
+                     </h:column>
+
+                     <h:column>
+                        <f:facet name = "header">Time</f:facet>
+                        #{a.time.toLocaleString().substring(12,20)}
+                     </h:column>
+                        <h:column>
+                        <f:facet name = "header">Status</f:facet>
+                        <span class="badge badge-pill #{bookingBean.getStatus(a.appointmentId)}">#{a.status}</span>
+                     </h:column>
+                    </h:dataTable>
                                     </div>
                             </div>
+                       </div>
+</div>
+                            </div>
                     </div>
-                </div>
+                        
+            </div>
+</div>
+       
+           
+        </div>
         </div>
            </div>
-                    </h:form>
-            </ui:define>
+        </div>
+             </h:form>
+    </ui:define>
 
-        </ui:composition>
+</ui:composition>
 
-    </body>
+</body>
 </html>

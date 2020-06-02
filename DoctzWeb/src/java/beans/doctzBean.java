@@ -886,6 +886,13 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
+    public Collection<DoctorTb> getDoctorByExperienceAndSpec(String spec) {
+        return em.createNamedQuery("DoctorTb.getDoctorByExperienceAndSpec").setParameter("spec",spec).getResultList();
+    }
+    
+    
+
+    @Override
     public Collection<HospitalTb> getHospitalByLowToHighFees(String spcializationName) {
         Collection<HospitalTb> hospitals=new ArrayList<HospitalTb>();
         Collection<FeesTb> fees=em.createNamedQuery("FeesTb.getHospitalByLowToHighFees").setParameter("spcializationName",spcializationName).getResultList();
@@ -935,6 +942,11 @@ public class doctzBean implements doctzBeanLocal {
     @Override
     public Collection<DoctorTb> getDoctorByAvailabilityOfBooking() {
         return em.createNamedQuery("DoctorScheduleTb.findByAvailabilityOfBooking").getResultList();
+    }
+
+    @Override
+    public Collection<DoctorTb> getDoctorByAvailabilityOfBookingAndSpec(String spec) {
+       return em.createNamedQuery("DoctorScheduleTb.findByAvailabilityOfBookingAndSpec").setParameter("spec",spec).getResultList();
     }
     
     
@@ -1287,6 +1299,17 @@ public class doctzBean implements doctzBeanLocal {
     public Collection<HospitalTb> nearMeHospital(double currentlati, double currentlongi, double newlati, double newlongi) {
         return em.createNamedQuery("HospitalTb.NearMeHospital").setParameter("currentlati",currentlati).setParameter("newlati",newlati).setParameter("currentlongi",currentlongi).setParameter("newlongi",newlongi).getResultList();
                 
+    }
+
+    @Override
+    public AppointmentTb getAppointmentById(int id) {
+        AppointmentTb app=new AppointmentTb();
+        Collection<AppointmentTb> all=em.createNamedQuery("AppointmentTb.findByAppointmentId").setParameter("appointmentId",id).getResultList();
+        for(AppointmentTb a:all)
+        {
+            app=a;
+        }
+        return app;
     }
     
     

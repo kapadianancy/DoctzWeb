@@ -62,9 +62,9 @@
                                                         <span class="sortby-fliter">
                                                           <h:form id="sortfrm">
                                                                <f:ajax event="click" render="result" listener="#{doctorBean.getDoctorByExperience()}"></f:ajax>
-                                                            <h:selectOneMenu  class="select" style="height:45px;" id="sort" value="#{doctorBean.ajaxvalue}">
+                                                            <h:selectOneMenu   class="select" style="height:45px;" id="sort" value="#{doctorBean.ajaxvalue}">
                                                                
-                                                                <f:selectItem itemLabel="Select" itemValue="Select"></f:selectItem>
+                                                                <f:selectItem itemLabel="--select--" itemValue="Select" noSelectionOption="true"/>    
                                                                 <f:selectItem itemLabel="Experience" itemValue="Experience" class="sorting"></f:selectItem>
                                                                 <f:selectItem itemLabel="Availability" itemValue="Availability" class="sorting"></f:selectItem>
                                                                
