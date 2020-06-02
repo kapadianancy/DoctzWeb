@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBean.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/entity/AppointmentTb.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBeanLocal.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospitals.xhtml</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/appointmentTracking.xhtml</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/bookingBean.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/servlets/location.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/locationTry.xhtml</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/temp.xhtml</file>
         </group>
     </open-files>
 </project-private>
