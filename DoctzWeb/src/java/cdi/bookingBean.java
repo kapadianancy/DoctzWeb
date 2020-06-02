@@ -269,7 +269,7 @@ public class bookingBean {
         {
             status="bg-success-light";
         }
-        System.out.println("cdi.bookingBean.getStatus()------"+status);
+        //System.out.println("cdi.bookingBean.getStatus()------"+status);
         return status;
         
     }
