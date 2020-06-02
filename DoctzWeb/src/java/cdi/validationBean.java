@@ -34,8 +34,6 @@ public class validationBean implements Validator{
     public void validate(FacesContext arg0, UIComponent arg1, Object value) throws ValidatorException {
         Part file = (Part) value;
         FacesMessage message=null;
-        
-        
           try {
  
             if (file==null || file.getSize()<=0 || file.getContentType().isEmpty() )

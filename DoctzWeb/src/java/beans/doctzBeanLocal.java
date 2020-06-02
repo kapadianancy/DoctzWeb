@@ -58,7 +58,7 @@ public interface doctzBeanLocal {
         
         public int hospitalRegistration(String hospitalName,String address,int areaId,int cityId,int pincode,double latitude,double longitude,String maplink,Time openingTime,Time closingTime,String logo,String documents,String email,long contact);
         
-        public int doctorRegistration(String doctorName,int specializaionId,String experience,String gender,String certificates,String education,String email,long contact);
+        public int doctorRegistration(String doctorName,int specializaionId,String experience,String gender,String certificates,String education,String email,long contact,String profile,String document);
         
         public int patientRegistration(String patientName,String gender,String address,int age,String username,String password,String email,long contact);
 
@@ -184,7 +184,7 @@ public interface doctzBeanLocal {
         
         public int editHospitalProfile(int hospitalId,String hospitalName,String address,int areaId,int cityId,int pincode,double latitude,double longitude,String maplink,Time openingTime,Time closingTime,String logo,String email,long contact,String username,int userId);
         
-        public int editDoctorProfile(int doctorId,String doctorName,int specializaionId,String experience,String gender,String certificates,String education,String email,long contact,String username,int uerId);
+        public int editDoctorProfile(int doctorId,String doctorName,int specializaionId,String experience,String gender,String certificates,String education,String email,long contact,String username,int uerId,String profile,String document);
         
         public int editPatientProfile(int patientId,String patientName,String gender,String address,int age,String username,String email,long contact,int userId);
 

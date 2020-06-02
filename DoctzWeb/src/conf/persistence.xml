@@ -3,6 +3,7 @@
   <persistence-unit name="doctzpu" transaction-type="JTA">
     <jta-data-source>jdbc/doctz_pool</jta-data-source>
     <class>entity.HospitalTb</class>
+    <class>entity.DoctorTb</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

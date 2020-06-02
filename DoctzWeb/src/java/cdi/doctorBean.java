@@ -10,7 +10,11 @@ import client.myadmin;
 import client.myclient;
 import entity.DoctorTb;
 import entity.SpecializationTb;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,6 +31,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
@@ -58,7 +63,9 @@ public class doctorBean {
     private String edu;
     private String profile;
     private int isActive;
-    private String date;
+    private String date,email;
+    private long contact;
+    private Part uploadedProfile,uploadedDocument;
     
     String spec,hos;
    
@@ -70,6 +77,12 @@ public class doctorBean {
    
     
     private DoctorTb doctor;
+    
+    // private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\doctors\\";
+    // private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\doctorDoc\\";
+    
+    private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\doctors\\";
+    private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\doctorDoc\\";
 
     public String getAjaxvalue() {
         return ajaxvalue;
@@ -184,6 +197,8 @@ public class doctorBean {
         this.searchDocs = searchDocs;
     }
 
+    
+    
     public Collection<DoctorTb> getSerachGenderDocs() {
         
         
@@ -404,6 +419,24 @@ public class doctorBean {
         this.profile = profile;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public long getContact() {
+        return contact;
+    }
+
+    public void setContact(long contact) {
+        this.contact = contact;
+    }
+    
+    
+
     public int getIsActive() {
         return isActive;
     }
@@ -412,5 +445,62 @@ public class doctorBean {
         this.isActive = isActive;
     }
 
+    public Part getUploadedProfile() {
+        return uploadedProfile;
+    }
+
+    public void setUploadedProfile(Part uploadedProfile) {
+        this.uploadedProfile = uploadedProfile;
+    }
+
+    public Part getUploadedDocument() {
+        return uploadedDocument;
+    }
+
+    public void setUploadedDocument(Part uploadedDocument) {
+        this.uploadedDocument = uploadedDocument;
+    }
+
+    
+    public void uploadProfile()
+    {
+        try (InputStream input = this.uploadedProfile.getInputStream())
+        {
+            String fileName = this.uploadedProfile.getSubmittedFileName();
+            Files.copy(input, new File(folder, fileName).toPath());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+     public void uploadDocument()
+    {
+        try (InputStream input = this.uploadedDocument.getInputStream())
+        {
+            String fileName = this.uploadedDocument.getSubmittedFileName();
+            Files.copy(input, new File(folderDoc, fileName).toPath());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+       public String addDoctor()
+    {
+    
+        this.uploadProfile();
+        this.uploadDocument();
+        
+         int result=ejb.doctorRegistration(this.name, this.sid, this.exp+" Years", this.gender, this.certi, this.edu, this.email, this.contact, this.uploadedProfile.getSubmittedFileName(), this.uploadedDocument.getSubmittedFileName());
+        
+        if(result > 0)
+        {
+            return "index.xhtml";
+        }
+       
+        return "doctorSignup.xhtml";
+        
+    }
    
 }

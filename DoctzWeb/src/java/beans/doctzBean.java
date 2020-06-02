@@ -375,7 +375,7 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int doctorRegistration(String doctorName, int specializaionId, String experience, String gender, String certificates, String education, String email, long contact) {
+    public int doctorRegistration(String doctorName, int specializaionId, String experience, String gender, String certificates, String education, String email, long contact,String profile,String document) {
           int status=0;
           
         int userid=this.authenticateUser(email, contact);
@@ -397,6 +397,8 @@ public class doctzBean implements doctzBeanLocal {
                 d.setEducation(education);
                 d.setExperience(experience);
                 d.setGender(gender);
+                d.setProfile("resources/img/doctors/"+profile);
+                d.setDocuments("resources/img/doctorDoc/"+document);
                 d.setIsActive(0);
                 d.setSpecializationId(s);
                 d.setUserId(u);
@@ -426,9 +428,9 @@ public class doctzBean implements doctzBeanLocal {
     @Override
     public int patientRegistration(String patientName, String gender, String address, int age, String username, String password, String email, long contact) {
         int status=0;
-        System.out.println(password);
+       // System.out.println(password);
         String pass=pb.generate(password.toCharArray());
-        System.out.println("pass----"+pass);
+        //System.out.println("pass----"+pass);
         //String pass=password;
         int userid=this.addUser(username, pass, email, contact);
         
@@ -826,8 +828,7 @@ public class doctzBean implements doctzBeanLocal {
     @Override
     public Collection<DoctorTb> getDoctorBySpecializationName(String specializationName) {
          return em.createNamedQuery("DoctorTb.findBySpecializationName").setParameter("specializationName",specializationName).getResultList();
-   
-        
+      
     }
 
     @Override
@@ -835,10 +836,6 @@ public class doctzBean implements doctzBeanLocal {
         return em.createNamedQuery("DoctorTb.findByGender").setParameter("gender",gender).getResultList();
     }
     
-    
-    
-    
-
     @Override
     public Collection<HospitalTb> getHospitalByName(String hospitalName) {
         return em.createNamedQuery("HospitalTb.findByHospitalName").setParameter("hospitalName",hospitalName).getResultList();
@@ -1007,7 +1004,7 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int editDoctorProfile(int doctorId, String doctorName, int specializaionId, String experience, String gender, String certificates, String education, String email, long contact, String username, int userId) {
+    public int editDoctorProfile(int doctorId, String doctorName, int specializaionId, String experience, String gender, String certificates, String education, String email, long contact, String username, int userId,String profile,String document) {
         int status=0;
         DoctorTb d=em.find(DoctorTb.class,doctorId);
         
@@ -1033,6 +1030,8 @@ public class doctzBean implements doctzBeanLocal {
             d.setEducation(education);
             d.setExperience(experience);
             d.setGender(gender);
+            d.setProfile(profile);
+            d.setDocuments(document);
             d.setSpecializationId(s);
             d.setUserId(u);
             

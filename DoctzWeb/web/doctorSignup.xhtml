@@ -26,68 +26,85 @@
                                             </div>
 
                                                 <!-- Register Form -->
-                                                <h:form>
-                                                    <h:message for="patientname" style = "color:red"/>
+                                                <h:form enctype="multipart/form-data">
+                                                   <h:message for="doctorname" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                                                                                        
-                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="patientname" value="${patientBean.patientname}"/>
-                                                            <label class="focus-label">Patient Name</label>
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="doctorname" value="${doctorBean.name}"/>
+                                                            <label class="focus-label">Doctor Name</label>
+                                                        </div>
+                                                    
+                                                     <h:message for="specialization" style = "color:red"/>
+                                                        <div class="form-group">
+                                                            <h:selectOneMenu   class="form-control" style="height:45px;" id="specialization" value="#{doctorBean.sid}" required="true" requiredMessage="Select Valid Specialization">
+                                                               <f:selectItem itemLabel="Select Specialization" itemValue="#{null}" noSelectionOption="true"/>    
+                                                               <f:selectItems value="#{specializationBean.allspec}" var="s" itemLabel="#{s.name}" itemValue="#{s.specializationId}"/>
+                                                            </h:selectOneMenu>
+                                                        </div>
+                                                     
+                                                      <h:message for="experience" style = "color:red"/>
+                                                        <div class="form-group form-focus">
+                                                            <h:inputText required="true" validatorMessage="Experience should be greater than 0" requiredMessage="Must not be empty" class="form-control floating" id="experience" value="${doctorBean.exp}">
+                                                                <f:validateLongRange minimum="1" />
+                                                            </h:inputText>
+                                                            
+                                                            <label class="focus-label">Experience In Years</label>
                                                         </div>
                                                     
                                                         <div class="form-group form-focus">
                                                             
                                                             <label>Gender</label> &nbsp; <h:message for="gender" style = "color:red"/>
-                                                            <h:selectOneRadio required="true" requiredMessage="Must not be empty" id="gender" value="${patientBean.gender}">
+                                                            <h:selectOneRadio required="true" requiredMessage="Must not be empty" id="gender" value="${doctorBean.gender}">
                                                                <f:selectItem itemValue="Male" itemLabel="Male"/>                                                            
                                                                <f:selectItem itemValue="Female" itemLabel="Female" />                                                               
                                                             </h:selectOneRadio>
                                                         </div>
-                                                        <h:message for="address" style = "color:red"/>
+                                                      
+                                                        <h:message for="certificates" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputTextarea required="true" requiredMessage="Must not be empty" rows="5" class="form-control floating" id="address" value="${patientBean.address}"/>
-                                                            <label class="focus-label">Address</label>
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="certificates" value="${doctorBean.certi}"/>
+                                                            <label class="focus-label">Certificates</label>
                                                         </div>
-                                                        <h:message for="age" style = "color:red"/>
+                                                        
+                                                        <h:message for="education" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputText required="true" validatorMessage="Age should be greater than 0" requiredMessage="Must not be empty" class="form-control floating" id="age" value="${patientBean.age}">
-                                                                <f:validateLongRange minimum="1" />
-                                                            </h:inputText>
-                                                            
-                                                            <label class="focus-label">Age</label>
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="education" value="${doctorBean.edu}"/>
+                                                            <label class="focus-label">Education</label>
                                                         </div>
-                                                        <h:message for="username" style = "color:red"/>
-                                                        <div class="form-group form-focus">
-                                                            <h:inputText required="true" requiredMessage="Must not be empty" class="form-control floating" id="username" value="${patientBean.username}"/>
-                                                            <label class="focus-label">Username</label>
-                                                        </div> 
-                                                         <h:message for="password" style = "color:red"/>
-                                                        <div class="form-group form-focus">
-                                                            <h:inputSecret required="true" validatorMessage="6 characters which contain at least one numeric digit, one uppercase and one lowercase letter" requiredMessage="Must not be empty" class="form-control floating" id="password" value="${patientBean.password}">
-                                                            <f:validateRegex pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6}" />
-                                                            </h:inputSecret>
-                                                            <label class="focus-label">Password</label>
-                                                        </div>
+                                                       
                                                         <h:message for="email" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputText required="true" validatorMessage="Invalid email" requiredMessage="Must not be empty" class="form-control floating" id="email" value="${patientBean.email}">
-                                                                 <f:validateRegex pattern="[a-z._]+@.+\..+" />
+                                                            <h:inputText required="true" validatorMessage="Invalid email" requiredMessage="Must not be empty" class="form-control floating" id="email" value="${doctorBean.email}">
+                                                                 <f:validateRegex pattern="[a-z._0-9]+@.+\..+" />
                                                             </h:inputText>
                                                             <label class="focus-label">Email</label>
                                                         </div>
                                                          <h:message for="contact" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputText   required="true" validatorMessage="Invalid contact" requiredMessage="Must not be empty" class="form-control floating" id="contact" value="${patientBean.contact}">
+                                                            <h:inputText   required="true" validatorMessage="Invalid contact" requiredMessage="Must not be empty" class="form-control floating" id="contact" value="${doctorBean.contact}">
                                                                 <f:validateLength minimum="10" maximum="10"/>
                                                                 
                                                             </h:inputText>
                                                             <label class="focus-label">Contact</label>
                                                         </div>
                                                     
+                                                         <div class="form-group">
+                                                            <label>Profile</label>&nbsp; <h:message for="profile" style = "color:red"/>
+                                                            <h:inputFile id="profile" class="form-control" value="#{doctorBean.uploadedProfile}">
+                                                                <f:validator validatorId="validationBean"/>
+                                                            </h:inputFile>  
+                                                        </div>
+                                                         
+                                                        <div class="form-group">
+                                                            <label>Document</label>&nbsp; <h:message for="document" style = "color:red"/>
+                                                            <h:inputFile id="document" class="form-control" value="#{doctorBean.uploadedDocument}">
+                                                                <f:validator validatorId="validationBean"/>
+                                                            </h:inputFile>  
+                                                        </div>
                                                     
                                                         <div class="text-right">
                                                                 <a class="forgot-link" href="login.xhtml">Already have an account?</a>
                                                         </div>
-                                                    <h:commandButton class="btn btn-primary btn-block btn-lg login-btn" value="Signup" action="${patientBean.addPatient}" />
+                                                         <h:commandButton class="btn btn-primary btn-block btn-lg login-btn" value="Signup" action="${doctorBean.addDoctor()}" />
                                                     </h:form>
                                                                 <!-- /Register Form -->
                                             </div>

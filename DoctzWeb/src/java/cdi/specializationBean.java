@@ -170,9 +170,6 @@ public class specializationBean {
         this.uploadedFile = uploadedFile;
     }
     
-   
-    
-    
     public void uploadImage()
     {
         try (InputStream input = this.uploadedFile.getInputStream())

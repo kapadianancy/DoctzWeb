@@ -23,11 +23,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Admin
+ * @author ADMIN
  */
 @Entity
 @Table(name = "doctor_tb")
@@ -46,10 +45,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "DoctorTb.getTotalDoctors", query = "SELECT count(d.doctorId) FROM DoctorTb d WHERE d.isActive = 1"),
     @NamedQuery(name = "DoctorTb.findByIsActive", query = "SELECT d FROM DoctorTb d WHERE d.isActive = :isActive")})
 public class DoctorTb implements Serializable {
-    
-     @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctorId")
-    private Collection<DoctorAttachmentTb> doctorAttachmentTbCollection;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "doctorId")
+    private Collection<DoctorAttachmentTb> doctorAttachmentTbCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,6 +75,10 @@ public class DoctorTb implements Serializable {
     @Column(name = "profile")
     private String profile;
     @Basic(optional = false)
+    @Lob
+    @Column(name = "documents")
+    private String documents;
+    @Basic(optional = false)
     @Column(name = "isActive")
     private int isActive;
     @JoinColumn(name = "specializationId", referencedColumnName = "specializationId")
@@ -99,7 +101,7 @@ public class DoctorTb implements Serializable {
         this.doctorId = doctorId;
     }
 
-    public DoctorTb(Integer doctorId, String doctorName, String experience, String gender, String certificates, String education, String profile, int isActive) {
+    public DoctorTb(Integer doctorId, String doctorName, String experience, String gender, String certificates, String education, String profile, String documents, int isActive) {
         this.doctorId = doctorId;
         this.doctorName = doctorName;
         this.experience = experience;
@@ -107,6 +109,7 @@ public class DoctorTb implements Serializable {
         this.certificates = certificates;
         this.education = education;
         this.profile = profile;
+        this.documents = documents;
         this.isActive = isActive;
     }
 
@@ -166,6 +169,14 @@ public class DoctorTb implements Serializable {
         this.profile = profile;
     }
 
+    public String getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(String documents) {
+        this.documents = documents;
+    }
+
     public int getIsActive() {
         return isActive;
     }
@@ -190,7 +201,7 @@ public class DoctorTb implements Serializable {
         this.userId = userId;
     }
     
-    @JsonbTransient
+      @JsonbTransient
     public Collection<DoctorScheduleTb> getDoctorScheduleTbCollection() {
         return doctorScheduleTbCollection;
     }
@@ -216,6 +227,16 @@ public class DoctorTb implements Serializable {
     public void setAppointmentTbCollection(Collection<AppointmentTb> appointmentTbCollection) {
         this.appointmentTbCollection = appointmentTbCollection;
     }
+    
+        @JsonbTransient
+    public Collection<DoctorAttachmentTb> getDoctorAttachmentTbCollection() {
+        return doctorAttachmentTbCollection;
+    }
+
+    public void setDoctorAttachmentTbCollection(Collection<DoctorAttachmentTb> doctorAttachmentTbCollection) {
+        this.doctorAttachmentTbCollection = doctorAttachmentTbCollection;
+    }
+
 
     @Override
     public int hashCode() {
@@ -240,15 +261,6 @@ public class DoctorTb implements Serializable {
     @Override
     public String toString() {
         return "entity.DoctorTb[ doctorId=" + doctorId + " ]";
-    }
-    
-     @JsonbTransient
-    public Collection<DoctorAttachmentTb> getDoctorAttachmentTbCollection() {
-        return doctorAttachmentTbCollection;
-    }
-
-    public void setDoctorAttachmentTbCollection(Collection<DoctorAttachmentTb> doctorAttachmentTbCollection) {
-        this.doctorAttachmentTbCollection = doctorAttachmentTbCollection;
     }
     
 }
