@@ -108,8 +108,8 @@
                                                         
                                                         <h:message for="openingTime" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id = "openingTime" value="#{hospitalBean.otime}">
-                                                               
+                                                            <h:inputText class="form-control floating" validatorMessage="Enter Valid Time(Format : hh:mm:ss)" required="true" requiredMessage="Must not be empty" id = "openingTime" value="#{hospitalBean.otime}">
+                                                               <f:validateRegex pattern="[0-9]{1,2}(:)[0-9]{1,2}(:)[0-9]{1,2}" />
                                                             </h:inputText>
                                                            
                                                             <label class="focus-label">Opening Time</label>
@@ -118,8 +118,8 @@
                                                         
                                                          <h:message for="closingTime" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id = "closingTime" value="#{hospitalBean.ctime}">
-                                                               
+                                                            <h:inputText class="form-control floating" validatorMessage="Enter Valid Time(Format : hh:mm:ss)" required="true" requiredMessage="Must not be empty" id = "closingTime" value="#{hospitalBean.ctime}">
+                                                                <f:validateRegex pattern="[0-9]{1,2}(:)[0-9]{1,2}(:)[0-9]{1,2}" />
                                                              </h:inputText>
                                                             <label class="focus-label">Closing Time</label>
                                                         </div>

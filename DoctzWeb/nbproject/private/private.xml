@@ -3,13 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospitalSignup.xhtml</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBean.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/hospitalBean.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/locationTry.xhtml</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/validateDocument.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/searchDoctors.xhtml</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/bookingBean.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/hospitalBean.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/doctorBean.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/hospitalSignup.xhtml</file>
         </group>
     </open-files>
 </project-private>
