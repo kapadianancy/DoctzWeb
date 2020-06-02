@@ -26,6 +26,8 @@
                document.getElementById('searchfrm:male').checked=false;
             }
             
+            
+            
           
             
             function setDate()
@@ -131,8 +133,8 @@
                                                                         <div>
                                                                             <ui:repeat value="#{specializationBean.allspec}" var="s">
                                                                                 <div>
-                                                                            <label class="custom_check">
-                                                                                <h:selectBooleanCheckbox>                                                                                        
+                                                                                    <label class="custom_check">
+                                                                                        <h:selectBooleanCheckbox>                                                                                        
                                                                                     <f:ajax render="result"  listener="#{doctorBean.getDoctorBySpecializaton(s.specializationId)}"></f:ajax>
                                                                                     </h:selectBooleanCheckbox>  
                                                                                 <span class="checkmark"></span> #{s.name}
