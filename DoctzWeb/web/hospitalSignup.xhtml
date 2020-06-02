@@ -4,12 +4,44 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    
 
     <body>
 
         <ui:composition template="./masterPage.xhtml">
 
             <ui:define name="content">
+                
+    <h:head>
+         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;key=AIzaSyBROdBUjgsl6GtUXLtFGQfCmN3F-XCHgig"></script>
+         <script type="text/javascript">
+                  //Function to covert address to Latitude and Longitude
+        function getLocation() {
+            //alert("hi");
+            var address=document.getElementById("frm:address").value;
+            alert(address);
+          var geocoder = new google.maps.Geocoder();
+          geocoder.geocode( { 'address': address}, function(results, status) {
+
+          if (status == google.maps.GeocoderStatus.OK) {
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+              alert(latitude+" "+longitude);
+              document.getElementById("frm:lati").value=latitude;
+              document.getElementById("frm:longi").value=longitude;
+              console.log(latitude, longitude);
+              } 
+              else
+              {
+                  alert(status);
+              }
+          }); 
+        }
+
+
+        </script>
+    </h:head>            
                 <div class="content" style="background: white;">
                     <div class="container-fluid" style="padding-bottom: 30px;">
                         <div class="row">
@@ -26,57 +58,108 @@
                                             </div>
 
                                                 <!-- Register Form -->
-                                                <h:form>
-                                                    <h:message for="patientname" style = "color:red"/>
+                                                <h:form id="frm" enctype="multipart/form-data">
+                                                    <h:inputHidden id="lati" value="#{hospitalBean.lati}"/>
+                                                    <h:inputHidden id="longi" value="#{hospitalBean.longi}"/>
+                                                    <h:message for="hospitalName" style = "color:red"/>
                                                         <div class="form-group form-focus">
                                                                                                                         
-                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="patientname" value="${patientBean.patientname}"/>
-                                                            <label class="focus-label">Patient Name</label>
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="hospitalName" value="${hospitalBean.name}"/>
+                                                            <label class="focus-label">Hospital Name</label>
                                                         </div>
                                                     
-                                                        <div class="form-group form-focus">
-                                                            
-                                                            <label>Gender</label> &nbsp; <h:message for="gender" style = "color:red"/>
-                                                            <h:selectOneRadio required="true" requiredMessage="Must not be empty" id="gender" value="${patientBean.gender}">
-                                                               <f:selectItem itemValue="Male" itemLabel="Male"/>                                                            
-                                                               <f:selectItem itemValue="Female" itemLabel="Female" />                                                               
-                                                            </h:selectOneRadio>
-                                                        </div>
+                                                       
                                                         <h:message for="address" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputTextarea required="true" requiredMessage="Must not be empty" rows="5" class="form-control floating" id="address" value="${patientBean.address}"/>
+                                                            <h:inputTextarea required="true" onchange="getLocation()" requiredMessage="Must not be empty" rows="15" class="form-control floating" id="address" value="${hospitalBean.address}"/>
                                                             <label class="focus-label">Address</label>
                                                         </div>
-                                                        <h:message for="age" style = "color:red"/>
-                                                        <div class="form-group form-focus">
-                                                            <h:inputText required="true" validatorMessage="Age should be greater than 0" requiredMessage="Must not be empty" class="form-control floating" id="age" value="${patientBean.age}">
-                                                                <f:validateLongRange minimum="1" />
-                                                            </h:inputText>
+                                                        
+                                                        <h:message for="area" style = "color:red"/>
+                                                         <label class="focus-label" style="color: #b8b8b8;">Area</label>
+                                                        <div class="form-group">
+                                                            <h:selectOneMenu class="form-control" style="height: 45px;" id="area" value="#{hospitalBean.aid}" required="true" requiredMessage="Must be an valid Area">
+                                                                <f:selectItem itemLabel="---Select Area---" itemValue="#{null}" noSelectionOption="true"/>
+                                                                <f:selectItems value="#{areaBean.allareas}" var="a" itemLabel="#{a.areaName}" itemValue="#{a.areaId}"/>
+                                                            </h:selectOneMenu>
                                                             
-                                                            <label class="focus-label">Age</label>
                                                         </div>
-                                                        <h:message for="username" style = "color:red"/>
-                                                        <div class="form-group form-focus">
-                                                            <h:inputText required="true" requiredMessage="Must not be empty" class="form-control floating" id="username" value="${patientBean.username}"/>
-                                                            <label class="focus-label">Username</label>
-                                                        </div> 
-                                                         <h:message for="password" style = "color:red"/>
-                                                        <div class="form-group form-focus">
-                                                            <h:inputSecret required="true" validatorMessage="6 characters which contain at least one numeric digit, one uppercase and one lowercase letter" requiredMessage="Must not be empty" class="form-control floating" id="password" value="${patientBean.password}">
-                                                            <f:validateRegex pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6}" />
-                                                            </h:inputSecret>
-                                                            <label class="focus-label">Password</label>
+                                                        
+                                                       <h:message for="city" style = "color:red"/>
+                                                         <label class="focus-label" style="color: #b8b8b8;">City</label>
+                                                        <div class="form-group">
+                                                            <h:selectOneMenu class="form-control" style="height: 45px;" id="city" value="#{hospitalBean.cid}" required="true" requiredMessage="Must be an valid Area">
+                                                                <f:selectItem itemLabel="---Select City---" itemValue="#{null}" noSelectionOption="true"/>
+                                                                <f:selectItems value="#{cityBean.allcity}" var="a" itemLabel="#{a.cityName}" itemValue="#{a.cityId}"/>
+                                                            </h:selectOneMenu>
+                                                            
                                                         </div>
+                                                        
+                                                        <h:message for="pincode" style = "color:red"/>
+                                                        <div class="form-group form-focus">
+                                                            <h:inputText   required="true" validatorMessage="Pincode must be of 6 digits" requiredMessage="Must not be empty" class="form-control floating" id="pincode" value="${hospitalBean.pin}">
+                                                                <f:validateLength minimum="6" maximum="6"/>
+                                                                
+                                                            </h:inputText>
+                                                            <label class="focus-label">Pincode</label>
+                                                        </div>
+                                                        
+                                                        <h:message for="openingTime" style = "color:red"/>
+                                                        <div class="form-group form-focus">
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id = "openingTime" value = "#{hospitalBean.otime}">
+                                                               
+                                                             </h:inputText>
+                                                            <label class="focus-label">Opening Time</label>
+                                                        </div>
+                                                        
+                                                        
+                                                         <h:message for="closingTime" style = "color:red"/>
+                                                        <div class="form-group form-focus">
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id = "closingTime" value = "#{hospitalBean.ctime}">
+                                                                
+                                                             </h:inputText>
+                                                            <label class="focus-label">Closing Time</label>
+                                                        </div>
+                                                         
+                                                          <h:message for="logo" style = "color:red"/>
+                                                          <label class="focus-label" style="color: #b8b8b8;">Logo</label>
+                                                        <div class="form-group">
+                                                            <h:inputFile id="logo" class="form-control floating" value="#{hospitalBean.logo}">
+                                                            
+                                                                <f:validator validatorId="validationBean"/>
+                                                            </h:inputFile>    
+                                                            
+                                                        </div>
+                                                          
+                                                           <h:message for="document" style = "color:red"/>
+                                                            <label class="focus-label" style="color: #b8b8b8;">Document</label>
+                                                        <div class="form-group">
+                                                            <h:inputFile id="document" class="form-control floating" value="#{hospitalBean.doc}">
+                                                            
+                                                                <f:validator validatorId="validateDocumentBean"/>
+                                                            </h:inputFile> 
+                                                            
+                                                        </div>
+                                                           
+                                                         <h:message for="maplink" style = "color:red"/>
+                                                        <div class="form-group form-focus">
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="maplink" value="${hospitalBean.maplink}"/>
+                                                            <label class="focus-label">Map Link</label>
+                                                        </div>
+                                                        
+                                                       
+                                                       
                                                         <h:message for="email" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputText required="true" validatorMessage="Invalid email" requiredMessage="Must not be empty" class="form-control floating" id="email" value="${patientBean.email}">
-                                                                 <f:validateRegex pattern="[a-z._]+@.+\..+" />
+                                                            <h:inputText required="true" validatorMessage="Invalid email" requiredMessage="Must not be empty" class="form-control floating" id="email" value="${hospitalBean.email}">
+                                                                 <f:validateRegex pattern="[a-z._0-9]+@.+\..+" />
                                                             </h:inputText>
                                                             <label class="focus-label">Email</label>
                                                         </div>
+                                                        
                                                          <h:message for="contact" style = "color:red"/>
                                                         <div class="form-group form-focus">
-                                                            <h:inputText   required="true" validatorMessage="Invalid contact" requiredMessage="Must not be empty" class="form-control floating" id="contact" value="${patientBean.contact}">
+                                                            <h:inputText   required="true" validatorMessage="Invalid contact" requiredMessage="Must not be empty" class="form-control floating" id="contact" value="${hospitalBean.contact}">
                                                                 <f:validateLength minimum="10" maximum="10"/>
                                                                 
                                                             </h:inputText>
@@ -87,7 +170,7 @@
                                                         <div class="text-right">
                                                                 <a class="forgot-link" href="login.xhtml">Already have an account?</a>
                                                         </div>
-                                                    <h:commandButton class="btn btn-primary btn-block btn-lg login-btn" value="Signup" action="${patientBean.addPatient}" />
+                                                         <h:commandButton class="btn btn-primary btn-block btn-lg login-btn" value="Signup" action="${hospitalBean.hospitalRegistration()}" />
                                                     </h:form>
                                                                 <!-- /Register Form -->
                                             </div>

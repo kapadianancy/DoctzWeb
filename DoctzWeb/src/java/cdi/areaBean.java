@@ -10,10 +10,12 @@ import client.myclient;
 import entity.AreaTb;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,6 +42,7 @@ public class areaBean {
     private double longi;
     private int isActive;
     Collection<AreaTb> allareas;
+    
     
     
     public areaBean() {
@@ -136,5 +139,5 @@ public class areaBean {
         this.allareas = allareas;
     }
     
-    
+  
 }

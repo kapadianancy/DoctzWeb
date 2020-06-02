@@ -3,18 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/searchDoctors.xhtml</file>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/doctorBean.java</file>
-            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/entity/DoctorScheduleTb.java</file>
-=======
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospitalSignup.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBean.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/entity/AppointmentTb.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBeanLocal.java</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospitals.xhtml</file>
-            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/appointmentTracking.xhtml</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/hospitalBean.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/locationTry.xhtml</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/validateDocument.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/searchDoctors.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/bookingBean.java</file>
->>>>>>> b5df966f3b218d3c13c25810c8b08d8469d61b06
         </group>
     </open-files>
 </project-private>

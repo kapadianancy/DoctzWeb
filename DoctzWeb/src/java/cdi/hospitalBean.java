@@ -10,9 +10,13 @@ import client.myadmin;
 import client.myclient;
 import entity.HospitalTb;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -23,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import servlets.test;
+
 
 /**
  *
@@ -51,12 +57,17 @@ public class hospitalBean {
     private int pin;
     private double lati;
     private double longi;
-    private Time otime;
-    private Time ctime;
+    private String otime;
+    private String ctime;
     private String logo;
     private String doc;
     private int uid;
     private int isActive;
+    private String maplink;
+    private String username;
+    private String password;
+    private String email;
+    private long contact;
     String area="";
     String spec="";
        
@@ -122,8 +133,50 @@ public class hospitalBean {
         return allhos;
     }
 
+    public String getMaplink() {
+        return maplink;
+    }
+
+    public void setMaplink(String maplink) {
+        this.maplink = maplink;
+    }
+    
+    
+
     public void setAllhos(Collection<HospitalTb> allhos) {
         this.allhos = allhos;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public long getContact() {
+        return contact;
+    }
+
+    public void setContact(long contact) {
+        this.contact = contact;
     }
     
     
@@ -192,19 +245,19 @@ public class hospitalBean {
         this.longi = longi;
     }
 
-    public Time getOtime() {
+    public String getOtime() {
         return otime;
     }
 
-    public void setOtime(Time otime) {
+    public void setOtime(String otime) {
         this.otime = otime;
     }
 
-    public Time getCtime() {
+    public String getCtime() {
         return ctime;
     }
 
-    public void setCtime(Time ctime) {
+    public void setCtime(String ctime) {
         this.ctime = ctime;
     }
 
@@ -254,6 +307,31 @@ public class hospitalBean {
         res=c.getHospitalBySpecialization(Response.class, String.valueOf(sid));
         this.setAllhos(res.readEntity(ghos));
         
+    }
+    
+    public String hospitalRegistration()
+    {
+        SimpleDateFormat ft =new SimpleDateFormat ("hh:mm:ss");
+        java.sql.Time t1=null;
+        java.sql.Time t2=null;
+          
+            try {
+                t1=new Time(ft.parse(this.otime).getTime());
+                t2=new Time(ft.parse(this.ctime).getTime());
+               
+            } catch (ParseException ex) {
+                Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        System.out.println("cdi.hospitalBean.hospitalRegistration()----------"+this.otime+" "+t1+" "+t2);
+        int i=ejb.hospitalRegistration(this.name, this.address, this.aid, this.cid, this.pin, this.lati, this.longi, this.maplink, t1, t2, this.logo, this.doc, this.email, this.contact);
+        if(i==1)
+        {
+            return "login.xhtml";
+        }
+        else
+        {
+            return "hospitalSignup.xhtml";
+        }
     }
     
 }

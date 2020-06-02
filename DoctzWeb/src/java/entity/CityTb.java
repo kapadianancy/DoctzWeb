@@ -35,7 +35,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CityTb.findAll", query = "SELECT c FROM CityTb c"),
     @NamedQuery(name = "CityTb.findByCityId", query = "SELECT c FROM CityTb c WHERE c.cityId = :cityId"),
     @NamedQuery(name = "CityTb.findByCityName", query = "SELECT c FROM CityTb c WHERE c.cityName = :cityName"),
-    @NamedQuery(name = "CityTb.findByIsActive", query = "SELECT c FROM CityTb c WHERE c.isActive = :isActive")})
+    @NamedQuery(name = "CityTb.findByIsActive", query = "SELECT c FROM CityTb c WHERE c.isActive = :isActive")
+})
 public class CityTb implements Serializable {
 
     private static final long serialVersionUID = 1L;
