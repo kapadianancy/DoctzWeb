@@ -9,15 +9,19 @@ import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
 import entity.HospitalTb;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -25,6 +29,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import servlets.test;
@@ -36,7 +41,7 @@ import servlets.test;
  */
 @Named(value = "hospitalBean")
 @RequestScoped
-public class hospitalBean {
+public class hospitalBean  {
     
     @EJB doctzBeanLocal ejb;
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -68,9 +73,17 @@ public class hospitalBean {
     private String password;
     private String email;
     private long contact;
+    private Part uploadedLogo,uploadedDocument;
     String area="";
     String spec="";
        
+     
+    // private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospital\\";
+    // private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
+    
+    private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospital\\";
+    private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
+
    
     
     public hospitalBean() {
@@ -292,6 +305,51 @@ public class hospitalBean {
     public void setIsActive(int isActive) {
         this.isActive = isActive;
     }
+
+    public Part getUploadedLogo() {
+        return uploadedLogo;
+    }
+
+    public void setUploadedLogo(Part uploadedLogo) {
+        this.uploadedLogo = uploadedLogo;
+    }
+    
+     
+
+    public Part getUploadedDocument() {
+        return uploadedDocument;
+    }
+
+    public void setUploadedDocument(Part uploadedDocument) {
+        this.uploadedDocument = uploadedDocument;
+    }
+
+    
+    public void uploadLogo()
+    {
+        try (InputStream input = this.uploadedLogo.getInputStream())
+        {
+            String fileName = this.uploadedLogo.getSubmittedFileName();
+            Files.copy(input, new File(folder, fileName).toPath());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+     public void uploadDocument()
+    {
+        try (InputStream input = this.uploadedDocument.getInputStream())
+        {
+            String fileName = this.uploadedDocument.getSubmittedFileName();
+            Files.copy(input, new File(folderDoc, fileName).toPath());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
     
     public void getHospitalByArea(String area)
     {
@@ -309,8 +367,11 @@ public class hospitalBean {
         
     }
     
-    public String hospitalRegistration()
+    public String hospitalRegistration() throws ParseException
     {
+        this.uploadLogo();
+        this.uploadDocument();
+        
         SimpleDateFormat ft =new SimpleDateFormat ("hh:mm:ss");
         java.sql.Time t1=null;
         java.sql.Time t2=null;
@@ -321,9 +382,10 @@ public class hospitalBean {
                
             } catch (ParseException ex) {
                 Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        System.out.println("cdi.hospitalBean.hospitalRegistration()----------"+this.otime+" "+t1+" "+t2);
-        int i=ejb.hospitalRegistration(this.name, this.address, this.aid, this.cid, this.pin, this.lati, this.longi, this.maplink, t1, t2, this.logo, this.doc, this.email, this.contact);
+            }    
+          
+     //   System.out.println("cdi.hospitalBean.hospitalRegistration()---------- "+this.otime+" "+this.ctime);
+        int i=ejb.hospitalRegistration(this.name, this.address, this.aid, this.cid, this.pin, this.lati, this.longi, this.maplink,t1, t2, this.uploadedLogo.getSubmittedFileName(), this.uploadedDocument.getSubmittedFileName(), this.email, this.contact);
         if(i==1)
         {
             return "login.xhtml";
@@ -332,6 +394,7 @@ public class hospitalBean {
         {
             return "hospitalSignup.xhtml";
         }
+
     }
     
 }

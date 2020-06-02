@@ -269,10 +269,10 @@ public class doctzBean implements doctzBeanLocal {
                 h.setAreaId(area);
                 h.setCityId(c);
                 h.setClosingTime(closingTime);
-                h.setDocuments(documents);
+                h.setDocuments("resources/img/hospitalDoc/"+documents);
                 h.setIsActive(0);
                 h.setLatitude(latitude);
-                h.setLogo(logo);
+                h.setLogo("resources/img/hospital/"+logo);
                 h.setLongitude(longitude);
                 h.setMaplink(maplink);
                 h.setOpeningTime(openingTime);
