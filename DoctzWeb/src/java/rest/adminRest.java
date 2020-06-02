@@ -112,7 +112,7 @@ public class adminRest {
     }
     
     //public Collection<CityTb> getAllCity(); 
-    @RolesAllowed("admin")
+    //@RolesAllowed("admin")
     @GET
     @Path("/getAllCity")
     @Produces(MediaType.APPLICATION_JSON)

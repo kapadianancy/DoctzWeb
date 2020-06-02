@@ -5,15 +5,13 @@
  */
 package cdi;
 
-
 import javax.inject.Named;
-import javax.faces.validator.Validator;
 import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
+import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.Part;
 
@@ -21,16 +19,16 @@ import javax.servlet.http.Part;
  *
  * @author Admin
  */
-@FacesValidator(value="validationBean")
-public class validationBean implements Validator{
+@FacesValidator(value="validateDocumentBean")
+public class validateDocument implements Validator{
 
     /**
-     * Creates a new instance of validationBean
+     * Creates a new instance of validateDocument
      */
-    public validationBean() {
+    public validateDocument() {
     }
-
-    @Override
+    
+     @Override
     public void validate(FacesContext arg0, UIComponent arg1, Object value) throws ValidatorException {
         Part file = (Part) value;
         FacesMessage message=null;
@@ -40,8 +38,8 @@ public class validationBean implements Validator{
  
             if (file==null || file.getSize()<=0 || file.getContentType().isEmpty() )
                 message=new FacesMessage("Must not be empty");
-            else if (!file.getContentType().endsWith("jpeg"))
-                message=new FacesMessage("Select valid image");
+            else if (!file.getContentType().endsWith("pdf"))
+                message=new FacesMessage("Select valid document(pdf format)");
             
             if (message!=null && !message.getDetail().isEmpty())
                 {
@@ -53,7 +51,6 @@ public class validationBean implements Validator{
                throw new ValidatorException(new FacesMessage(ex.getMessage()));
         }
     }
-    
     
     
 }
