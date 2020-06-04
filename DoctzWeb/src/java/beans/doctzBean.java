@@ -477,15 +477,16 @@ public class doctzBean implements doctzBeanLocal {
    }
 
     @Override
-    public int verifyHospital(int hospitalId) {
+    public int verifyHospital(int hospitalId,String username,String password) {
         int status=0;
         HospitalTb h=em.find(HospitalTb.class,hospitalId);
+        String pass=pb.generate(password.toCharArray());
         
         UserTb u=h.getUserId();
         int userid=u.getUserId();
         UserTb user=em.find(UserTb.class,userid);
-        user.setUserName("username");
-        user.setPassword("password");
+        user.setUserName(username);
+        user.setPassword(pass);
         em.merge(user);
         h.setIsActive(1);
         em.merge(h);
@@ -501,15 +502,16 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int verifyDoctor(int doctorId) {
+    public int verifyDoctor(int doctorId,String username,String password) {
         int status=0;
         DoctorTb d=em.find(DoctorTb.class,doctorId);
+        String pass=pb.generate(password.toCharArray());
         
         UserTb u=d.getUserId();
         int userid=u.getUserId();
         UserTb user=em.find(UserTb.class,userid);
-        user.setUserName("username");
-        user.setPassword("password");
+        user.setUserName(username);
+        user.setPassword(pass);
         em.merge(user);
         d.setIsActive(1);
         em.merge(d);
@@ -1317,6 +1319,16 @@ public class doctzBean implements doctzBeanLocal {
         }
         return app;
     }
+
+    @Override
+    public Collection<HospitalTb> getInactiveHospital() {
+        return em.createNamedQuery("HospitalTb.findByIsActive").setParameter("isActive",0).getResultList();
+          }
+
+    @Override
+    public Collection<DoctorTb> getInactiveDoctor() {
+        return em.createNamedQuery("DoctorTb.findByIsActive").setParameter("isActive",0).getResultList();
+         }
     
     
     

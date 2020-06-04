@@ -17,10 +17,10 @@
                     <div class="page-header">
                             <div class="row">
                                     <div class="col-sm-12">
-                                            <h3 class="page-title">List of Cities</h3>
+                                            <h3 class="page-title">List of Areas</h3>
                                             <ul class="breadcrumb">
                                                     <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
-                                                    <li class="breadcrumb-item active">Cities</li>
+                                                    <li class="breadcrumb-item active">Areas</li>
                                             </ul>
                                     </div>
                             </div>
@@ -35,20 +35,23 @@
                                         <table class="datatable table table-hover table-center mb-0">
                                             <thead>
                                                     <tr>
+                                                            <th>Area Name</th>
                                                             <th>City Name</th>
                                                             <th>State Name</th>
                                                             
                                                     </tr>
                                             </thead>
                                             <tbody>
-                                                <ui:repeat value="#{cityBean.allcity}" var="c">
+                                                <ui:repeat value="#{areaBean.allareas}" var="c">
                                                     <tr>
                                                             <td>
                                                                     <h2 class="table-avatar">
-                                                                        #{c.cityName}
+                                                                        #{c.areaName}
                                                                     </h2>
                                                             </td>
-                                                        <td>#{c.stateId.stateName}</td>
+                                                        <td>#{c.cityId.cityName}</td>
+                                                        <td>#{c.cityId.stateId.stateName}</td>
+                                                        
                                                         </tr>
                                                 </ui:repeat>
                                                

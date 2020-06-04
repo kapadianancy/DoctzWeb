@@ -40,12 +40,13 @@
                                                             <th>Area</th>
                                                             <th>City</th>
                                                             <th>Pincode</th>
-                                                            <th>Timing</th>
+                                                            <th>Opening Time</th>
+                                                            <th>Closing Time</th>
 
                                                     </tr>
                                             </thead>
                                             <tbody>
-                                                <ui:repeat value="#{hospitalBean.allhos}" var="h">
+                                                <ui:repeat value="#{hospitalBean.getActiveHospital()}" var="h">
                                                     <tr>
                                                             <td>
                                                                     <h2 class="table-avatar">
@@ -60,17 +61,12 @@
 
                                                         <td>#{h.cityId.cityName} </td>
                                                         <td>#{h.pincode} </td>
-                                                        <td>#{h.openingTime.hours}:#{h.openingTime.minutes} - #{h.closingTime.hours}:#{h.closingTime.minutes} </td>
+                                                        <td>#{h.openingTime.toLocaleString().substring(12,20)}</td>
+                                                        <td>#{h.closingTime.toLocaleString().substring(12,20)}</td>
                                                            
                                                     </tr>
                                                 </ui:repeat>
-                                                <h:panelGroup rendered="#{empty hospitalBean.allhos}">
-                                                                <div style="position: absolute;
-                                                                            text-align: center;
-                                                                            font-size: 60px;
-                                                                            color: #15558d;
-                                                                            padding: 224px;">No Data Found.</div>
-                                                        </h:panelGroup>
+                                               
                                             </tbody>
 					</table>
                                                 </div>

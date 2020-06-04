@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                                 <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                    <div class="page-header">
+                            <div class="row">
+                                    <div class="col-sm-12">
+                                            <h3 class="page-title">Appointments</h3>
+                                            <ul class="breadcrumb">
+                                                    <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                                    <li class="breadcrumb-item active">Appointments</li>
+                                            </ul>
+                                    </div>
+                            </div>
+                    </div>
+					<!-- /Page Header -->
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="table-responsive">
+                                        <table class="datatable table table-hover table-center mb-0">
+                                            <thead>
+                                                    <tr>
+                                                            <th>Patient Name</th>
+                                                            <th>Doctor Name</th>
+                                                            <th>Hospital Name</th>
+                                                            <th>Date</th>
+                                                            <th>Time</th>
+                                                            <th>Status</th>
+                                                            
+
+                                                    </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ui:repeat value="#{bookingBean.adminall}" var="d">
+                                                    <tr class="#{bookingBean.getStatus(d.appointmentId)}">
+                                                        <td>#{d.patientId.patientName}</td>
+                                                            <td>
+                                                                    <h2 class="table-avatar">
+                                                                        <a  class="avatar avatar-sm mr-2">
+                                                                            <img class="avatar-img rounded-circle" src="/DoctzWeb/#{d.doctorId.profile}" alt="User Image"/></a>
+                                                                            #{d.doctorId.doctorName}                                                                    </h2>
+                                                            </td>
+                                                        <td>
+                                                                    <h2 class="table-avatar">
+                                                                        <a  class="avatar avatar-sm mr-2">
+                                                                            <img class="avatar-img rounded-circle" src="/DoctzWeb/#{d.hospitalId.logo}" alt="User Image"/></a>
+                                                                            #{d.hospitalId.hospitalName}                                                                    </h2>
+                                                            </td>
+                                                        
+
+                                                        <td>#{d.date.date}-#{d.date.month+1}-#{d.date.year} </td>
+
+                                                        <td>#{d.time.toLocaleString().substring(12,20)} </td>
+                                                        <td>#{d.status} </td>
+                                                        
+                                                           
+                                                    </tr>
+                                                </ui:repeat>
+                                                
+                                            </tbody>
+					</table>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>			
+                </div>
+
+        </div>			
+</div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -48,7 +48,7 @@
                                                     <tr>
                                                             <td>
                                                                     <h2 class="table-avatar">
-                                                                        <a href="#" class="avatar avatar-sm mr-2">
+                                                                        <a  class="avatar avatar-sm mr-2">
                                                                             <img class="avatar-img rounded-circle" src="/DoctzWeb/#{d.profile}" alt="User Image"/></a>
                                                                             #{d.doctorName}
                                                                     </h2>
@@ -63,13 +63,7 @@
                                                            
                                                     </tr>
                                                 </ui:repeat>
-                                                <h:panelGroup rendered="#{empty doctorBean.alldocs}">
-                                                                <div style="position: absolute;
-                                                                            text-align: center;
-                                                                            font-size: 60px;
-                                                                            color: #15558d;
-                                                                            padding: 224px;">No Data Found.</div>
-                                                        </h:panelGroup>
+                                                
                                             </tbody>
 					</table>
                                                 </div>
