@@ -68,14 +68,18 @@ public interface doctzBeanLocal {
 // ---------------------------------------verify_hospital------------------------------
 
         public Collection<HospitalTb> getAllHospital();
+        
+        public Collection<HospitalTb> getInactiveHospital(); 
 
-        public int verifyHospital(int hospitalId);
+        public int verifyHospital(int hospitalId,String username,String password);
 
 // ---------------------------- verify_doctor -----------------------
 
         public Collection<DoctorTb> getAllDoctor();
+        
+        public Collection<DoctorTb> getInactiveDoctor();
 
-        public int verifyDoctor(int doctorId);
+        public int verifyDoctor(int doctorId,String username,String password);
 
 
 // -----------------------------------specializaion_tb----------------------------------------
@@ -245,5 +249,7 @@ public interface doctzBeanLocal {
        public Collection<HospitalTb> nearMeHospital(double currentlati,double currentlongi,double newlati,double newlongi);
         
        public AppointmentTb getAppointmentById(int id);
+       
+       
 
 }

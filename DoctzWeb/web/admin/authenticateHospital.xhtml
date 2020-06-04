@@ -2,16 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:a="http://java.sun.com/jsf/passthrough"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./masterPage.xhtml">
 
             <ui:define name="content">
-               <h:form>
+                <h:form>
             <div class="page-wrapper">
                 <div class="content container-fluid">
 				
@@ -19,15 +17,13 @@
                 <div class="page-header">
                         <div class="row">
                                 <div class="col-sm-7 col-auto">
-                                        <h3 class="page-title">Specialities</h3>
+                                        <h3 class="page-title">Authenticate Hospital</h3>
                                         <ul class="breadcrumb">
                                                 <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
-                                                <li class="breadcrumb-item active">Specialities</li>
+                                                <li class="breadcrumb-item active">Authenticate Hospital</li>
                                         </ul>
                                 </div>
-                                <div class="col-sm-5 col">
-                                        <a href="addSpecialities.xhtml" class="btn btn-primary float-right mt-2">Add</a>
-                                </div>
+                               
                         </div>
                 </div>
 					<!-- /Page Header -->
@@ -40,47 +36,53 @@
                                                                 <thead>
                                                                         <tr>
                                                                                 <th>Name</th>
-                                                                                <th>Description</th>
-                                                                                <th class="text-right">Actions</th>
+                                                                                <th>Address</th>
+                                                                                <th>Area</th>
+                                                                                <th>City</th>
+                                                                                <th>Pincode</th>
+                                                                                <th>Opening Time</th>
+                                                                                <th>Closing Time</th>
+                                                                                <th>Document</th>
+                                                                                
+                                                                                <th class="text-right">Authenticate?</th>
                                                                         </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     
-                                                                    <ui:repeat value="#{specializationBean.allspec}" var="s">
+                                                                    <ui:repeat value="#{hospitalBean.displayInactive()}" var="h">
                                                                         <tr>
                                                                             <td>
                                                                                 <h2 class="table-avatar">
-                                                                                        <a  class="avatar avatar-sm mr-2">
-                                                                                            <img class="avatar-img" src="/DoctzWeb/#{s.image}" alt="Speciality"/>
+                                                                                        <a class="avatar avatar-sm mr-2">
+                                                                                            <img class="avatar-img" src="/DoctzWeb/#{h.logo}" alt="Speciality"/>
                                                                                         </a>
-                                                                                    <a href="profile.html">#{s.name}</a>
+                                                                                    <a>#{h.hospitalName}</a>
                                                                                 </h2>
                                                                             </td>
                                                                             
-                                                                            <td>#{s.description}</td>
+                                                                            <td>#{h.address}</td>
+                                                                            <td>#{h.areaId.areaName}</td>
+                                                                            <td>#{h.cityId.cityName}</td>
+                                                                            <td>#{h.pincode}</td>
+                                                                            <td>#{h.openingTime.toLocaleString().substring(12,20)}</td>
+                                                                            <td>#{h.closingTime.toLocaleString().substring(12,20)}</td>
+                                                                            <td>#{h.documents}</td>
 
                                                                             <td class="text-right">
                                                                                     <div class="actions">
                                                                                       
 
-<h:commandButton class="btn btn-sm bg-success-light" value="Edit" action="#{specializationBean.edit(s.specializationId)}">    
-                                                            </h:commandButton>
+                                                                                        <h:commandButton class="btn btn-sm bg-success-light" value="Yes" action='#{hospitalBean.verifyHospital("yes", h.hospitalId,h.userId.email,h.hospitalName)}'></h:commandButton>
                                                                                         
                                                          
-  <h:commandButton class="btn btn-sm bg-danger-light" value="Delete" action="#{specializationBean.delete(s.specializationId)}" onclick="return confirm('Are you sure ? ');"></h:commandButton>
+                                                                                        <h:commandButton class="btn btn-sm bg-danger-light" value="No" action='#{hospitalBean.verifyHospital("no", h.hospitalId,h.userId.email,h.hospitalName)}'></h:commandButton>
                                                                                           
                                                                                   
                                                                                     </div>
                                                                             </td>
                                                                         </tr>
                                                                     </ui:repeat>
-                                                                    <h:panelGroup rendered="#{empty specializationBean.allspec}">
-                                                                <div style="position: absolute;
-                                                                            text-align: center;
-                                                                            font-size: 60px;
-                                                                            color: #15558d;
-                                                                            padding: 224px;">No Data Found.</div>
-                                                        </h:panelGroup>
+                                                                   
                                                                          
                                                                 </tbody>
                                                         </table>
@@ -100,26 +102,7 @@
 			
 			
 			<!-- Delete Modal -->
-			<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
-				<div class="modal-dialog modal-dialog-centered" role="document" >
-					<div class="modal-content">
-					<!--	<div class="modal-header">
-							<h5 class="modal-title">Delete</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>-->
-						<div class="modal-body">
-							<div class="form-content p-2">
-								<h4 class="modal-title">Delete</h4>
-								<p class="mb-4">Are you sure want to delete?</p>
-                                                                <h:commandButton class="btn btn-primary" value="Delete" action="#{specializationBean.Delete()}"></h:commandButton>
-                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 			<!-- /Delete Modal -->
                </h:form>
             </ui:define>

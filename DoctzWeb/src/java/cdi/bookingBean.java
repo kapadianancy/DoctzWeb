@@ -6,6 +6,7 @@
 package cdi;
 
 import beans.doctzBeanLocal;
+import client.myadmin;
 import client.myclient;
 import entity.*;
 import java.io.IOException;
@@ -43,14 +44,16 @@ public class bookingBean {
     @EJB doctzBeanLocal ejb;
     Response res;
     myclient c;
+    myadmin a;
     private int patientId,doctorId,hospitalId;
     private AppointmentTb app;
     private PatientTb currpatient;
     private String dname,hname,adate,atime;
     
     Collection<AppointmentTb> all;
+    Collection<AppointmentTb> adminall;
     GenericType<Collection<AppointmentTb>> gall;
-   
+    
     
 
      HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
@@ -66,10 +69,12 @@ public class bookingBean {
         {
           token = request.getSession().getAttribute("token").toString();
           c = new myclient(token); 
+          a=new myadmin(token);
         }
         else
         {
           c=new myclient();
+          a=new myadmin();
         }
          app=new AppointmentTb();
          currpatient=new PatientTb();
@@ -101,6 +106,18 @@ public class bookingBean {
     public void setAll(Collection<AppointmentTb> all) {
         this.all = all;
     }
+
+    public Collection<AppointmentTb> getAdminall() {
+        res=a.getAllAppointment(Response.class);
+        adminall=res.readEntity(gall);
+        return adminall;
+    }
+
+    public void setAdminall(Collection<AppointmentTb> adminall) {
+        this.adminall = adminall;
+    }
+    
+    
     
     
 
@@ -253,11 +270,7 @@ public class bookingBean {
     {
         String status="";
         AppointmentTb a=ejb.getAppointmentById(id);
-        if(a.getStatus().equals("Incomplete"))
-        {
-            status="bg-danger-light";
-        }
-        else if(a.getStatus().equals("pending"))
+        if(a.getStatus().equals("pending"))
         {
             status="bg-warning-light";
         }

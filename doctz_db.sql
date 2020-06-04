@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2020 at 08:01 PM
+-- Generation Time: Jun 04, 2020 at 12:21 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -48,9 +48,9 @@ CREATE TABLE IF NOT EXISTS `appointment_tb` (
 
 INSERT INTO `appointment_tb` (`appointmentId`, `doctorId`, `patientId`, `hospitalId`, `date`, `time`, `invoice`, `status`, `isActive`) VALUES
 (1, 5, 14, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1),
-(2, 4, 12, 8, '2020-05-27', '01:00:00', NULL, 'Incomplete', 1),
-(3, 9, 12, 7, '2020-05-30', '02:00:00', NULL, 'Incomplete', 1),
-(4, 4, 12, 8, '2020-05-29', '01:00:00', NULL, 'Incomplete', 1),
+(2, 4, 12, 8, '2020-05-27', '01:00:00', NULL, 'complete', 1),
+(3, 9, 12, 7, '2020-05-30', '02:00:00', NULL, 'cancel', 1),
+(4, 4, 12, 8, '2020-05-29', '01:00:00', NULL, 'pending', 1),
 (5, 5, 12, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1),
 (6, 5, 12, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1),
 (7, 5, 12, 5, '2020-05-29', '10:00:00', NULL, 'Incomplete', 1);
@@ -194,27 +194,28 @@ CREATE TABLE IF NOT EXISTS `doctor_tb` (
   `certificates` text NOT NULL,
   `education` varchar(100) NOT NULL,
   `profile` text NOT NULL,
+  `documents` text NOT NULL,
   `isActive` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`doctorId`),
   KEY `specializationId` (`specializationId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `doctor_tb`
 --
 
-INSERT INTO `doctor_tb` (`doctorId`, `doctorName`, `specializationId`, `experience`, `gender`, `userId`, `certificates`, `education`, `profile`, `isActive`) VALUES
-(4, 'Dr. Bhumik Patel\r\n', 7, '11 Years', 'Male', 26, 'Medical Registration Verified,\r\nDentist, Dental Surgeon, Implantologist', 'BDS', 'resources/img/doctors/bhumik.jpg', 1),
-(5, 'Dr. Kaushika Anant Patel\r\n\r\n', 8, '21 Years', 'Female', 27, 'Gynecologist, Obstetrician, Infertility Specialist', 'MBBS,DGO', 'resources/img/doctors/kaushika.jpeg', 1),
-(6, 'Dr. Kajal Mangukiya', 8, '13 Years', 'Female', 28, 'Gynecologist, Infertility Specialist, Obstetrician', 'MD - Obstetrics & Gynaecology, DGO, MBBS', 'resources/img/doctors/kajal.jpg', 1),
-(7, 'Dr. Ushma K Kakkad', 7, '10 Years', 'Female', 29, 'Dentist, Implantologist, Cosmetic/Aesthetic Dentist, Dental Surgeon', 'BDS, Certificate in Cosmetic Dentistry, Comprehensive Course in Modern Endodontics, FDSRCS - Fellows', 'resources/img/doctors/ushma.jpg', 1),
-(8, 'Dr. Dhawal Naik', 1, '29 Years', 'Male', 30, 'DNB - Urology/Genito - Urinary Surgery, MNAMS - Urology,\r\nUrological Surgeon', 'MBBS, MS ', 'resources/img/doctors/dhawal.jpeg', 1),
-(9, 'Dr. Chetan Sheladia', 1, '11 Years', 'Male', 31, 'Urological Surgeon, Urologist, Laparoscopic Surgeon', 'DNB - Urology/Genito - Urinary Surgery, MS - General Surgery, MBBS', 'resources/img/doctors/chetan.jpg', 1),
-(10, 'Dr. Bhaumik Prabhatsinh Thakor', 2, '10 Years', 'Male', 32, 'Neurosurgeon, Neurologist', 'MCh - Neuro Surgery, MBBS', 'resources/img/doctors/bhaumik.jpg', 1),
-(11, 'Dr. Rajiv Raj Choudhry', 3, '33 Years ', 'Male', 33, 'Orthopedist, Spine And Pain Specialist, Joint Replacement Surgeon', 'MBBS, MS - Orthopaedics, MS - Orthopaedics', 'resources/img/doctors/rajivraj.jpg', 1),
-(12, 'Dr. Krunal Shah', 3, '14 Years', 'Male', 34, 'Orthopedist, Joint Replacement Surgeon', 'MBBS, MS - Orthopaedics\r\n', 'resources/img/doctors/krunal.png', 1),
-(13, 'Dr. Sulok Desai', 6, '10 Years Experience', 'Male', 35, 'Cardiologist', 'MBBS, Diploma in Cardiology', 'resources/img/doctors/sulok.jpg', 1);
+INSERT INTO `doctor_tb` (`doctorId`, `doctorName`, `specializationId`, `experience`, `gender`, `userId`, `certificates`, `education`, `profile`, `documents`, `isActive`) VALUES
+(4, 'Dr. Bhumik Patel\r\n', 7, '11 Years', 'Male', 26, 'Medical Registration Verified,\r\nDentist, Dental Surgeon, Implantologist', 'BDS', 'resources/img/doctors/bhumik.jpg', '', 1),
+(5, 'Dr. Kaushika Anant Patel\r\n\r\n', 8, '21 Years', 'Female', 27, 'Gynecologist, Obstetrician, Infertility Specialist', 'MBBS,DGO', 'resources/img/doctors/kaushika.jpeg', '', 1),
+(6, 'Dr. Kajal Mangukiya', 8, '13 Years', 'Female', 28, 'Gynecologist, Infertility Specialist, Obstetrician', 'MD - Obstetrics & Gynaecology, DGO, MBBS', 'resources/img/doctors/kajal.jpg', '', 1),
+(7, 'Dr. Ushma K Kakkad', 7, '10 Years', 'Female', 29, 'Dentist, Implantologist, Cosmetic/Aesthetic Dentist, Dental Surgeon', 'BDS, Certificate in Cosmetic Dentistry, Comprehensive Course in Modern Endodontics, FDSRCS - Fellows', 'resources/img/doctors/ushma.jpg', '', 1),
+(8, 'Dr. Dhawal Naik', 1, '29 Years', 'Male', 30, 'DNB - Urology/Genito - Urinary Surgery, MNAMS - Urology,\r\nUrological Surgeon', 'MBBS, MS ', 'resources/img/doctors/dhawal.jpeg', '', 1),
+(9, 'Dr. Chetan Sheladia', 1, '11 Years', 'Male', 31, 'Urological Surgeon, Urologist, Laparoscopic Surgeon', 'DNB - Urology/Genito - Urinary Surgery, MS - General Surgery, MBBS', 'resources/img/doctors/chetan.jpg', '', 1),
+(10, 'Dr. Bhaumik Prabhatsinh Thakor', 2, '10 Years', 'Male', 32, 'Neurosurgeon, Neurologist', 'MCh - Neuro Surgery, MBBS', 'resources/img/doctors/bhaumik.jpg', '', 1),
+(11, 'Dr. Rajiv Raj Choudhry', 3, '33 Years ', 'Male', 33, 'Orthopedist, Spine And Pain Specialist, Joint Replacement Surgeon', 'MBBS, MS - Orthopaedics, MS - Orthopaedics', 'resources/img/doctors/rajivraj.jpg', '', 1),
+(12, 'Dr. Krunal Shah', 3, '14 Years', 'Male', 34, 'Orthopedist, Joint Replacement Surgeon', 'MBBS, MS - Orthopaedics\r\n', 'resources/img/doctors/krunal.png', '', 1),
+(13, 'Dr. Sulok Desai', 6, '10 Years Experience', 'Male', 35, 'Cardiologist', 'MBBS, Diploma in Cardiology', 'resources/img/doctors/sulok.jpg', '', 1);
 
 -- --------------------------------------------------------
 
@@ -352,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `hospital_tb` (
   KEY `areaId` (`areaId`),
   KEY `cityId` (`cityId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `hospital_tb`
@@ -363,7 +364,8 @@ INSERT INTO `hospital_tb` (`hospitalId`, `hospitalName`, `address`, `areaId`, `c
 (6, 'Malvia Hospital', 'Aditya Complex, Anand Mahal Rd', 1, 1, 395009, 21.2012498, 72.7925257, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.712479898504!2d72.79204231398562!3d21.203577785903892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04c2e416c01ab%3A0x332fb4a506074c14!2sMalvia%20Hospital!5e0!3m2!1sen!2sin!4v1590775020053!5m2!1sen!2sin', '07:00:00', '11:30:00', 'resources/img/hospital/h4.jpg', 'resources/img/hospital/h4.jpg', 22, 1),
 (7, 'New City Hospital', '101 bhagwati ashish appartment 2, City Light Rd', 3, 1, 395007, 21.1888568, 72.7734796, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.562287827078!2d72.78711011398481!3d21.169810785922124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04de9ab07e3ef%3A0xb4baf36339271b87!2sNew%20City%20Hospital!5e0!3m2!1sen!2sin!4v1590775099206!5m2!1sen!2sin', '11:00:00', '08:00:00', 'resources/img/hospital/h5.jpg', 'resources/img/hospital/h5.jpg', 23, 1),
 (8, 'Mahavir Hospital', 'Opposite Jivan Bharti School', 7, 1, 395001, 21.184108, 72.8115983, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.2026305273985!2d72.81159831398513!3d21.184107985914437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e705192d03f%3A0xe4fc1330863e2f25!2sMahavir%20Hospital!5e0!3m2!1sen!2sin!4v1590775150931!5m2!1sen!2sin', '06:00:00', '12:00:00', 'resources/img/hospital/h6.jpg', 'resources/img/hospital/h6.jpg', 24, 1),
-(10, 'Kiran Hospital', 'Nr Sumul DairyTunki, Katargam', 6, 1, 395004, 21.2190018, 72.8366558, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.3238770368093!2d72.834467113986!3d21.21900178589565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f393048f2ad%3A0xfd28539e974e241a!2sKiran%20Hospital!5e0!3m2!1sen!2sin!4v1590775197174!5m2!1sen!2sin', '06:00:00', '12:00:00', 'resources/img/hospital/h7.jpg', 'resources/img/hospital/h7.jpg', 25, 1);
+(10, 'Kiran Hospital', 'Nr Sumul DairyTunki, Katargam', 6, 1, 395004, 21.2190018, 72.8366558, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.3238770368093!2d72.834467113986!3d21.21900178589565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f393048f2ad%3A0xfd28539e974e241a!2sKiran%20Hospital!5e0!3m2!1sen!2sin!4v1590775197174!5m2!1sen!2sin', '06:00:00', '12:00:00', 'resources/img/hospital/h7.jpg', 'resources/img/hospital/h7.jpg', 25, 1),
+(15, 'Baps Hospital ', 'Shri Pramukh Swami Maharaj Marg,, Adajan Char Rasta', 1, 1, 395009, 21.1895239, 72.798148, 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18959.881083200355!2d72.78748602007362!3d21.200080219728648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04dd14b0af37d%3A0x230d1d02a04d45bd!2sBAPS%20Pramukh%20Swami%20Hospital!5e0!3m2!1sen!2sin!4v1591120580485!5m2!1sen!2sin', '10:00:00', '08:00:00', 'resources/img/hospital/h8.jpg', 'resources/img/hospitalDoc/SEM7_Syllabus.pdf', 67, 1);
 
 -- --------------------------------------------------------
 
@@ -381,7 +383,7 @@ CREATE TABLE IF NOT EXISTS `patient_tb` (
   `isActive` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`patientId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `patient_tb`
@@ -495,7 +497,7 @@ CREATE TABLE IF NOT EXISTS `usergroup_tb` (
   PRIMARY KEY (`usergroupId`),
   KEY `userId` (`userId`),
   KEY `groupId` (`groupId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=35 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `usergroup_tb`
@@ -528,7 +530,8 @@ INSERT INTO `usergroup_tb` (`usergroupId`, `userId`, `groupId`) VALUES
 (31, 55, 4),
 (32, 56, 4),
 (33, 57, 4),
-(34, 58, 4);
+(34, 58, 4),
+(42, 67, 2);
 
 -- --------------------------------------------------------
 
@@ -544,7 +547,7 @@ CREATE TABLE IF NOT EXISTS `user_tb` (
   `contact` bigint(10) NOT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=68 ;
 
 --
 -- Dumping data for table `user_tb`
@@ -552,13 +555,13 @@ CREATE TABLE IF NOT EXISTS `user_tb` (
 
 INSERT INTO `user_tb` (`userId`, `userName`, `password`, `email`, `contact`) VALUES
 (21, 'shalby', 'shalby', 'info.surat@shalby.in', 2617190000),
-(22, 'malvia', 'malvia', 'malvia@gmail.com', 2612767668),
+(22, 'malvia', 'PBKDF2WithHmacSHA256:2048:hBjD7zQVpslhgGj7vLewcyXWUj9aEBsBKnz7bqtDBag=:nJn1LI2eKqLxv+40g+bfX4X28RJScTsToeBbiNxjYw0=', 'malvia@gmail.com', 2612767668),
 (23, 'newcity', 'newcity', 'newcity@gmail.com', 2612257100),
 (24, 'mahavir', 'mahavir', 'mahavirhospital@gmail.com', 2612292000),
 (25, 'kiran', 'kiran', 'info@kiranhospital.com\r\n', 2617161111),
 (26, 'drbhumik', 'drbhumik', 'bhumikpatel@gmail.com', 7854616120),
 (27, 'drkaushika', 'drkaushika', 'drkaushikapatel@gmail.com', 9868686875),
-(28, 'drkajal', 'drkajal', 'kajalmangukiya@gmail.com', 8788456123),
+(28, 'drkajal', 'PBKDF2WithHmacSHA256:2048:hBjD7zQVpslhgGj7vLewcyXWUj9aEBsBKnz7bqtDBag=:nJn1LI2eKqLxv+40g+bfX4X28RJScTsToeBbiNxjYw0=', 'kajalmangukiya@gmail.com', 8788456123),
 (29, 'drushma', 'drushma', 'drushma@gmail.com', 8866592424),
 (30, 'drdhawal', 'drdhawal', 'dhawalnaik@gmail.com', 9797565622),
 (31, 'drchetan', 'drchetan', 'chetansheladia@gmail.com', 8787124650),
@@ -577,7 +580,8 @@ INSERT INTO `user_tb` (`userId`, `userName`, `password`, `email`, `contact`) VAL
 (55, 'prince', 'PBKDF2WithHmacSHA256:2048:rmWBBhuMO5UBzhoIOqkQq6rR/3v7kAzW8jDnP9JJWwA=:VV39wYCDHB4hcs5PoFnLf5ZGQlM0yPQlZBSI8Rhi9Vs=', 'prince21@gmail.com', 8796054321),
 (56, 'princy', 'PBKDF2WithHmacSHA256:2048:HrXXpwDX4BOTwAX9SJEeUdhWDxhq6wE6Rew09eTvamM=:c0Fx7D2KYLY5+zjvZ4wUx7ZcFrZQTxjEO8AGmoJbb3c=', 'princy@gmail.com', 7010155562),
 (57, 'roshan', 'PBKDF2WithHmacSHA256:2048:R786XOpPm0chLtmz6kCgXJT20ydUmgx4KljDuTJmTbM=:19fr8L7CCpRGJe9UfGDJct2WIQ4muNy7fvLyDyuHvng=', 'roshan@gmail.com', 1234567890),
-(58, 'john', 'PBKDF2WithHmacSHA256:2048:/MvfyBB3iQTFXGH+ar99a60EQy1uoJmdFWPcGhU1op0=:77pcu65GUW5xzUVqD4xIS+35N0PNDlQi+VBui5FNiCM=', 'john@gmail.com', 9887654321);
+(58, 'john', 'PBKDF2WithHmacSHA256:2048:/MvfyBB3iQTFXGH+ar99a60EQy1uoJmdFWPcGhU1op0=:77pcu65GUW5xzUVqD4xIS+35N0PNDlQi+VBui5FNiCM=', 'john@gmail.com', 9887654321),
+(67, '', '', 'baps@gmail.com', 9898725144);
 
 --
 -- Constraints for dumped tables

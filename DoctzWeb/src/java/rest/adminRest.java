@@ -174,11 +174,11 @@ public class adminRest {
     //public int verifyHospital(int hospitalId);
     @RolesAllowed("admin")
     @POST
-    @Path("/verifyHospital/{hospitalId}")
+    @Path("/verifyHospital/{hospitalId}/{username}/{password}")
     @Produces(MediaType.APPLICATION_JSON)
-    public int verifyHospital(@PathParam("hospitalId") int hospitalId)
+    public int verifyHospital(@PathParam("hospitalId") int hospitalId,@PathParam("username") String username,@PathParam("passwprd") String password)
     {
-        return ejb.verifyHospital(hospitalId);
+        return ejb.verifyHospital(hospitalId,username,password);
     }
     
     //public Collection<DoctorTb> getAllDoctor();
@@ -194,11 +194,11 @@ public class adminRest {
     //public int verifyDoctor(int doctorId);
     @RolesAllowed("admin")
     @POST
-    @Path("/verifyDoctor/{doctorId}")
+    @Path("/verifyDoctor/{doctorId}/{username}/{password}")
     @Produces(MediaType.APPLICATION_JSON)
-    public int verifyDoctor(@PathParam("doctorId") int doctorId)
+    public int verifyDoctor(@PathParam("doctorId") int doctorId,@PathParam("username") String username,@PathParam("passwprd") String password)
     {
-        return ejb.verifyDoctor(doctorId);
+        return ejb.verifyDoctor(doctorId,username,password);
     }
     
     //public int addSpecialization(String name,String description,String image);

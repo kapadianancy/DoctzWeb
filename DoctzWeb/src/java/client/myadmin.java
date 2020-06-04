@@ -27,16 +27,16 @@ public class myadmin {
     private Client client;
     private static final String BASE_URI = "http://localhost:8001/DoctzWeb/webresources";
 
-    public myadmin(String token) {
+    public myadmin() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
-        client.register(new RestFilter(token));
         webTarget = client.target(BASE_URI).path("adminRest");
     }
-    
-    public myadmin()
+    public myadmin(String token)
     {
-      client = javax.ws.rs.client.ClientBuilder.newClient();
-      webTarget = client.target(BASE_URI).path("adminRest");
+         client = javax.ws.rs.client.ClientBuilder.newClient();
+          client.register(new RestFilter(token));
+        webTarget = client.target(BASE_URI).path("adminRest");
+       
     }
 
     public <T> T updateState(Class<T> responseType, String stateId, String stateName) throws ClientErrorException {
@@ -47,8 +47,8 @@ public class myadmin {
         return webTarget.path(java.text.MessageFormat.format("updateCity/{0}/{1}/{2}", new Object[]{cityId, cityName, stateId})).request().post(null, responseType);
     }
 
-    public <T> T verifyHospital(Class<T> responseType, String hospitalId) throws ClientErrorException {
-        return webTarget.path(java.text.MessageFormat.format("verifyHospital/{0}", new Object[]{hospitalId})).request().post(null, responseType);
+    public <T> T verifyHospital(Class<T> responseType, String hospitalId, String username, String password) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("verifyHospital/{0}/{1}/{2}", new Object[]{hospitalId, username, password})).request().post(null, responseType);
     }
 
     public <T> T updateArea(Class<T> responseType, String areaId, String areaName, String cityId, String pincode, String latitude, String longitude) throws ClientErrorException {
@@ -115,8 +115,8 @@ public class myadmin {
         return webTarget.path(java.text.MessageFormat.format("deleteSpecialization/{0}", new Object[]{specializaionId})).request().delete(responseType);
     }
 
-    public <T> T verifyDoctor(Class<T> responseType, String doctorId) throws ClientErrorException {
-        return webTarget.path(java.text.MessageFormat.format("verifyDoctor/{0}", new Object[]{doctorId})).request().post(null, responseType);
+    public <T> T verifyDoctor(Class<T> responseType, String doctorId, String username, String password) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("verifyDoctor/{0}/{1}/{2}", new Object[]{doctorId, username, password})).request().post(null, responseType);
     }
 
     public <T> T deleteArea(Class<T> responseType, String areaId) throws ClientErrorException {

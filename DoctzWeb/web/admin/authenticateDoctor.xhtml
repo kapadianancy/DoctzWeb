@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                  <h:form>
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                        <div class="row">
+                                <div class="col-sm-7 col-auto">
+                                        <h3 class="page-title">Authenticate Doctor</h3>
+                                        <ul class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                                <li class="breadcrumb-item active">Authenticate Doctor</li>
+                                        </ul>
+                                </div>
+                               
+                        </div>
+                </div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="table-responsive">
+                                                       <table class="datatable table table-hover table-center mb-0">
+                                            <thead>
+                                                    <tr>
+                                                            <th>Doctor Name</th>
+                                                            <th>Specialization</th>
+                                                            <th>Experience</th>
+                                                            <th>Gender</th>
+                                                            <th>Certificates</th>
+                                                            <th>Education</th>
+                                                            <th>Document</th>
+                                                            <th>Authenticate?</th>
+
+                                                    </tr>
+                                            </thead>
+                                            <tbody>
+                                                <ui:repeat value="#{doctorBean.displayInactive()}" var="d">
+                                                    <tr>
+                                                            <td>
+                                                                    <h2 class="table-avatar">
+                                                                        <a  class="avatar avatar-sm mr-2">
+                                                                            <img class="avatar-img rounded-circle" src="/DoctzWeb/#{d.profile}" alt="User Image"/></a>
+                                                                            #{d.doctorName}
+                                                                    </h2>
+                                                            </td>
+                                                        <td>#{d.specializationId.name}</td>
+
+                                                        <td>#{d.experience} </td>
+
+                                                        <td>#{d.gender} </td>
+                                                        <td>#{d.certificates} </td>
+                                                        <td>#{d.education} </td>
+                                                        <td>#{d.documents}</td>
+                                                        
+                                                         <td class="text-right">
+                                                            <div class="actions">
+
+
+                                                                <h:commandButton class="btn btn-sm bg-success-light" value="Yes" action='#{doctorBean.verifyDoctor("yes",d.doctorId,d.userId.email, d.doctorName)}'></h:commandButton>
+
+
+                                                                <h:commandButton class="btn btn-sm bg-danger-light" value="No" action='#{doctorBean.verifyDoctor("no",d.doctorId,d.userId.email, d.doctorName)}'></h:commandButton>
+
+
+                                                            </div>
+                                                    </td>
+                                                           
+                                                    </tr>
+                                                </ui:repeat>
+                                                
+                                            </tbody>
+					</table>
+									</div>
+								</div>
+							</div>
+						</div>			
+					</div>
+				
+                
+                            </div>			
+			</div>
+                
+			<!-- /Page Wrapper -->
+			
+			
+			
+			
+			<!-- Delete Modal -->
+			<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document" >
+					<div class="modal-content">
+					<!--	<div class="modal-header">
+							<h5 class="modal-title">Delete</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>-->
+						<div class="modal-body">
+							<div class="form-content p-2">
+								<h4 class="modal-title">Delete</h4>
+								<p class="mb-4">Are you sure want to delete?</p>
+                                                                <h:commandButton class="btn btn-primary" value="Delete" action="#{specializationBean.Delete()}"></h:commandButton>
+                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Delete Modal -->
+               </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -94,6 +94,11 @@ public class cityBean {
         this.cityName = cityName;
     }
     
+    public String displayArea(int cid)
+    {
+        System.err.println("city----------"+cid);
+        return "area.xhtml?faces-redirect=true";
+    }
     
     
 }
