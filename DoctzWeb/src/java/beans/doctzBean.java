@@ -1234,6 +1234,13 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
+    public HospitalTb getHospitalById(int hospitalId) {
+        return em.find(HospitalTb.class, hospitalId);
+    }
+    
+    
+
+    @Override
     public Collection<DoctorScheduleTb> getDoctorSchedule(int doctorId) {
         return em.createNamedQuery("DoctorScheduleTb.findByDoctorId").setParameter("doctorId",doctorId).getResultList();
     }

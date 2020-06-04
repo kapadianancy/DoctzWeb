@@ -207,6 +207,8 @@ public interface doctzBeanLocal {
         
         public DoctorTb getDoctorById(int doctorId);
         
+        public HospitalTb getHospitalById(int hospitalId);
+        
  //----------------------Get Total Number of entity----------------------------------------------------------------------
         
         public long getTotalDoctors();

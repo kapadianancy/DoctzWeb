@@ -30,7 +30,9 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(client.RestFilter.class);
+        resources.add(rest.DoctorRestResource.class);
         resources.add(rest.GenericResource.class);
+        resources.add(rest.HospitalRestResource.class);
         resources.add(rest.adminRest.class);
     }
     

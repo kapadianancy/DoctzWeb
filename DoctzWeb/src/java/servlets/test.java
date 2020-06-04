@@ -7,6 +7,8 @@ package servlets;
 
 import beans.doctzBeanLocal;
 import client.myclient;
+import client.mydoctor;
+import client.myhospital;
 import entity.*;
 import java.sql.Date;
 import java.util.*;
@@ -33,6 +35,8 @@ public class test extends HttpServlet {
 
    @EJB doctzBeanLocal ejb;
    myclient c1=new myclient();
+   myhospital h1=new myhospital();
+   mydoctor d1=new mydoctor();
    Response res;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -601,17 +605,34 @@ public class test extends HttpServlet {
 //                }
 
  
-            Collection<StateTb> state=new ArrayList<StateTb>();
-            GenericType<Collection<StateTb>> states=new GenericType<Collection<StateTb>>(){};
-            res =c1.getAllState(Response.class);
-          
-            state=res.readEntity(states);
-                
-            for(StateTb s:state)
-            {
-                out.println("\n"+s.getStateName()+"<br>");
-            }
+//            Collection<CityTb> state=new ArrayList<CityTb>();
+//            GenericType<Collection<CityTb>> states=new GenericType<Collection<CityTb>>(){};
+//            res =h1.getAllCity(Response.class);
+//          
+//            state=res.readEntity(states);
+//                
+//            for(CityTb s:state)
+//            {
+//                out.println("\n"+s.getCityName()+"<br>");
+//            }
 
+//            Collection<SpecializationTb> state=new ArrayList<SpecializationTb>();
+//            GenericType<Collection<SpecializationTb>> states=new GenericType<Collection<SpecializationTb>>(){};
+//            res =d1.getAllSpecialization(Response.class);
+//          
+//            state=res.readEntity(states);
+//                
+//            for(SpecializationTb s:state)
+//            {
+//                out.println("\nSpec: "+s.getName()+"<br>");
+//            
+
+            GenericType<DoctorTb> ds=new GenericType<DoctorTb>(){};
+            DoctorTb d=new DoctorTb();
+            res=d1.getDoctorById(Response.class, "4");
+            d=res.readEntity(ds);
+            out.println(d.getDoctorName());
+            
             out.println("check servlet");
             out.println("</body>");
             out.println("</html>");

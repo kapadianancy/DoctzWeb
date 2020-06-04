@@ -244,7 +244,7 @@ public class loginBean {
          System.out.println("In bean");
          if(roles.contains("admin"))
            {
-               System.out.println("In admin");
+               System.out.println("In Admin");
                request.getSession().setAttribute("logged-group", "admin");
                request.getSession().setAttribute("username", this.username);
                request.getSession().setAttribute("password", this.password);
@@ -252,9 +252,9 @@ public class loginBean {
            }
         //   else if(securityContext.isCallerInRole("Supervisor"))
        else if(roles.contains("patient"))
-           {
+        {
                  String token="";
-               System.out.println("In patient");
+               System.out.println("In Patient");
                request.getSession().setAttribute("logged-group", "patient");
                request.getSession().setAttribute("username", this.username);
                request.getSession().setAttribute("password", this.password);
@@ -280,8 +280,24 @@ public class loginBean {
                         return "/faces/index.xhtml?faces-redirect=true";
                         
    
-           }
-         else
+        }
+       else if(roles.contains("hospital"))
+       {
+            System.out.println("In Hospital");
+            request.getSession().setAttribute("logged-group", "hospital");
+            request.getSession().setAttribute("username", this.username);
+            request.getSession().setAttribute("password", this.password);
+           return "/faces/hospital/dashboard.xhtml?faces-redirect=true";
+       }
+       else if(roles.contains("doctor"))
+       {
+            System.out.println("In Doctor");
+            request.getSession().setAttribute("logged-group", "doctor");
+            request.getSession().setAttribute("username", this.username);
+            request.getSession().setAttribute("password", this.password);
+           return "/faces/doctor/dashboard.xhtml?faces-redirect=true";
+       }
+       else
        {
            return "/login.xhtml";
        }

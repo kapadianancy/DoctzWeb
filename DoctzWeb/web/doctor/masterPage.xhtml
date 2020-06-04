@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+        <title>Doctz</title>
+		
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/DoctzWeb/resources/img/favicon.png"></link>
+     
+        
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/bootstrap.min.css"></link>
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/font-awesome.min.css"></link>
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/feathericon.min.css"></link>
+		
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/plugins/morris/morris.css"></link>
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/style.css"></link>
+		
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/plugins/datatables/datatables.min.css"></link>
+        
+    </h:head>
+
+    <h:body>
+  
+        <div class="main-wrapper">
+        <div id="top">
+            <ui:include src="header.xhtml"></ui:include>
+        </div>
+        <div>
+            <div id="left">
+                <ui:include src="sidebar.xhtml"></ui:include>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+        </div>
+    </h:body>
+    
+    <!-- jQuery -->
+    
+     <script src="/DoctzWeb/resources/admin/js/jquery-3.2.1.min.js"></script>
+      
+		<!-- Bootstrap Core JS -->
+        <script src="/DoctzWeb/resources/admin/js/popper.min.js"></script>
+        <script src="/DoctzWeb/resources/admin/js/bootstrap.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+        <script src="/DoctzWeb/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        
+        
+        <script src="/DoctzWeb/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="/DoctzWeb/resources/admin/plugins/datatables/datatables.min.js"></script>
+        
+		
+        <script src="/DoctzWeb/resources/admin/plugins/raphael/raphael.min.js"></script>    
+        <script src="/DoctzWeb/resources/admin/plugins/morris/morris.min.js"></script>  
+        <script src="/DoctzWeb/resources/admin/js/chart.morris.js"></script>
+
+        <!-- Custom JS -->
+        <script  src="/DoctzWeb/resources/admin/js/script.js"></script>
+        
+    
+
+		
+      
+</html>
+

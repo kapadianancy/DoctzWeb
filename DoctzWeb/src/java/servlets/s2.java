@@ -9,6 +9,8 @@ package servlets;
 import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
+import client.mydoctor;
+import client.myhospital;
 import entity.*;
 import entity.SpecializationTb;
 import java.io.IOException;
@@ -42,6 +44,9 @@ public class s2 extends HttpServlet {
    Response res;
    myclient c1=new myclient();
    myadmin a1=new myadmin();
+//   myhospital h1=new myhospital();
+//   mydoctor d1=new mydoctor();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -53,10 +58,10 @@ public class s2 extends HttpServlet {
             out.println("<title>Servlet s2</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Test</h1>");
-            
-            Integer s=ejb.getTotalPatientByScheduleId(4);
-            out.println("Total Patient :"+s+"<br>");
+            out.println("<h1>Test</h1>hii");
+//            
+//            Integer s=ejb.getTotalPatientByScheduleId(4);
+//            out.println("Total Patient :"+s+"<br>");
             
 //            res=c1.patientRegistration(Response.class, "Alexa", "Female", "Alexa", "44", "alexa","alexa", "a4@gmail.com","9876543210");
 //            out.println(res);
@@ -69,25 +74,15 @@ public class s2 extends HttpServlet {
             //res=a1.updateSpecialization(Response.class, "1", "Urologyyyy", "Urology is a part of health care that deals with diseases of the male and female urinary tract.", "resources/img/specialities/specialities-01.png");
 
 //            
-//            Collection<SpecializationTb> sp=new ArrayList<SpecializationTb>();
-//            GenericType<Collection<SpecializationTb>> s=new GenericType<Collection<SpecializationTb>>(){};
-//            res =a1.getAllSpecialization(Response.class);
-//          //  out.println(res);
 //          
-//            sp=res.readEntity(s);
-//            
-//            for(SpecializationTb s1:spe)
-//            {
-//                out.println(s1.getName()+" "+s1.getDescription()+" "+s1.getImage()+"<br>");
-//            }
-
+//
 //                GenericType<SpecializationTb> specs=new GenericType<SpecializationTb>(){};
 //                res=a1.getSpecializationById(Response.class, "2");
 //                SpecializationTb spe=res.readEntity(specs);
 //                out.println(spe.getName()+" "+spe.getDescription()+" "+spe.getImage()+"<br>");
 //                
-//            
             
+        
             Collection<DoctorTb> sp=ejb.getDoctorOfHospital(7);
             
             for(DoctorTb s1:sp)
@@ -152,14 +147,14 @@ public class s2 extends HttpServlet {
 
         //    out.print(pass);
 //
-//             Collection<FeesTb> docs=ejb.getFeesBySpecialityandHospital(8,5);
-//            for(FeesTb d:docs)
-//            {
-//                out.println(d.getFees());
-//            }
+             Collection<FeesTb> docs=ejb.getFeesBySpecialityandHospital(8,5);
+            for(FeesTb d:docs)
+            {
+                out.println(d.getFees());
+            }
 //        
 
-            out.println("</body>");
+            out.println("hello</body>");
             out.println("</html>");
         }
     }
