@@ -128,7 +128,7 @@ public class adminRest {
     @Produces(MediaType.APPLICATION_JSON)
     public int addArea(@PathParam("areaName") String areaName,@PathParam("cityId") int cityId,@PathParam("pincode") int pincode,@PathParam("latitude") double latitude,@PathParam("longitude") double longitude)
     {
-        return ejb.addArea(areaName, cityId, pincode, latitude, longitude);
+        return ejb.addArea(areaName, cityId, pincode);
     }
     
     //public int updateArea(int areaId,String areaName,int cityId,int pincode,double latitude,double longitude);
@@ -138,7 +138,7 @@ public class adminRest {
     @Produces(MediaType.APPLICATION_JSON)
     public int updateArea(@PathParam("areaId") int areaId,@PathParam("areaName") String areaName,@PathParam("cityId") int cityId,@PathParam("pincode") int pincode,@PathParam("latitude") double latitude,@PathParam("longitude") double longitude)
     {
-        return ejb.updateArea(areaId, areaName, cityId, pincode, latitude, longitude);
+        return ejb.updateArea(areaId, areaName, cityId, pincode);
     }
     
     //public int deleteArea(int areaId);

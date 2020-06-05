@@ -40,9 +40,9 @@ public interface doctzBeanLocal {
         
 // ---------------------------------area_tb-----------------------
 
-        public int addArea(String areaName,int cityId,int pincode,double latitude,double longitude);
+        public int addArea(String areaName,int cityId,int pincode);
 
-        public int updateArea(int areaId,String areaName,int cityId,int pincode,double latitude,double longitude);
+        public int updateArea(int areaId,String areaName,int cityId,int pincode);
 
         public int deleteArea(int areaId);
 

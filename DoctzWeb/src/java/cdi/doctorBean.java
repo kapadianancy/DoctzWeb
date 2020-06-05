@@ -521,7 +521,7 @@ public class doctorBean {
     
     public String verifyDoctor(String str,int did,String emailStr,String username)
     {
-        System.out.println("username----->>>"+username);
+       // System.out.println("username----->>>"+username);
         if(str.equals("yes"))
         {
             String password=this.sendMail(emailStr,username);

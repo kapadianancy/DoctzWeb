@@ -110,7 +110,7 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int addArea(String areaName, int cityId, int pincode, double latitude, double longitude) {
+    public int addArea(String areaName, int cityId, int pincode) {
         int status=0;
         CityTb c=em.find(CityTb.class,cityId);
         Collection<AreaTb> areas=c.getAreaTbCollection();
@@ -118,8 +118,6 @@ public class doctzBean implements doctzBeanLocal {
         a.setAreaName(areaName);
         a.setCityId(c);
         a.setPincode(pincode);
-        a.setLatitude(latitude);
-        a.setLongitude(longitude);
         a.setIsActive(1);
         if(! areas.contains(a))
         {
@@ -133,7 +131,7 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int updateArea(int areaId, String areaName, int cityId, int pincode, double latitude, double longitude) {
+    public int updateArea(int areaId, String areaName, int cityId, int pincode) {
         int status=0;
         CityTb c=em.find(CityTb.class,cityId);
         Collection<AreaTb> areas=c.getAreaTbCollection();
@@ -146,8 +144,6 @@ public class doctzBean implements doctzBeanLocal {
             a.setAreaName(areaName);
             a.setCityId(c);
             a.setPincode(pincode);
-            a.setLatitude(latitude);
-            a.setLongitude(longitude);
             //a.setIsActive(1);
             areas.add(a);
             c.setAreaTbCollection(areas);

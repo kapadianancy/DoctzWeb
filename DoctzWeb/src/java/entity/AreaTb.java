@@ -36,8 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "AreaTb.findByAreaId", query = "SELECT a FROM AreaTb a WHERE a.areaId = :areaId"),
     @NamedQuery(name = "AreaTb.findByAreaName", query = "SELECT a FROM AreaTb a WHERE a.areaName = :areaName"),
     @NamedQuery(name = "AreaTb.findByPincode", query = "SELECT a FROM AreaTb a WHERE a.pincode = :pincode"),
-    @NamedQuery(name = "AreaTb.findByLatitude", query = "SELECT a FROM AreaTb a WHERE a.latitude = :latitude"),
-    @NamedQuery(name = "AreaTb.findByLongitude", query = "SELECT a FROM AreaTb a WHERE a.longitude = :longitude"),
     @NamedQuery(name = "AreaTb.findByIsActive", query = "SELECT a FROM AreaTb a WHERE a.isActive = :isActive")})
 public class AreaTb implements Serializable {
 
@@ -54,12 +52,6 @@ public class AreaTb implements Serializable {
     @Column(name = "pincode")
     private int pincode;
     @Basic(optional = false)
-    @Column(name = "latitude")
-    private double latitude;
-    @Basic(optional = false)
-    @Column(name = "longitude")
-    private double longitude;
-    @Basic(optional = false)
     @Column(name = "isActive")
     private int isActive;
     @JoinColumn(name = "cityId", referencedColumnName = "cityId")
@@ -75,12 +67,10 @@ public class AreaTb implements Serializable {
         this.areaId = areaId;
     }
 
-    public AreaTb(Integer areaId, String areaName, int pincode, double latitude, double longitude, int isActive) {
+    public AreaTb(Integer areaId, String areaName, int pincode, int isActive) {
         this.areaId = areaId;
         this.areaName = areaName;
         this.pincode = pincode;
-        this.latitude = latitude;
-        this.longitude = longitude;
         this.isActive = isActive;
     }
 
@@ -108,21 +98,7 @@ public class AreaTb implements Serializable {
         this.pincode = pincode;
     }
 
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
+   
 
     public int getIsActive() {
         return isActive;
