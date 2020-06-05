@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "HospitalTb.findByLongitude", query = "SELECT h FROM HospitalTb h WHERE h.longitude = :longitude"),
     @NamedQuery(name = "HospitalTb.findByOpeningTime", query = "SELECT h FROM HospitalTb h WHERE h.openingTime = :openingTime"),
     @NamedQuery(name = "HospitalTb.findByClosingTime", query = "SELECT h FROM HospitalTb h WHERE h.closingTime = :closingTime"),
+    @NamedQuery(name = "HospitalTb.findByEmail", query = "SELECT h FROM HospitalTb h WHERE h.userId.email = :email"),
     @NamedQuery(name = "HospitalTb.getHospitalByCity", query = "SELECT h FROM HospitalTb h WHERE h.cityId.cityName = :cityName and h.isActive = 1"),
     @NamedQuery(name = "HospitalTb.getHospitalByArea", query = "SELECT h FROM HospitalTb h WHERE h.areaId.areaName = :areaName and h.isActive = 1"),
     @NamedQuery(name = "HospitalTb.getHospitalBystate", query = "SELECT h FROM HospitalTb h WHERE h.cityId.stateId.stateName = :stateName and h.isActive = 1"),

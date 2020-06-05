@@ -81,14 +81,14 @@ public class s2 extends HttpServlet {
 //                SpecializationTb spe=res.readEntity(specs);
 //                out.println(spe.getName()+" "+spe.getDescription()+" "+spe.getImage()+"<br>");
 //                
-            
-        
-            Collection<DoctorTb> sp=ejb.getDoctorOfHospital(7);
-            
-            for(DoctorTb s1:sp)
-            {
-                out.println("\n"+s1.getDoctorName()+"<br>");
-            }
+//            
+//        
+//            Collection<DoctorTb> sp=ejb.getDoctorOfHospital(7);
+//            
+//            for(DoctorTb s1:sp)
+//            {
+//                out.println("\n"+s1.getDoctorName()+"<br>");
+//            }
 
 
 //            PatientTb p=new PatientTb();
@@ -152,9 +152,12 @@ public class s2 extends HttpServlet {
             {
                 out.println(d.getFees());
             }
+            
+            long i=ejb.getTotalHosDoctors(6);
+            
 //        
 
-            out.println("hello</body>");
+            out.println(i+"</body>");
             out.println("</html>");
         }
     }

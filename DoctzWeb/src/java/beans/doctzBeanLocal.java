@@ -223,7 +223,25 @@ public interface doctzBeanLocal {
         
         public long getTotalPatients();
         
+        public long getTotalHosDoctors(int hid);
+        
+        public long getTotalHosSpecializations(int hid);
+        
+        public long getTotalHosAppointments(int hid);
+        
+        public long getTotalHosPatients(int hid);
+        
+        public long getTotalDocHospitals(int did);
+        
+        public long getTotaldocAppointments(int did);
+        
+        public long getTotalDocPatients(int did);
+        
        public PatientTb getPatientByEmail(String email);
+       
+       public HospitalTb getHospitalByEmail(String email);
+       
+       public DoctorTb getDoctorByEmail(String email);
        
        public Collection<DoctorTb> getDoctorByGender(String gender);
        

@@ -8,6 +8,7 @@ package cdi;
 import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
+import client.mydoctor;
 import entity.DoctorTb;
 import entity.SpecializationTb;
 import java.io.File;
@@ -56,6 +57,7 @@ public class doctorBean {
 
     @EJB doctzBeanLocal ejb;
     myclient c;
+    mydoctor d;
     Response res;
     
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -79,7 +81,7 @@ public class doctorBean {
     private Part uploadedProfile,uploadedDocument;
     
     String spec,hos;
-   
+    String emailStr="";
    
     private Collection<DoctorTb> alldocs;
     private Collection<DoctorTb> searchDocs,serachGenderDocs;
@@ -87,7 +89,7 @@ public class doctorBean {
     
    
     
-    private DoctorTb doctor;
+    private DoctorTb doctor,currDoc;
     
      private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\doctors\\";
      private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\doctorDoc\\";
@@ -121,11 +123,14 @@ public class doctorBean {
 //            System.out.println("Token="+token1);
            // a = new myadmin(token);
             c = new myclient(token);
+            d = new mydoctor(token);
+           
           
         }
         else
         {
           c=new myclient();
+          d=new mydoctor();
           //a=new myadmin();
         }
          
@@ -134,8 +139,11 @@ public class doctorBean {
         alldocs=new ArrayList<DoctorTb>();
         searchDocs=new ArrayList<DoctorTb>();
         
-       
-       
+        if(null != session.getAttribute("username"))
+           {
+               System.out.println(session);
+                emailStr=session.getAttribute("username").toString();
+           }
     }
     public void ajax(String str)
     {
@@ -600,5 +608,17 @@ public class doctorBean {
         } 
         return saltStr;
     }
+
+    public DoctorTb getCurrDoc() {
+        currDoc=ejb.getDoctorByEmail(emailStr);
+        return currDoc;
+    }
+
+    public void setCurrDoc(DoctorTb currDoc) {
+        this.currDoc = currDoc;
+    }
+   
+   
+   
     
 }

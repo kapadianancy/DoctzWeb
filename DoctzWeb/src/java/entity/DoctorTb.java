@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DoctorTb.findByExperience", query = "SELECT d FROM DoctorTb d WHERE d.experience = :experience"),
     @NamedQuery(name = "DoctorTb.findByGender", query = "SELECT d FROM DoctorTb d WHERE d.gender = :gender"),
     @NamedQuery(name = "DoctorTb.findByEducation", query = "SELECT d FROM DoctorTb d WHERE d.education = :education"),
+    @NamedQuery(name = "DoctorTb.findByEmail", query = "SELECT d FROM DoctorTb d WHERE d.userId.email = :email"),
     @NamedQuery(name = "DoctorTb.getDoctorByExperience", query = "SELECT d FROM DoctorTb d where d.isActive=1 ORDER BY d.experience DESC "),
     @NamedQuery(name = "DoctorTb.getDoctorByExperienceAndSpec", query = "SELECT d FROM DoctorTb d where d.isActive=1 and d.specializationId.name =:spec ORDER BY d.experience DESC"),
     @NamedQuery(name = "DoctorTb.findBySpecializationName", query = "SELECT d FROM DoctorTb d WHERE d.specializationId.name = :specializationName and d.isActive=1"),

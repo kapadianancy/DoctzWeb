@@ -20,6 +20,7 @@ public class countBean {
 
     @EJB doctzBeanLocal ejb;
     long doctors,hospitals,patients,appointments;
+    
 
     public long getDoctors() {
         return ejb.getTotalDoctors();
@@ -52,6 +53,42 @@ public class countBean {
     public void setAppointments(long appointments) {
         this.appointments =appointments;
     }
+
+    public long getTotalDoctorsByHospitalId(int hid)
+    {
+        return ejb.getTotalHosDoctors(hid);
+    }
+    
+    public long getTotalHosSpecializations(int hid)
+    {
+        return ejb.getTotalHosSpecializations(hid);
+    }
+
+    public long getTotalHosAppointments(int hid)
+    {
+        return ejb.getTotalHosAppointments(hid);
+    }
+    
+    public long getTotalHosPatients(int hid)
+    {
+        return ejb.getTotalHosPatients(hid);
+    }
+    
+    public long getTotalDocAppointments(int did)
+    {
+        return ejb.getTotaldocAppointments(did);
+    }
+    
+    public long getTotalDocPatients(int did)
+    {
+        return ejb.getTotalDocPatients(did);
+    }
+    
+    public long getTotalDocHospitals(int did)
+    {
+        return ejb.getTotalDocHospitals(did);
+    }
+    
     public countBean() {
     }
     

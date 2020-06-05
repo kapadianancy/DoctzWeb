@@ -35,12 +35,15 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "AppointmentTb.findByAppointmentId", query = "SELECT a FROM AppointmentTb a WHERE a.appointmentId = :appointmentId"),
     @NamedQuery(name = "AppointmentTb.findByDate", query = "SELECT a FROM AppointmentTb a WHERE a.date = :date"),
     @NamedQuery(name = "AppointmentTb.findByTime", query = "SELECT a FROM AppointmentTb a WHERE a.time = :time"),
-    
     @NamedQuery(name = "AppointmentTb.findByStatus", query = "SELECT a FROM AppointmentTb a WHERE a.status = :status"),
     @NamedQuery(name = "AppointmentTb.findByDoctorId", query = "SELECT a FROM AppointmentTb a WHERE a.doctorId = :doctorId and a.hospitalId =:hospitalId and a.isActive=1"),
     @NamedQuery(name = "AppointmentTb.findPatientOfDoctor", query = "SELECT distinct(a.patientId) FROM AppointmentTb a WHERE a.doctorId = :doctorId"),
     @NamedQuery(name = "AppointmentTb.findPatientOfHospital", query = "SELECT distinct(a.patientId) FROM AppointmentTb a WHERE a.hospitalId = :hospitalId"),
     @NamedQuery(name = "AppointmentTb.findByPatientId", query = "SELECT a FROM AppointmentTb a WHERE a.patientId = :patientId and a.isActive=1"),
+    @NamedQuery(name = "AppointmentTb.getTotalAppointmentByHospitalId", query = "SELECT count(a.appointmentId) FROM AppointmentTb a WHERE a.isActive = 1 and a.hospitalId.hospitalId = :hid"),
+    @NamedQuery(name = "AppointmentTb.getTotalAppointmentByDoctorId", query = "SELECT count(a.appointmentId) FROM AppointmentTb a WHERE a.isActive = 1 and a.doctorId.doctorId = :did"),
+    @NamedQuery(name = "AppointmentTb.getTotalPatientByHospitalId", query = "SELECT count(DISTINCT a.patientId.patientId) FROM AppointmentTb a WHERE a.isActive = 1 and a.hospitalId.hospitalId = :hid GROUP BY a.patientId"),
+    @NamedQuery(name = "AppointmentTb.getTotalPatientByDoctorId", query = "SELECT count(DISTINCT a.patientId.patientId) FROM AppointmentTb a WHERE a.isActive = 1 and a.doctorId.doctorId = :did GROUP BY a.patientId"),
     @NamedQuery(name = "AppointmentTb.getTotalAppointments", query = "SELECT count(a.appointmentId) FROM AppointmentTb a"),
     @NamedQuery(name = "AppointmentTb.findByIsActive", query = "SELECT a FROM AppointmentTb a WHERE a.isActive = :isActive")})
 public class AppointmentTb implements Serializable {

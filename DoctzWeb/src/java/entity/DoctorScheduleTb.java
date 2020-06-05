@@ -48,6 +48,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByHospital",query="SELECT DISTINCT d.doctorId FROM DoctorScheduleTb d WHERE d.hospitalId.hospitalId = :hospitalId"),
     @NamedQuery(name = "DoctorScheduleTb.findTotalPatientByScheduleId",query="SELECT d.numberOfPatient FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
     @NamedQuery(name = "DoctorScheduleTb.findTotalPatientByScheduleId",query="SELECT d.numberOfPatient FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
+    @NamedQuery(name = "DoctorScheduleTb.getTotalDoctorsByHospitalId", query = "SELECT count(d.doctorId.doctorId) FROM DoctorScheduleTb d WHERE d.isActive = 1 and d.hospitalId.hospitalId = :hid"),
+    @NamedQuery(name = "DoctorScheduleTb.getTotalHospitalByDoctorId", query = "SELECT count(d.hospitalId.hospitalId) FROM DoctorScheduleTb d WHERE d.isActive = 1 and d.doctorId.doctorId = :did"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDateAndTime",query="SELECT d FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId and d.hospitalId.hospitalId=:hospitalId and d.date=:date and d.fromTime=:time and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.findByIsActive", query = "SELECT d FROM DoctorScheduleTb d WHERE d.isActive = :isActive")})
 public class DoctorScheduleTb implements Serializable {

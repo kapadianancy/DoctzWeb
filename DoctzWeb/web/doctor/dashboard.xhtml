@@ -16,27 +16,8 @@
                 <div class="content container-fluid">
 
                 <div class="row">
-                        <div class="col-xl-3 col-sm-6 col-12">
-                                <div class="card">
-                                        <div class="card-body">
-                                                <div class="dash-widget-header">
-                                                        <span class="dash-widget-icon text-primary border-primary">
-                                                                <i class="fe fe-users"></i>
-                                                        </span>
-                                                        <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.doctors}"></h:outputText></h3>
-                                                        </div>
-                                                </div>
-                                                <div class="dash-widget-info">
-                                                        <h6 class="text-muted">Doctors</h6>
-                                                        <div class="progress progress-sm">
-                                                                <div class="progress-bar bg-primary w-50"></div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
+                       
+                        <div class="col-xl-4 col-sm-6 col-12">
                                 <div class="card">
                                         <div class="card-body">
                                                 <div class="dash-widget-header">
@@ -44,7 +25,7 @@
                                                                 <i class="fe fe-credit-card"></i>
                                                         </span>
                                                         <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.patients}"></h:outputText></h3>
+                                                            <h3><h:outputText value="#{countBean.getTotalDocPatients(doctorBean.currDoc.doctorId)}"></h:outputText></h3>
                                                         </div>
                                                 </div>
                                                 <div class="dash-widget-info">
@@ -57,7 +38,7 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="col-xl-4 col-sm-6 col-12">
                                 <div class="card">
                                         <div class="card-body">
                                                 <div class="dash-widget-header">
@@ -65,7 +46,7 @@
                                                                 <i class="fe fe-money"></i>
                                                         </span>
                                                         <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.appointments}"></h:outputText></h3>
+                                                            <h3><h:outputText value="#{countBean.getTotalDocAppointments(doctorBean.currDoc.doctorId)}"></h:outputText></h3>
                                                         </div>
                                                 </div>
                                                 <div class="dash-widget-info">
@@ -78,7 +59,7 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
+                        <div class="col-xl-4 col-sm-6 col-12">
                                 <div class="card">
                                         <div class="card-body">
                                                 <div class="dash-widget-header">
@@ -86,7 +67,7 @@
                                                                 <i class="fe fe-folder"></i>
                                                         </span>
                                                         <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.hospitals}"></h:outputText></h3>
+                                                            <h3><h:outputText value="#{countBean.getTotalDocHospitals(doctorBean.currDoc.doctorId)}"></h:outputText></h3>
                                                         </div>
                                                 </div>
                                                 <div class="dash-widget-info">

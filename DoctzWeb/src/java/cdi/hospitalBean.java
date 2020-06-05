@@ -8,6 +8,7 @@ package cdi;
 import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
+import client.myhospital;
 import entity.HospitalTb;
 import java.io.File;
 import java.io.IOException;
@@ -59,8 +60,10 @@ public class hospitalBean  {
     
     myclient c;
     myadmin a;
+    myhospital h;
     Response res;
     
+    GenericType<HospitalTb> cghos;
     GenericType<Collection<HospitalTb>> ghos;
     Collection<HospitalTb> allhos;
     
@@ -88,7 +91,7 @@ public class hospitalBean  {
     private Part uploadedLogo,uploadedDocument;
     String area="";
     String spec="";
-       
+    String emailStr="";
      
      private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospital\\";
      private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
@@ -96,7 +99,7 @@ public class hospitalBean  {
 //    private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospital\\";
 //    private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
 
-   
+   private HospitalTb currHos;
     
     public hospitalBean() {
         
@@ -115,17 +118,25 @@ public class hospitalBean  {
 //            System.out.println("Token="+token1);
            a = new myadmin(token);
             c = new myclient(token);
+            h=new myhospital(token);
           
         }
         else
         {
           c=new myclient();
           a=new myadmin();
+          h=new myhospital();
         }
          
-        
+        cghos=new GenericType<HospitalTb>(){};
         ghos=new GenericType<Collection<HospitalTb>>(){};
         allhos=new ArrayList<HospitalTb>(); 
+        
+         if(null != session.getAttribute("username"))
+           {
+               System.out.println(session);
+                emailStr=session.getAttribute("username").toString();
+           }
         
     }
 
@@ -336,6 +347,17 @@ public class hospitalBean  {
         this.uploadedDocument = uploadedDocument;
     }
 
+    public HospitalTb getCurrHos() {
+        currHos=ejb.getHospitalByEmail(emailStr);
+        return currHos;
+    }
+
+    public void setCurrHos(HospitalTb currHos) {
+        this.currHos = currHos;
+    }
+
+    
+    
     
     public void uploadLogo()
     {

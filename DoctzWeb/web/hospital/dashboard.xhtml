@@ -24,7 +24,7 @@
                                                                 <i class="fe fe-users"></i>
                                                         </span>
                                                         <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.doctors}"></h:outputText></h3>
+                                                            <h3><h:outputText value="#{countBean.getTotalDoctorsByHospitalId(hospitalBean.currHos.hospitalId)}"></h:outputText></h3>
                                                         </div>
                                                 </div>
                                                 <div class="dash-widget-info">
@@ -44,7 +44,7 @@
                                                                 <i class="fe fe-credit-card"></i>
                                                         </span>
                                                         <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.patients}"></h:outputText></h3>
+                                                            <h3><h:outputText value="#{countBean.getTotalHosPatients(hospitalBean.currHos.hospitalId)}"></h:outputText></h3>
                                                         </div>
                                                 </div>
                                                 <div class="dash-widget-info">
@@ -65,7 +65,7 @@
                                                                 <i class="fe fe-money"></i>
                                                         </span>
                                                         <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.appointments}"></h:outputText></h3>
+                                                            <h3><h:outputText value="#{countBean.getTotalHosAppointments(hospitalBean.currHos.hospitalId)}"></h:outputText></h3>
                                                         </div>
                                                 </div>
                                                 <div class="dash-widget-info">
@@ -86,12 +86,12 @@
                                                                 <i class="fe fe-folder"></i>
                                                         </span>
                                                         <div class="dash-count">
-                                                            <h3><h:outputText value="#{countBean.hospitals}"></h:outputText></h3>
+                                                            <h3><h:outputText value="#{countBean.getTotalHosSpecializations(hospitalBean.currHos.hospitalId)}"></h:outputText></h3>
                                                         </div>
                                                 </div>
                                                 <div class="dash-widget-info">
 
-                                                        <h6 class="text-muted">Hospital</h6>
+                                                        <h6 class="text-muted">Specialization</h6>
                                                         <div class="progress progress-sm">
                                                                 <div class="progress-bar bg-warning w-50"></div>
                                                         </div>

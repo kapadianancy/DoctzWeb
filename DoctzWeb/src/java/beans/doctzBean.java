@@ -1197,6 +1197,87 @@ public class doctzBean implements doctzBeanLocal {
         }
         return count;
     }
+
+    @Override
+    public long getTotalHosDoctors(int hid) {
+        List<Long> temp=em.createNamedQuery("DoctorScheduleTb.getTotalDoctorsByHospitalId").setParameter("hid", hid).getResultList();
+        long count=0;
+        for(long i:temp)
+        {
+            count=i;
+        }
+        return count;
+    }
+
+    @Override
+    public long getTotalHosSpecializations(int hid) {
+         List<Long> temp=em.createNamedQuery("FeesTb.getTotalSpecializationByHospitalId").setParameter("hid", hid).getResultList();
+        long count=0;
+        for(long i:temp)
+        {
+            count=i;
+        }
+        return count;
+    }
+
+    @Override
+    public long getTotalHosAppointments(int hid) {
+      List<Long> temp=em.createNamedQuery("AppointmentTb.getTotalAppointmentByHospitalId").setParameter("hid", hid).getResultList();
+        long count=0;
+        for(long i:temp)
+        {
+            count=i;
+        }
+        return count;
+    }
+
+    @Override
+    public long getTotalHosPatients(int hid)
+    {
+        List<Long> temp=em.createNamedQuery("AppointmentTb.getTotalPatientByHospitalId").setParameter("hid", hid).getResultList();
+        long count=0;
+        for(long i:temp)
+        {
+            count=i;
+        }
+        return count;
+    }
+
+    @Override
+    public long getTotalDocHospitals(int did) {
+         List<Long> temp=em.createNamedQuery("DoctorScheduleTb.getTotalHospitalByDoctorId").setParameter("did", did).getResultList();
+        long count=0;
+        for(long i:temp)
+        {
+            count=i;
+        }
+        return count;
+    }
+
+    @Override
+    public long getTotaldocAppointments(int did) {
+        List<Long> temp=em.createNamedQuery("AppointmentTb.getTotalAppointmentByDoctorId").setParameter("did", did).getResultList();
+        long count=0;
+        for(long i:temp)
+        {
+            count=i;
+        }
+        return count;
+    }
+
+    @Override
+    public long getTotalDocPatients(int did) {
+        List<Long> temp=em.createNamedQuery("AppointmentTb.getTotalPatientByDoctorId").setParameter("did", did).getResultList();
+        long count=0;
+        for(long i:temp)
+        {
+            count=i;
+        }
+        return count;   
+    }
+    
+    
+    
     
         @Override
         public PatientTb getPatientByEmail(String email) {
@@ -1210,6 +1291,32 @@ public class doctzBean implements doctzBeanLocal {
      
         return p;
     }
+
+    @Override
+    public HospitalTb getHospitalByEmail(String email) {
+       Collection<HospitalTb> ps=em.createNamedQuery("HospitalTb.findByEmail").setParameter("email",email).getResultList();
+        HospitalTb h=new HospitalTb();
+        for(HospitalTb x:ps)
+        {
+            h=x;
+        }
+     
+        return h;
+    }
+
+    @Override
+    public DoctorTb getDoctorByEmail(String email) {
+       Collection<DoctorTb> ps=em.createNamedQuery("DoctorTb.findByEmail").setParameter("email",email).getResultList();
+        DoctorTb d=new DoctorTb();
+        for(DoctorTb x:ps)
+        {
+            d=x;
+        }
+     
+        return d;
+    }
+        
+        
 
     @Override
     public void changePassword(String email,String password) {
