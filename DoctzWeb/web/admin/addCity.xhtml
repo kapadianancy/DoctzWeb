@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+               <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                                <h3 class="page-title">Add City</h3>
+                                <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">City</li>
+                                </ul>
+                        </div>
+                       <div class="col-sm-5 col">
+                            <a href="city.xhtml" class="btn btn-primary float-right mt-2">View All</a>
+                       </div>
+                    </div>
+                </div>
+                                        
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                             <h:form enctype="multipart/form-data">
+								<div class="row form-row">
+									<div class="col-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Name</label>&nbsp; <h:message for="name" style = "color:red"/>
+                                                                                     
+                                                                                <h:inputText id="name" class="form-control" value="#{cityBean.cityName}"
+                                                                                                  required="true" requiredMessage="Must not be empty"></h:inputText>
+                                                                                
+                                                                                
+                                                                                <label>State</label>&nbsp; <h:message for="state" style = "color:red"/>
+                                                                               <div class="form-group">
+                                                                                   <h:selectOneMenu class="form-control" style="height: 45px;" id="state" value="#{cityBean.stateId}" required="true" requiredMessage="Must be an valid Area">
+                                                                                       <f:selectItem itemLabel="---Select State---" itemValue="#{null}" noSelectionOption="true"/>
+                                                                                       <f:selectItems value="#{stateBean.allstates}" var="a" itemLabel="#{a.stateName}" itemValue="#{a.stateId}"/>
+                                                                                   </h:selectOneMenu>
+
+                                                                               </div>
+                                                                             </div>
+                                                                         </div>
+
+                                                                        
+                                                                    
+									
+									
+								</div>
+                                 
+                                 <h:commandButton class="btn btn-primary btn-block" action="#{cityBean.addCity()}" value="Add"/>
+								
+							</h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        
+                </div></div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -13,17 +13,20 @@
                 <div class="content container-fluid">
 				
 					<!-- Page Header -->
-                    <div class="page-header">
-                            <div class="row">
-                                    <div class="col-sm-12">
-                                            <h3 class="page-title">List of States</h3>
-                                            <ul class="breadcrumb">
-                                                    <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
-                                                    <li class="breadcrumb-item active">States</li>
-                                            </ul>
-                                    </div>
-                            </div>
+                     <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                                <h3 class="page-title">States</h3>
+                                <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">States</li>
+                                </ul>
+                        </div>
+                       <div class="col-sm-5 col">
+                            <a href="addState.xhtml" class="btn btn-primary float-right mt-2">Add</a>
+                       </div>
                     </div>
+                </div>
 					<!-- /Page Header -->
 					
 					<div class="row">
@@ -35,7 +38,7 @@
                                             <thead>
                                                     <tr>
                                                             <th>State Name</th>
-                                                          
+                                                            <th>Action</th>
                                                     </tr>
                                             </thead>
                                             <tbody>
@@ -46,16 +49,13 @@
                                                                         #{s.stateName}
                                                                     </h2>
                                                             </td>
+                                                        <td>
+                                                            <h:commandButton class="btn btn-sm bg-danger-light" value="Delete" action="#{stateBean.deleteState(s.stateId)}" onclick="return confirm('Are you sure ? ');"></h:commandButton>
+                                                        </td>
                                                     
                                                     </tr>
                                                 </ui:repeat>
-                                                <h:panelGroup rendered="#{empty stateBean.allstates}">
-                                                                <div style="position: absolute;
-                                                                            text-align: center;
-                                                                            font-size: 60px;
-                                                                            color: #15558d;
-                                                                            padding: 224px;">No Data Found.</div>
-                                                        </h:panelGroup>
+                                               
                                             </tbody>
 					</table>
                                                 </div>

@@ -9,7 +9,8 @@
         <ui:composition template="./masterPage.xhtml">
 
             <ui:define name="content">
-                <h:form>
+               
+                <h:form>   
             <div class="page-wrapper">
                 <div class="content container-fluid">
 				
@@ -66,7 +67,7 @@
                                                                             <td>#{h.pincode}</td>
                                                                             <td>#{h.openingTime.toLocaleString().substring(12,20)}</td>
                                                                             <td>#{h.closingTime.toLocaleString().substring(12,20)}</td>
-                                                                            <td>#{h.documents}</td>
+                                                                            <td><a href="http://localhost:8001/DoctzWeb/#{h.documents}" target="blank">View Document</a></td>
 
                                                                             <td class="text-right">
                                                                                     <div class="actions">
@@ -98,13 +99,7 @@
                 
 			<!-- /Page Wrapper -->
 			
-			
-			
-			
-			<!-- Delete Modal -->
-			
-			<!-- /Delete Modal -->
-               </h:form>
+                </h:form>
             </ui:define>
 
         </ui:composition>

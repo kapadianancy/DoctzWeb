@@ -88,4 +88,16 @@ public class stateBean {
         this.stateName = stateName;
     }
     
+    public String addState()
+    {
+        res=a.addState(Response.class, this.stateName);
+        return "state.xhtml";
+    }
+    
+    public String deleteState(int sid)
+    {
+        res=a.deleteState(Response.class, String.valueOf(sid));
+        return "state.xhtml";
+    }
+    
 }

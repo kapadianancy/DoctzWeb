@@ -5,12 +5,14 @@
  */
 package cdi;
 
+import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
 import entity.AreaTb;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
@@ -30,7 +32,9 @@ import javax.ws.rs.core.Response;
 @RequestScoped
 public class areaBean {
 
+    @EJB doctzBeanLocal ejb;
     myclient c;
+    myadmin a;
     Response res;
     GenericType<Collection<AreaTb>> garea;
     
@@ -59,14 +63,14 @@ public class areaBean {
         
 //            String token1 = request.getHeader("Authorization").substring("Bearer ".length());
 //            System.out.println("Token="+token1);
-           // a = new myadmin(token);
+            a = new myadmin(token);
             c = new myclient(token);
           
         }
         else
         {
           c=new myclient();
-         // a=new myadmin();
+         a=new myadmin();
         }
          
         garea=new GenericType<Collection<AreaTb>>(){};
@@ -139,5 +143,10 @@ public class areaBean {
         this.allareas = allareas;
     }
     
+    public String addArea()
+    {
+       int i=ejb.addArea(this.name, this.cid, this.pincode);
+       return "area.xhtml";
+    }
   
 }
