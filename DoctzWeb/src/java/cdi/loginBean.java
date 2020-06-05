@@ -360,7 +360,7 @@ public class loginBean {
         final String GMAIL_USERNAME = "nidhinancy0921@gmail.com";
         final String GMAIL_PASSWORD = "nidhi0921nancy";
 
-       // System.out.println("Process Started");
+        System.out.println("Process Started");
 
         Properties prop = System.getProperties();
         prop.setProperty("mail.smtp.starttls.enable", "true");
@@ -369,7 +369,7 @@ public class loginBean {
         prop.setProperty("mail.smtp.password", GMAIL_PASSWORD);
         prop.setProperty("mail.smtp.port", SMTP_PORT);
         prop.setProperty("mail.smtp.auth", "true");
-        //System.out.println("Props : " + prop);
+        System.out.println("Props : " + prop);
 
         Session session = Session.getInstance(prop, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -381,7 +381,7 @@ public class loginBean {
        
         MimeMessage message = new MimeMessage(session);
         try {
-            //System.out.println("before sending");
+            System.out.println("before sending");
             message.setFrom(new InternetAddress(GMAIL_USERNAME));
             message.addRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(this.username));
@@ -396,7 +396,7 @@ public class loginBean {
             transport.connect(SMTP_HOST, GMAIL_USERNAME, GMAIL_PASSWORD);
             transport.sendMessage(message, message.getAllRecipients());
            //System.out.println("message Object : " + message);
-          //  System.out.println("Email Sent Successfully");
+            System.out.println("Email Sent Successfully");
         } catch (AddressException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
