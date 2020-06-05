@@ -534,7 +534,7 @@ public class doctorBean {
         {
             String password=this.sendMail(emailStr,username);
             //sendMail();
-            int i=ejb.verifyDoctor(did, username, password);
+            int i=ejb.verifyDoctor(did,username,password);
             return "doctors.xhtml";
         }
         else
