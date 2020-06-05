@@ -9,7 +9,9 @@ import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
 import entity.HospitalTb;
+import java.awt.Desktop;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -475,7 +477,7 @@ public class hospitalBean  {
        
         MimeMessage message = new MimeMessage(session);
         try {
-            //System.out.println("before sending");
+            System.out.println("before sending");
             message.setFrom(new InternetAddress(GMAIL_USERNAME));
             message.addRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(emailStr));
@@ -489,8 +491,8 @@ public class hospitalBean  {
             System.out.println("Got Transport" + transport);
             transport.connect(SMTP_HOST, GMAIL_USERNAME, GMAIL_PASSWORD);
             transport.sendMessage(message, message.getAllRecipients());
-           //System.out.println("message Object : " + message);
-          //  System.out.println("Email Sent Successfully");
+           System.out.println("message Object : " + message);
+           System.out.println("Email Sent Successfully");
         } catch (AddressException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -500,5 +502,5 @@ public class hospitalBean  {
         } 
         return saltStr;
     }
-    
+   
 }

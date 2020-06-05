@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+               <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                                <h3 class="page-title">Add Area</h3>
+                                <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">Area</li>
+                                </ul>
+                        </div>
+                       <div class="col-sm-5 col">
+                            <a href="area.xhtml" class="btn btn-primary float-right mt-2">View All</a>
+                       </div>
+                    </div>
+                </div>
+                                        
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                             <h:form enctype="multipart/form-data">
+								<div class="row form-row">
+									<div class="col-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Name</label>&nbsp; <h:message for="name" style = "color:red"/>
+                                                                                     
+                                                                                <h:inputText id="name" class="form-control" value="#{areaBean.name}"
+                                                                                                  required="true" requiredMessage="Must not be empty"></h:inputText>
+                                                                                
+                                                                                
+                                                                                <label>City</label>&nbsp; <h:message for="city" style = "color:red"/>
+                                                                               <div class="form-group">
+                                                                                   <h:selectOneMenu class="form-control" style="height: 45px;" id="city" value="#{areaBean.cid}" required="true" requiredMessage="Must be an valid Area">
+                                                                                       <f:selectItem itemLabel="---Select City---" itemValue="#{null}" noSelectionOption="true"/>
+                                                                                       <f:selectItems value="#{cityBean.allcity}" var="a" itemLabel="#{a.cityName}" itemValue="#{a.cityId}"/>
+                                                                                   </h:selectOneMenu>
+
+                                                                               </div>
+                                                                                
+                                                                          <label>Pincode</label>&nbsp; <h:message for="pincode" style = "color:red"/>
+                                                                               <div class="form-group">
+                                                                        
+                                                                                   <h:inputText   required="true" validatorMessage="Pincode must be of 6 digits" requiredMessage="Must not be empty" class="form-control floating" id="pincode" value="${areaBean.pincode}">
+                                                                                <f:validateLength minimum="6" maximum="6"/>
+
+                                                                            </h:inputText>
+                                                                            
+                                                                        </div>
+                                                                                
+                                                                             </div>
+                                                                         </div>
+
+                                                                        
+                                                                    
+									
+									
+								</div>
+                                 
+                                 <h:commandButton class="btn btn-primary btn-block" action="#{areaBean.addArea()}" value="Add"/>
+								
+							</h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        
+                </div></div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

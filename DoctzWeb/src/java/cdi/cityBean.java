@@ -100,5 +100,11 @@ public class cityBean {
         return "area.xhtml?faces-redirect=true";
     }
     
+    public String addCity()
+    {
+        
+        res=a.addCity(Response.class,this.cityName,String.valueOf(this.stateId));
+        return "city.xhtml";
+    }
     
 }
