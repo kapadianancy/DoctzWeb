@@ -186,9 +186,9 @@ public interface doctzBeanLocal {
         
 // ------------------------------------edit profile-------------------------------------------------
         
-        public int editHospitalProfile(int hospitalId,String hospitalName,String address,int areaId,int cityId,int pincode,double latitude,double longitude,String maplink,Time openingTime,Time closingTime,String logo,String email,long contact,String username,int userId);
+        public int editHospitalProfile(int hospitalId,String hospitalName,String address,int areaId,int cityId,int pincode,double latitude,double longitude,Time openingTime,Time closingTime,String logo,String email,long contact,String username,int userId);
         
-        public int editDoctorProfile(int doctorId,String doctorName,int specializaionId,String experience,String gender,String certificates,String education,String email,long contact,String username,int uerId,String profile,String document);
+        public int editDoctorProfile(int doctorId,String doctorName,int specializaionId,String experience,String gender,String certificates,String education,String email,long contact,String username,int uerId,String profile);
         
         public int editPatientProfile(int patientId,String patientName,String gender,String address,int age,String username,String email,long contact,int userId);
 

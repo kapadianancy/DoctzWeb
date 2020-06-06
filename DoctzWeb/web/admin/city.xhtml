@@ -10,6 +10,7 @@
 
         
              <ui:define name="content">
+                 <h:form>
                    <div class="page-wrapper">
                 <div class="content container-fluid">
 				
@@ -40,6 +41,7 @@
                                                     <tr>
                                                             <th>City Name</th>
                                                             <th>State Name</th>
+                                                            <th>Action</th>
                                                             
                                                     </tr>
                                             </thead>
@@ -52,6 +54,9 @@
                                                                     </h2>
                                                             </td>
                                                         <td>#{c.stateId.stateName}</td>
+                                                         <td>
+                                                             <h:commandButton class="btn btn-sm bg-danger-light" value="Delete" action="#{cityBean.deleteCity(c.cityId)}" onclick="return confirm('Are you sure ? ');"></h:commandButton>
+                                                        </td>
                                                         </tr>
                                                 </ui:repeat>
                                                
@@ -66,7 +71,7 @@
         </div>			
 </div>
 			<!-- /Page Wrapper -->
-
+</h:form>
             </ui:define>
 
         </ui:composition>

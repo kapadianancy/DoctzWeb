@@ -947,7 +947,7 @@ public class doctzBean implements doctzBeanLocal {
     
 
     @Override
-    public int editHospitalProfile(int hospitalId,String hospitalName, String address, int areaId, int cityId, int pincode,double latitude,double longitude,String maplink, Time openingTime, Time closingTime, String logo, String email, long contact, String username,int userId) {
+    public int editHospitalProfile(int hospitalId,String hospitalName, String address, int areaId, int cityId, int pincode,double latitude,double longitude,Time openingTime, Time closingTime, String logo, String email, long contact, String username,int userId) {
         int status=0;
         HospitalTb h=em.find(HospitalTb.class,hospitalId);
         CityTb c=em.find(CityTb.class,cityId);
@@ -975,12 +975,11 @@ public class doctzBean implements doctzBeanLocal {
             h.setCityId(c);
             h.setClosingTime(closingTime);
             h.setHospitalName(hospitalName);
-            h.setLogo(logo);
+            h.setLogo("resources/img/hospital/"+logo);
             h.setOpeningTime(openingTime);
             h.setPincode(pincode);
             h.setLatitude(latitude);
             h.setLongitude(longitude);
-            h.setMaplink(maplink);
             h.setUserId(u);
             
             
@@ -1002,7 +1001,7 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
-    public int editDoctorProfile(int doctorId, String doctorName, int specializaionId, String experience, String gender, String certificates, String education, String email, long contact, String username, int userId,String profile,String document) {
+    public int editDoctorProfile(int doctorId, String doctorName, int specializaionId, String experience, String gender, String certificates, String education, String email, long contact, String username, int userId,String profile) {
         int status=0;
         DoctorTb d=em.find(DoctorTb.class,doctorId);
         
@@ -1028,12 +1027,9 @@ public class doctzBean implements doctzBeanLocal {
             d.setEducation(education);
             d.setExperience(experience);
             d.setGender(gender);
-            d.setProfile(profile);
-            d.setDocuments(document);
+            d.setProfile("resources/img/doctors/"+profile);
             d.setSpecializationId(s);
             d.setUserId(u);
-            
-            
             
             em.merge(d);
             userDoctor.add(d);

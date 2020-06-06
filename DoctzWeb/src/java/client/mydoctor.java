@@ -49,8 +49,8 @@ public class mydoctor {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T editDoctorProfile(Class<T> responseType, String doctorId, String doctorName, String specializaionId, String experience, String gender, String certificates, String education, String email, String contact, String username, String userId, String profile, String document) throws ClientErrorException {
-        return webTarget.path(java.text.MessageFormat.format("editDoctorProfile/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}/{12}", new Object[]{doctorId, doctorName, specializaionId, experience, gender, certificates, education, email, contact, username, userId, profile, document})).request().post(null, responseType);
+    public <T> T editDoctorProfile(Class<T> responseType, String doctorId, String doctorName, String specializaionId, String experience, String gender, String certificates, String education, String email, String contact, String username, String userId, String profile) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("editDoctorProfile/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}", new Object[]{doctorId, doctorName, specializaionId, experience, gender, certificates, education, email, contact, username, userId, profile})).request().post(null, responseType);
     }
 
     public <T> T getAllPatient(Class<T> responseType) throws ClientErrorException {

@@ -432,7 +432,7 @@ public class loginBean {
         HttpSession session= request.getSession(true);
         if(!session.getAttribute("username").equals(this.username))
         {
-             this.message="Enter Valid Email";  
+            this.message="Enter Valid Email";  
             this.color="red";
         }
         else
@@ -461,6 +461,80 @@ public class loginBean {
         }
         return "faces/changePassword.xhtml";
     }
+   
+   public String changeDoctorPassword()
+    {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session= request.getSession(true);
+        if(!session.getAttribute("username").equals(this.username))
+        {
+            this.message="Enter Valid Email";  
+            this.color="red";
+        }
+        else
+        {
+            DoctorTb d=ejb.getDoctorByEmail(this.username);
+             //System.out.println(p);
+             if(d.getDoctorId()!= null)
+             {   
+                 if(! this.npass.equals(this.cpass))
+                 {
+                    this.message="New Password and Confirm password must be same. ";
+                    this.color="red";
+                 }
+                 else
+                 {
+                     ejb.changePassword(this.username, this.npass);
+                     this.message="Successfully Changed";
+                     this.color="Green";
+                 }
+             }
+             else
+             {
+                 this.message="Enter Valid Email";  
+                 this.color="red";
+             }
+        }
+        return "faces/doctor/changePassword.xhtml";
+    }
+   
+    public String changeHospitalPassword()
+    {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session= request.getSession(true);
+        if(!session.getAttribute("username").equals(this.username))
+        {
+            this.message="Enter Valid Email";  
+            this.color="red";
+        }
+        else
+        {
+            HospitalTb h=ejb.getHospitalByEmail(this.username);
+             //System.out.println(p);
+             if(h.getHospitalId() != null)
+             {   
+                 if(! this.npass.equals(this.cpass))
+                 {
+                    this.message="New Password and Confirm password must be same. ";
+                    this.color="red";
+                 }
+                 else
+                 {
+                     ejb.changePassword(this.username, this.npass);
+                     this.message="Successfully Changed";
+                     this.color="Green";
+                 }
+             }
+             else
+             {
+                 this.message="Enter Valid Email";  
+                 this.color="red";
+             }
+        }
+        return "faces/hospital/changePassword.xhtml";
+    }
+   
+   
    
    public String temp()
    {

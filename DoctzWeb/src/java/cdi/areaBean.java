@@ -149,4 +149,9 @@ public class areaBean {
        return "area.xhtml";
     }
   
+     public String deleteArea(int aid)
+    {
+        res=a.deleteArea(Response.class, String.valueOf(aid));
+        return "area.xhtml";
+    }
 }

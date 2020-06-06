@@ -151,11 +151,11 @@ public class DoctorRestResource {
 //public int editDoctorProfile(int doctorId,String doctorName,int specializaionId,String experience,String gender,String certificates,String education,String email,long contact,String username,int userId,String profile,String document)
    @RolesAllowed("doctor")
    @POST
-   @Path("/editDoctorProfile/{doctorId}/{doctorName}/{specializaionId}/{experience}/{gender}/{certificates}/{education}/{email}/{contact}/{username}/{userId}/{profile}/{document}")
+   @Path("/editDoctorProfile/{doctorId}/{doctorName}/{specializaionId}/{experience}/{gender}/{certificates}/{education}/{email}/{contact}/{username}/{userId}/{profile}")
    @Produces(MediaType.APPLICATION_JSON)
-   public int editDoctorProfile(@PathParam("doctorId") int doctorId,@PathParam("doctorName") String doctorName,@PathParam("specializaionId") int specializaionId,@PathParam("experience") String experience,@PathParam("gender") String gender,@PathParam("certificates") String certificates,@PathParam("education") String education,@PathParam("email") String email,@PathParam("contact") long contact,@PathParam("username") String username,@PathParam("userId") int userId,@PathParam("profile") String profile,@PathParam("document") String document)
+   public int editDoctorProfile(@PathParam("doctorId") int doctorId,@PathParam("doctorName") String doctorName,@PathParam("specializaionId") int specializaionId,@PathParam("experience") String experience,@PathParam("gender") String gender,@PathParam("certificates") String certificates,@PathParam("education") String education,@PathParam("email") String email,@PathParam("contact") long contact,@PathParam("username") String username,@PathParam("userId") int userId,@PathParam("profile") String profile)
    {
-        return ejb.editDoctorProfile(doctorId, doctorName, specializaionId, experience, gender, certificates, education, email, contact, username, userId, profile, document);
+        return ejb.editDoctorProfile(doctorId, doctorName, specializaionId, experience, gender, certificates, education, email, contact, username, userId, profile);
    } 
    
 //public long addSchedule(int hospitalId,int doctorId,Date date,Time fromTime,Time toTime,int numberOfPatients)

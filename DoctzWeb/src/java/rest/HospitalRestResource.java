@@ -218,11 +218,11 @@ public class HospitalRestResource {
 //public int editHospitalProfile(int hospitalId,String hospitalName,String address,int areaId,int cityId,int pincode,double latitude,double longitude,String maplink,Time openingTime,Time closingTime,String logo,String email,long contact,String username,int userId)
     @RolesAllowed("hospital")
     @POST
-    @Path("/editHospitalProfile/{hospitalId}/{hospitalName}/{address}/{areaId}/{cityId}/{pincode}/{latitude}/{longitude}/{maplink}/{openingTime}/{closingTime}/{logo}/{email}/{contact}/{username}/{userId}")
+    @Path("/editHospitalProfile/{hospitalId}/{hospitalName}/{address}/{areaId}/{cityId}/{pincode}/{latitude}/{longitude}/{openingTime}/{closingTime}/{logo}/{email}/{contact}/{username}/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public int editHospitalProfile(@PathParam("hospitalId") int hospitalId,@PathParam("hospitalName") String hospitalName,@PathParam("address") String address,@PathParam("areaId") int areaId,@PathParam("cityId") int cityId,@PathParam("pincode") int pincode,@PathParam("latitude") double latitude,@PathParam("longitude") double longitude,@PathParam("maplink") String maplink,@PathParam("openingTime") Time openingTime,@PathParam("closingTime") Time closingTime,@PathParam("logo") String logo,@PathParam("email") String email,@PathParam("contact") long contact,@PathParam("username") String username,@PathParam("userId") int userId)
+    public int editHospitalProfile(@PathParam("hospitalId") int hospitalId,@PathParam("hospitalName") String hospitalName,@PathParam("address") String address,@PathParam("areaId") int areaId,@PathParam("cityId") int cityId,@PathParam("pincode") int pincode,@PathParam("latitude") double latitude,@PathParam("longitude") double longitude,@PathParam("openingTime") Time openingTime,@PathParam("closingTime") Time closingTime,@PathParam("logo") String logo,@PathParam("email") String email,@PathParam("contact") long contact,@PathParam("username") String username,@PathParam("userId") int userId)
     {
-       return ejb.editHospitalProfile(hospitalId, hospitalName, address, areaId, cityId, pincode, latitude, longitude, maplink, openingTime, closingTime, logo, email, contact, username, userId);
+       return ejb.editHospitalProfile(hospitalId, hospitalName, address, areaId, cityId, pincode, latitude, longitude, openingTime, closingTime, logo, email, contact, username, userId);
     }
 
 //public long addSchedule(int hospitalId,int doctorId,Date date,Time fromTime,Time toTime,int numberOfPatients)

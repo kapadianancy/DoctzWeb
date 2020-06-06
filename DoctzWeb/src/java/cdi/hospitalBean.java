@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -95,11 +96,11 @@ public class hospitalBean  {
     String spec="";
     String emailStr="";
      
-     private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospital\\";
-     private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
+   //  private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospital\\";
+   // private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
     
-//    private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospital\\";
-//    private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
+   private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospital\\";
+   private String folderDoc = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\hospitalDoc\\";
 
    private HospitalTb currHos;
     
@@ -432,6 +433,66 @@ public class hospitalBean  {
         }
 
     }
+    
+    public String editHospital(int hid)
+    {
+        
+        res=h.getHospitalById(Response.class, String.valueOf(hid));
+        currHos=res.readEntity(cghos);
+        
+        this.id=currHos.getHospitalId();
+        this.name=currHos.getHospitalName();
+        this.username=currHos.getUserId().getUserName();
+        this.address=currHos.getAddress();
+        this.aid=currHos.getAreaId().getAreaId();
+        this.cid=currHos.getCityId().getCityId();
+        this.pin=currHos.getPincode();
+        this.lati=currHos.getLatitude();
+        this.longi=currHos.getLongitude();
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");  
+        this.otime = dateFormat.format(currHos.getOpeningTime());  
+        this.ctime=dateFormat.format(currHos.getClosingTime());  
+        this.logo=currHos.getLogo();
+        this.email=currHos.getUserId().getEmail();
+        this.contact=currHos.getUserId().getContact();
+        this.uid=currHos.getUserId().getUserId();
+        return "editProfile.xhtml";
+        
+    }
+    
+    public String update()
+    {
+        
+        String path;
+        if(uploadedLogo == null)
+        {
+            String str=this.getLogo();
+            path=str.replace("resources/img/hospital/", "");
+        }
+        else
+        {
+            this.uploadLogo();
+            path=this.uploadedLogo.getSubmittedFileName();
+        }
+        
+        SimpleDateFormat ft =new SimpleDateFormat ("hh:mm:ss");
+        java.sql.Time t1=null;
+        java.sql.Time t2=null;
+          
+            try {
+                t1=new Time(ft.parse(this.otime).getTime());
+                t2=new Time(ft.parse(this.ctime).getTime());
+               
+            } catch (ParseException ex) {
+                Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        res=h.editHospitalProfile(Response.class, String.valueOf(this.id), this.name, this.address, String.valueOf(this.aid), String.valueOf(this.cid),String.valueOf(this.pin),String.valueOf(this.lati),String.valueOf(this.longi),String.valueOf(t1),String.valueOf(t2),path, this.email, String.valueOf(this.contact),this.username,String.valueOf(this.uid));
+        System.out.println(res);
+        
+        return "dashboard.xhtml";
+    }
+    
     public Collection<HospitalTb> getActiveHospital()
     {
         res=a.getAllHospital(Response.class);

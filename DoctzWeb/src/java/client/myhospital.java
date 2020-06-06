@@ -69,8 +69,8 @@ public class myhospital {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T editHospitalProfile(Class<T> responseType, String hospitalId, String hospitalName, String address, String areaId, String cityId, String pincode, String latitude, String longitude, String maplink, String openingTime, String closingTime, String logo, String email, String contact, String username, String userId) throws ClientErrorException {
-        return webTarget.path(java.text.MessageFormat.format("editHospitalProfile/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}/{12}/{13}/{14}/{15}", new Object[]{hospitalId, hospitalName, address, areaId, cityId, pincode, latitude, longitude, maplink, openingTime, closingTime, logo, email, contact, username, userId})).request().post(null, responseType);
+    public <T> T editHospitalProfile(Class<T> responseType, String hospitalId, String hospitalName, String address, String areaId, String cityId, String pincode, String latitude, String longitude,String openingTime, String closingTime, String logo, String email, String contact, String username, String userId) throws ClientErrorException {
+        return webTarget.path(java.text.MessageFormat.format("editHospitalProfile/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}/{12}/{13}/{14}", new Object[]{hospitalId, hospitalName, address, areaId, cityId, pincode, latitude, longitude, openingTime, closingTime, logo, email, contact, username, userId})).request().post(null, responseType);
     }
 
     public <T> T getScheduleByHospitalAndDoctorId(Class<T> responseType, String hid, String did) throws ClientErrorException {
