@@ -48,6 +48,7 @@
                                                                     <ui:repeat value="#{bookingBean.docAppointment}" var="a">
                                                                         <tr class="#{bookingBean.getStatus(a.appointmentId)}">
                                                                            
+                                                                            <td>#{a.patientId.patientName}</td>
                                                                             <td>
                                                                                 <h2 class="table-avatar">
                                                                                         <a  class="avatar avatar-sm mr-2">
@@ -56,9 +57,9 @@
                                                                                     <a>#{a.hospitalId.hospitalName}</a>
                                                                                 </h2>
                                                                             </td>
-                                                                            <td>#{a.patientId.patientName}</td>
                                                                             
-                                                                            <td>#{a.date.date}-#{a.date.month+1}-#{a.date.year}</td>
+                                                                            
+                                                                            <td>#{a.date.toLocaleString().substring(0,12)}</td>
                                                                             <td>#{a.time.toLocaleString().substring(12,20)}</td>
                                                                             <td>#{a.invoice}</td>
                                                                             <td>#{a.status}</td>

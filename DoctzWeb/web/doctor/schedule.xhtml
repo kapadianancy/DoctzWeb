@@ -55,7 +55,7 @@
                                                                                 </h2>
                                                                             </td>
                                                                             
-                                                                            <td>#{s.date.date}-#{s.date.month+1}-#{s.date.year}</td>
+                                                                            <td>#{s.date.toLocaleString().substring(0,12)}</td>
                                                                             <td>#{s.fromTime.toLocaleString().substring(12,20)}</td>
                                                                             <td>#{s.toTime.toLocaleString().substring(12,20)}</td>
                                                                             <td>#{s.numberOfPatient}</td>
