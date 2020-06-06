@@ -6,6 +6,9 @@
 package cdi;
 
 import beans.doctzBeanLocal;
+import client.myadmin;
+import client.myclient;
+import client.mydoctor;
 import entity.DoctorScheduleTb;
 import entity.DoctorTb;
 import entity.FeesTb;
@@ -22,8 +25,10 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 
 
 /**
@@ -35,28 +40,58 @@ import javax.ws.rs.core.GenericType;
 public class doctorScheduleBean {
 
     @EJB doctzBeanLocal ejb;
+    Response res;
+    mydoctor d;
     
     private int sid,hid,did;
     Date date;
     Time fromTime,toTime;
     int patients;
+    private String username;
     
     Collection<HospitalTb> hos;
     Collection<FeesTb> fees;
     Collection<DoctorTb> hall;
     
     Collection<DoctorScheduleTb> all;
+    Collection<DoctorScheduleTb> docSchedule;
     GenericType<Collection<DoctorScheduleTb>> gall;
     
+    GenericType<DoctorTb> gdoc;
+    DoctorTb doc;
+    
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+     HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+       
     
     
     public doctorScheduleBean() {
+        String token="";
+
+        HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
+        if(null != session.getAttribute("token"))
+        {
+          token = request.getSession().getAttribute("token").toString();
+//          c = new myclient(token); 
+//          a=new myadmin(token);
+          d=new mydoctor(token);
+        }
+        else
+        {
+//          c=new myclient();
+//          a=new myadmin();
+          d=new mydoctor();
+        }
         gall=new GenericType<Collection<DoctorScheduleTb>>(){};
         all=new ArrayList<DoctorScheduleTb>();
         hall=new ArrayList<DoctorTb>();
         hos=new ArrayList<HospitalTb>();
         fees=new ArrayList<FeesTb>();
+        gdoc=new GenericType<DoctorTb>(){};
+        docSchedule=new ArrayList<DoctorScheduleTb>();
+        doc=new DoctorTb();
     }
 
     public int getSid() {
@@ -136,6 +171,22 @@ public class doctorScheduleBean {
         
         return all;
     }
+
+    public Collection<DoctorScheduleTb> getDocSchedule() {
+        
+        doc=ejb.getDoctorByEmail(this.username);
+        //System.out.println("doc---------"+doc);
+        res=d.getDoctorSchedule(Response.class,String.valueOf(doc.getDoctorId()));
+        this.setDocSchedule(res.readEntity(gall));
+        //System.out.println("schedule---------"+docSchedule);
+        return docSchedule;
+    }
+
+    public void setDocSchedule(Collection<DoctorScheduleTb> doctorSchedule) {
+        this.docSchedule= doctorSchedule;
+    }
+    
+    
     
     public Collection<DoctorScheduleTb> getScheduleByDoctorAndDate(int did,String date)
     {
@@ -197,12 +248,5 @@ public class doctorScheduleBean {
         this.fees = fees;
     }
     
-    
-    
-   public String display()
-   {
-       return "Nidhi";
-   }
-    
-    
+   
 }

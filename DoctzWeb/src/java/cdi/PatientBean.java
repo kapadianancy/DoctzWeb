@@ -8,7 +8,9 @@ package cdi;
 import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
+import client.mydoctor;
 import entity.*;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.ejb.EJB;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
+
 /**
  *
  * @author ADMIN
@@ -32,8 +35,10 @@ public class PatientBean {
     @EJB doctzBeanLocal ejb;
     Response res;
     myclient c;
+    mydoctor d;
     Collection<PatientTb> allpatient;
     GenericType<Collection<PatientTb>> gpatient;
+    Collection<PatientTb> docPatient;
     
     private int patientid,userid,age;
     private String patientname,gender,address,username,password,email;
@@ -65,15 +70,17 @@ public class PatientBean {
 //            System.out.println("Token="+token1);
            // a = new myadmin(token);
             c = new myclient(token);
+            d=new mydoctor(token);
           
         }
         else
         {
           c=new myclient();
+          d=new mydoctor();
          // a=new myadmin();
         }
          
-        
+        docPatient=new ArrayList<PatientTb>();
          allpatient=new ArrayList<PatientTb>();
          gpatient=new GenericType<Collection<PatientTb>>(){};
          
@@ -91,6 +98,19 @@ public class PatientBean {
 
            //System.err.println(emailStr);
 
+    }
+
+    public Collection<PatientTb> getDocPatient() {
+        DoctorTb doc=new DoctorTb();
+        GenericType<Collection<PatientTb>> g=new GenericType<Collection<PatientTb>>(){};
+        doc=ejb.getDoctorByEmail(emailStr);
+        res=d.getPatientOfDoctor(Response.class,String.valueOf(doc.getDoctorId()));
+        this.setDocPatient(res.readEntity(g));
+        return docPatient;
+    }
+
+    public void setDocPatient(Collection<PatientTb> docPatient) {
+        this.docPatient = docPatient;
     }
 
    

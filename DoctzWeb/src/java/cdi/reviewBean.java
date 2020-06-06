@@ -7,6 +7,8 @@ package cdi;
 
 import beans.doctzBeanLocal;
 import client.myclient;
+import client.mydoctor;
+import entity.DoctorTb;
 import entity.PatientTb;
 import entity.ReviewTb;
 import java.util.ArrayList;
@@ -33,6 +35,7 @@ public class reviewBean {
     @EJB doctzBeanLocal ejb;
     Response res;
     myclient c;
+    mydoctor d;
     String email;
     
     
@@ -42,6 +45,8 @@ public class reviewBean {
     
     Collection<ReviewTb> all;
     GenericType<Collection<ReviewTb>> grev;
+    Collection<ReviewTb> docReview;
+    private String username;
 //    private PatientTb p=new PatientTb(); 
     
     
@@ -55,6 +60,7 @@ public class reviewBean {
         String token="";
 
         HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
         
         if(null != session.getAttribute("token"))
         {
@@ -65,11 +71,13 @@ public class reviewBean {
 //            System.out.println("Token="+token1);
            // a = new myadmin(token);
             c = new myclient(token);
+            d=new mydoctor(token);
           
         }
         else
         {
           c=new myclient();
+          d=new mydoctor();
           //a=new myadmin();
         }
         if(null != session.getAttribute("username"))
@@ -82,7 +90,8 @@ public class reviewBean {
          {
              email="";
          }
-       
+       docReview=new ArrayList<ReviewTb>();
+        
     }
 
     public String getEmail() {
@@ -104,6 +113,17 @@ public class reviewBean {
 //    public void setP(PatientTb p) {
 //        this.p = p;
 //    }
+
+    public Collection<ReviewTb> getDocReview() {
+        DoctorTb d=new DoctorTb();
+        d=ejb.getDoctorByEmail(this.username);
+        docReview=ejb.getReviewByDoctorId(d.getDoctorId());
+        return docReview;
+    }
+
+    public void setDocReview(Collection<ReviewTb> docReview) {
+        this.docReview = docReview;
+    }
     
     
 
@@ -178,5 +198,7 @@ public class reviewBean {
         }
         
     }
+    
+    
     
 }

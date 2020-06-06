@@ -8,6 +8,28 @@
         <filter-name>sessionManagement</filter-name>
         <filter-class>filter.sessionManagement</filter-class>
     </filter>
+    <filter>
+        <filter-name>hospitalFilter</filter-name>
+        <filter-class>filter.hospitalFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>doctorFilter</filter-name>
+        <filter-class>filter.doctorFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>doctorFilter</filter-name>
+        <url-pattern>/faces/doctor/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>hospitalFilter</filter-name>
+        <url-pattern>/faces/hospital/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>sessionManagement</filter-name>
         <url-pattern>/faces/admin/*</url-pattern>
