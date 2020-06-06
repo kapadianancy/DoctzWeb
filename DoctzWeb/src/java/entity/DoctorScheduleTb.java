@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 //@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DoctorScheduleTb.findAll", query = "SELECT d FROM DoctorScheduleTb d"),
+    @NamedQuery(name = "DoctorScheduleTb.findByDoctorId", query = "SELECT d FROM DoctorScheduleTb d where d.doctorId.doctorId = :doctorId and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.findCount", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d"),
     @NamedQuery(name = "DoctorScheduleTb.verifySchedule", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d where d.doctorId.doctorId=:did and d.date=:d and (d.toTime<=:f1 or d.fromTime>=:f1) and (d.fromTime>= :t1 or d.toTime<= :t1)"),
     @NamedQuery(name = "DoctorScheduleTb.findByScheduleId", query = "SELECT d FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
@@ -44,12 +45,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DoctorScheduleTb.findHospitalByDoctor",query="SELECT DISTINCT d.hospitalId FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByDoctorAndDate",query="SELECT d FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId and d.date=:date and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDate",query="SELECT d FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId and d.hospitalId.hospitalId=:hospitalId and d.date=:date and d.isActive=1"),
-    @NamedQuery(name = "DoctorScheduleTb.findScheduleByHospitalAndDoctor",query="SELECT d FROM DoctorScheduleTb d WHERE d.hospitalId.hospitalId = :hospitalId and d.doctorId.doctorId= :doctorId"),
+    @NamedQuery(name = "DoctorScheduleTb.findScheduleByHospitalAndDoctor",query="SELECT d FROM DoctorScheduleTb d WHERE d.hospitalId.hospitalId = :hospitalId and d.doctorId.doctorId= :doctorId and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByHospital",query="SELECT DISTINCT d.doctorId FROM DoctorScheduleTb d WHERE d.hospitalId.hospitalId = :hospitalId"),
     @NamedQuery(name = "DoctorScheduleTb.findTotalPatientByScheduleId",query="SELECT d.numberOfPatient FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
     @NamedQuery(name = "DoctorScheduleTb.findTotalPatientByScheduleId",query="SELECT d.numberOfPatient FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
-    @NamedQuery(name = "DoctorScheduleTb.getTotalDoctorsByHospitalId", query = "SELECT count(d.doctorId.doctorId) FROM DoctorScheduleTb d WHERE d.isActive = 1 and d.hospitalId.hospitalId = :hid"),
-    @NamedQuery(name = "DoctorScheduleTb.getTotalHospitalByDoctorId", query = "SELECT count(d.hospitalId.hospitalId) FROM DoctorScheduleTb d WHERE d.isActive = 1 and d.doctorId.doctorId = :did"),
+    @NamedQuery(name = "DoctorScheduleTb.getTotalDoctorsByHospitalId", query = "SELECT count(d.doctorId.doctorId) FROM DoctorScheduleTb d WHERE d.isActive = 1 and d.hospitalId.hospitalId = :hid GROUP BY d.doctorId"),
+    @NamedQuery(name = "DoctorScheduleTb.getTotalHospitalByDoctorId", query = "SELECT count(d.hospitalId.hospitalId) FROM DoctorScheduleTb d WHERE d.isActive = 1 and d.doctorId.doctorId = :did GROUP BY d.hospitalId"),
     @NamedQuery(name = "DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDateAndTime",query="SELECT d FROM DoctorScheduleTb d WHERE d.doctorId.doctorId = :doctorId and d.hospitalId.hospitalId=:hospitalId and d.date=:date and d.fromTime=:time and d.isActive=1"),
     @NamedQuery(name = "DoctorScheduleTb.findByIsActive", query = "SELECT d FROM DoctorScheduleTb d WHERE d.isActive = :isActive")})
 public class DoctorScheduleTb implements Serializable {

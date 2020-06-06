@@ -8,6 +8,7 @@ package cdi;
 import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
+import client.mydoctor;
 import entity.*;
 import java.io.IOException;
 import java.io.Serializable;
@@ -45,13 +46,16 @@ public class bookingBean {
     Response res;
     myclient c;
     myadmin a;
+    mydoctor d;
     private int patientId,doctorId,hospitalId;
     private AppointmentTb app;
     private PatientTb currpatient;
     private String dname,hname,adate,atime;
+    private String username;
     
     Collection<AppointmentTb> all;
     Collection<AppointmentTb> adminall;
+    Collection<AppointmentTb> docAppointment;
     GenericType<Collection<AppointmentTb>> gall;
     
     
@@ -65,16 +69,19 @@ public class bookingBean {
         String token="";
 
         HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
         if(null != session.getAttribute("token"))
         {
           token = request.getSession().getAttribute("token").toString();
           c = new myclient(token); 
           a=new myadmin(token);
+          d=new mydoctor(token);
         }
         else
         {
           c=new myclient();
           a=new myadmin();
+          d=new mydoctor();
         }
          app=new AppointmentTb();
          currpatient=new PatientTb();
@@ -83,6 +90,18 @@ public class bookingBean {
          
     }
 
+    public Collection<AppointmentTb> getDocAppointment() {
+        DoctorTb doc=new DoctorTb();
+        doc=ejb.getDoctorByEmail(this.username);
+        this.setDocAppointment(ejb.getAppointmentByDoctor(doc.getDoctorId()));
+        return docAppointment;
+    }
+
+    public void setDocAppointment(Collection<AppointmentTb> docAppointment) {
+        this.docAppointment = docAppointment;
+    }
+
+    
    
     public int getPatientId() {
         return patientId;
@@ -195,6 +214,7 @@ public class bookingBean {
             try {
                 t1=new Time(ft.parse(t).getTime());
                 session.setAttribute("time",t1);
+                //System.out.println("Time------"+t1);
                
                 
             } catch (ParseException ex) {
@@ -207,7 +227,7 @@ public class bookingBean {
         session.setAttribute("date",date);
         
         
-        //System.out.println(session.getAttribute("time"));
+       // System.out.println("---------------"+session.getAttribute("time"));
          
        
         if(null != session.getAttribute("username"))
@@ -237,7 +257,8 @@ public class bookingBean {
         this.setDname(d1.getDoctorName());
         this.setAdate(session.getAttribute("date").toString());
         this.setAtime(session.getAttribute("time").toString());
-                    
+        
+         //System.out.println("---------------"+session.getAttribute("time"));            
     }
     public String getDisable(int sid)
     {

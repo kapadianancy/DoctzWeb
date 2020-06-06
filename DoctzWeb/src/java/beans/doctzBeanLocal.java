@@ -128,6 +128,8 @@ public interface doctzBeanLocal {
 // ---------------------------- view appointment --------------------
 
         public Collection<AppointmentTb> getAllAppointment();
+        
+        public Collection<AppointmentTb> getAppointmentByDoctor(int did);
 
 // -----------------------------------------appointment tracking--------------------------
 

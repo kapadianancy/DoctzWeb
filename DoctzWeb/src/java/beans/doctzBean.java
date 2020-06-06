@@ -685,7 +685,7 @@ public class doctzBean implements doctzBeanLocal {
         a.setTime(time);
        
         a.setInvoice(null);
-        a.setStatus("Incomplete");
+        a.setStatus("pending");
         a.setIsActive(1);
         
         em.persist(a);
@@ -1198,11 +1198,13 @@ public class doctzBean implements doctzBeanLocal {
     public long getTotalHosDoctors(int hid) {
         List<Long> temp=em.createNamedQuery("DoctorScheduleTb.getTotalDoctorsByHospitalId").setParameter("hid", hid).getResultList();
         long count=0;
+        int row=0;
         for(long i:temp)
         {
             count=i;
+            row++;
         }
-        return count;
+        return row;
     }
 
     @Override
@@ -1243,11 +1245,13 @@ public class doctzBean implements doctzBeanLocal {
     public long getTotalDocHospitals(int did) {
          List<Long> temp=em.createNamedQuery("DoctorScheduleTb.getTotalHospitalByDoctorId").setParameter("did", did).getResultList();
         long count=0;
+        int row=0;
         for(long i:temp)
         {
             count=i;
+            row++;
         }
-        return count;
+        return row;
     }
 
     @Override
@@ -1428,6 +1432,11 @@ public class doctzBean implements doctzBeanLocal {
     public Collection<DoctorTb> getInactiveDoctor() {
         return em.createNamedQuery("DoctorTb.findByIsActive").setParameter("isActive",0).getResultList();
          }
+
+    @Override
+    public Collection<AppointmentTb> getAppointmentByDoctor(int did) {
+        return em.createNamedQuery("AppointmentTb.findByDoctor").setParameter("doctorId",did).getResultList();
+    }
     
     
     
