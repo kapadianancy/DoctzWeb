@@ -10,6 +10,7 @@
 
         
              <ui:define name="content">
+                 <h:form>
                    <div class="page-wrapper">
                 <div class="content container-fluid">
 				
@@ -41,6 +42,7 @@
                                                             <th>Area Name</th>
                                                             <th>City Name</th>
                                                             <th>State Name</th>
+                                                            <th>Action</th>
                                                             
                                                     </tr>
                                             </thead>
@@ -54,7 +56,9 @@
                                                             </td>
                                                         <td>#{c.cityId.cityName}</td>
                                                         <td>#{c.cityId.stateId.stateName}</td>
-                                                        
+                                                         <td>
+                                                             <h:commandButton class="btn btn-sm bg-danger-light" value="Delete" action="#{areaBean.deleteArea(c.areaId)}" onclick="return confirm('Are you sure ? ');"></h:commandButton>
+                                                        </td>
                                                         </tr>
                                                 </ui:repeat>
                                                
@@ -69,7 +73,7 @@
         </div>			
 </div>
 			<!-- /Page Wrapper -->
-
+</h:form>
             </ui:define>
 
         </ui:composition>

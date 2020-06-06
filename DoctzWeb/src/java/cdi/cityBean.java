@@ -106,5 +106,10 @@ public class cityBean {
         res=a.addCity(Response.class,this.cityName,String.valueOf(this.stateId));
         return "city.xhtml";
     }
+     public String deleteCity(int cid)
+    {
+        res=a.deleteCity(Response.class, String.valueOf(cid));
+        return "city.xhtml";
+    }
     
 }
