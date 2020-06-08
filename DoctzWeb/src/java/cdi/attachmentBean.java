@@ -48,11 +48,9 @@ public class attachmentBean {
     private String email;
     private Part uploadedAttachment;
     
-     private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\docAttachment\\";
+    // private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\docAttachment\\";
      
-    
-//      private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\docAttachments\\";
-//    
+  private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\docAttachment\\";
 
     
     public attachmentBean() {

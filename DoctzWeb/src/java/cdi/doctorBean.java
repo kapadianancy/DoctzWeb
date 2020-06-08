@@ -190,7 +190,6 @@ public class doctorBean {
         this.date = date;
     }
 
-<<<<<<< HEAD
     public String getDocument() {
         return document;
     }
@@ -199,7 +198,6 @@ public class doctorBean {
         this.document = document;
     }
 
-=======
     public Collection<DoctorTb> getHosDoc() {
         HospitalTb hos=new HospitalTb();
         GenericType<Collection<DoctorTb>> h=new GenericType<Collection<DoctorTb>>(){};
@@ -213,10 +211,7 @@ public class doctorBean {
         this.hosDoc = hosDoc;
     }
 
-    
-    
->>>>>>> eb76cd08f01eeb1fa1a7f0289a5f50a82e7357be
-    
+   
     
     public Collection<DoctorTb> getSearchDocs() 
     {
