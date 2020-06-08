@@ -490,7 +490,7 @@ public class hospitalBean  {
         res=h.editHospitalProfile(Response.class, String.valueOf(this.id), this.name, this.address, String.valueOf(this.aid), String.valueOf(this.cid),String.valueOf(this.pin),String.valueOf(this.lati),String.valueOf(this.longi),String.valueOf(t1),String.valueOf(t2),path, this.email, String.valueOf(this.contact),this.username,String.valueOf(this.uid));
         System.out.println(res);
         
-        return "dashboard.xhtml";
+        return "dashboard.xhtml?faces-redirect=true";
     }
     
     public Collection<HospitalTb> getActiveHospital()

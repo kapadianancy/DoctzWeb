@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                 <h:form>
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                        <div class="row">
+                                <div class="col-sm-7 col-auto">
+                                        <h3 class="page-title">Appointments</h3>
+                                        <ul class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                                <li class="breadcrumb-item active">Appointments</li>
+                                        </ul>
+                                </div>
+                               
+                        </div>
+                </div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="table-responsive">
+                                                        <table class="datatable table table-hover table-center mb-0">
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th>Patient Name</th>
+                                                                                <th>Doctor Name</th>
+                                                                                <th>Date</th>
+                                                                                <th>Time </th>
+                                                                                <th>Invoice</th>
+                                                                                <th>Status</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    
+                                                                    <ui:repeat value="#{bookingBean.hosAppointment}" var="a">
+                                                                        <tr class="#{bookingBean.getStatus(a.appointmentId)}">
+                                                                           
+                                                                            <td>#{a.patientId.patientName}</td>
+                                                                            <td>
+                                                                                <h2 class="table-avatar">
+                                                                                        <a  class="avatar avatar-sm mr-2">
+                                                                                            <img class="avatar-img" src="/DoctzWeb/#{a.doctorId.profile}" alt="Speciality"/>
+                                                                                        </a>
+                                                                                    <a>#{a.doctorId.doctorName}</a>
+                                                                                </h2>
+                                                                            </td>
+                                                                            
+                                                                            
+                                                                            <td>#{a.date.toLocaleString().substring(0,12)}</td>
+                                                                            <td>#{a.time.toLocaleString().substring(12,20)}</td>
+                                                                            <td>#{a.invoice}</td>
+                                                                            <td>#{a.status}</td>
+
+                                                                            
+                                                                        </tr>
+                                                                    </ui:repeat>
+                                                                    
+                                                                         
+                                                                </tbody>
+                                                        </table>
+									</div>
+								</div>
+							</div>
+						</div>			
+					</div>
+				
+                
+                            </div>			
+			</div>
+                
+			<!-- /Page Wrapper -->
+			
+			
+			
+			
+			<!-- Delete Modal -->
+			
+			<!-- /Delete Modal -->
+               </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

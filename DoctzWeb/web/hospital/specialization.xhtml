@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+               
+                     <h:form>
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                        <div class="row">
+                                <div class="col-sm-7 col-auto">
+                                        <h3 class="page-title">Specialization</h3>
+                                        <ul class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                                <li class="breadcrumb-item active">Specialization</li>
+                                        </ul>
+                                </div>
+                               <div class="col-sm-5 col">
+                                    <a href="addFees.xhtml" class="btn btn-primary float-right mt-2">Add</a>
+                               </div>
+                        </div>
+                </div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="table-responsive">
+                                                        <table class="datatable table table-hover table-center mb-0">
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th>Specialization Name</th>
+                                                                                <th>Fees</th>
+                                                                                <th class="text-right">Actions</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    
+                                                                    <ui:repeat value="#{feesBean.allfeesofHos}" var="f">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <h2 class="table-avatar">
+                                                                                       
+                                                                                    <a>#{f.specializationId.name}</a>
+                                                                                </h2>
+                                                                            </td>
+                                                                            
+                                                                            <td>#{f.fees}</td>
+                                                                            
+                                                                           <td class="text-right">
+                                                                                <div class="actions">
+                                                                                    <h:commandButton class="btn btn-sm bg-success-light" value="Edit" action="#{feesBean.edit(f.feesId)}"/>    
+                                                                                    <h:commandButton class="btn btn-sm bg-danger-light" value="Delete" action="#{feesBean.delete(f.feesId)}" onclick="return confirm('Are you sure ? ');"></h:commandButton>
+                                                                                 </div>
+                                                                            </td>
+
+                                                                            
+                                                                        </tr>
+                                                                    </ui:repeat>
+                                                                    
+                                                                         
+                                                                </tbody>
+                                                        </table>
+									</div>
+								</div>
+							</div>
+						</div>			
+					</div>
+				
+                
+                            </div>			
+			</div>
+               </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

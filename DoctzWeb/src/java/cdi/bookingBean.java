@@ -9,6 +9,7 @@ import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
 import client.mydoctor;
+import client.myhospital;
 import entity.*;
 import java.io.IOException;
 import java.io.Serializable;
@@ -47,6 +48,7 @@ public class bookingBean {
     myclient c;
     myadmin a;
     mydoctor d;
+    myhospital h;
     private int patientId,doctorId,hospitalId;
     private AppointmentTb app;
     private PatientTb currpatient;
@@ -55,7 +57,7 @@ public class bookingBean {
     
     Collection<AppointmentTb> all;
     Collection<AppointmentTb> adminall;
-    Collection<AppointmentTb> docAppointment;
+    Collection<AppointmentTb> docAppointment,hosAppointment;
     GenericType<Collection<AppointmentTb>> gall;
     
     
@@ -76,12 +78,14 @@ public class bookingBean {
           c = new myclient(token); 
           a=new myadmin(token);
           d=new mydoctor(token);
+          h=new myhospital(token);
         }
         else
         {
           c=new myclient();
           a=new myadmin();
           d=new mydoctor();
+          h=new myhospital();
         }
          app=new AppointmentTb();
          currpatient=new PatientTb();
@@ -99,6 +103,19 @@ public class bookingBean {
 
     public void setDocAppointment(Collection<AppointmentTb> docAppointment) {
         this.docAppointment = docAppointment;
+    }
+
+    public Collection<AppointmentTb> getHosAppointment()
+    {
+        HospitalTb hos=new HospitalTb();
+        hos=ejb.getHospitalByEmail(this.username);
+        this.setHosAppointment(ejb.getAppointmentByHospital(hos.getHospitalId()));
+        return hosAppointment;
+    }
+
+    public void setHosAppointment(Collection<AppointmentTb> hosAppointment)
+    {
+        this.hosAppointment = hosAppointment;
     }
 
     

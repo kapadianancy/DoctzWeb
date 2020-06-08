@@ -565,10 +565,11 @@ public class doctzBean implements doctzBeanLocal {
         
         FeesTb f=em.find(FeesTb.class,feesId);
        
-        if(f1.contains(f) && f2.contains(f))
+        if(f1.contains(f) || f2.contains(f))
         {
             f1.remove(f);
             f2.remove(f);
+            f.setSpecializationId(s);
             f.setFees(fees);
             f1.add(f);
             f2.add(f);
@@ -583,6 +584,14 @@ public class doctzBean implements doctzBeanLocal {
         return status;
     }
 
+    @Override
+    public FeesTb getFeesByFeesId(int fid) {
+        FeesTb f=em.find(FeesTb.class, fid);
+        return f;
+    }
+
+    
+    
     @Override
     public Collection<FeesTb> getFeesByHospital(int hospitalId) {
         HospitalTb h=em.find(HospitalTb.class,hospitalId);
@@ -1356,6 +1365,11 @@ public class doctzBean implements doctzBeanLocal {
     }
 
     @Override
+    public Collection<ReviewTb> getReviewByHospitalId(int id) {
+       return em.createNamedQuery("ReviewTb.findByHospitalId").setParameter("hospitalId",id).getResultList();
+    }
+    
+    @Override
     public Collection<HospitalTb> getHospitalByDoctorId(int id) {
         return em.createNamedQuery("DoctorScheduleTb.findHospitalByDoctor").setParameter("doctorId",id).getResultList();
     }
@@ -1437,6 +1451,12 @@ public class doctzBean implements doctzBeanLocal {
     public Collection<AppointmentTb> getAppointmentByDoctor(int did) {
         return em.createNamedQuery("AppointmentTb.findByDoctor").setParameter("doctorId",did).getResultList();
     }
+
+    @Override
+    public Collection<AppointmentTb> getAppointmentByHospital(int hid) {
+        return em.createNamedQuery("AppointmentTb.findByHospitalId").setParameter("hospitalId",hid).getResultList();
+    }
+    
     
     
     
