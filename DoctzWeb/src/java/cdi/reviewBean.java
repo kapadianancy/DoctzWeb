@@ -9,6 +9,7 @@ import beans.doctzBeanLocal;
 import client.myclient;
 import client.mydoctor;
 import entity.DoctorTb;
+import entity.HospitalTb;
 import entity.PatientTb;
 import entity.ReviewTb;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class reviewBean {
     
     Collection<ReviewTb> all;
     GenericType<Collection<ReviewTb>> grev;
-    Collection<ReviewTb> docReview;
+    Collection<ReviewTb> docReview,hosReview;
     private String username;
 //    private PatientTb p=new PatientTb(); 
     
@@ -65,10 +66,8 @@ public class reviewBean {
         if(null != session.getAttribute("token"))
         {
           token = request.getSession().getAttribute("token").toString();
-          System.out.println("Token="+token);
+        //  System.out.println("Token="+token);
         
-//            String token1 = request.getHeader("Authorization").substring("Bearer ".length());
-//            System.out.println("Token="+token1);
            // a = new myadmin(token);
             c = new myclient(token);
             d=new mydoctor(token);
@@ -83,14 +82,13 @@ public class reviewBean {
         if(null != session.getAttribute("username"))
          {
              email=session.getAttribute("username").toString();
-              
-             System.err.println(email+"-----------");
          }
          else
          {
              email="";
          }
        docReview=new ArrayList<ReviewTb>();
+       hosReview=new ArrayList<ReviewTb>();
         
     }
 
@@ -103,16 +101,6 @@ public class reviewBean {
         this.email = email;
     }
 
-//    public PatientTb getP() {
-//        System.out.println(email);
-//        p=ejb.getPatientByEmail(email);
-//        System.err.println(p);
-//        return p;
-//    }
-//
-//    public void setP(PatientTb p) {
-//        this.p = p;
-//    }
 
     public Collection<ReviewTb> getDocReview() {
         DoctorTb d=new DoctorTb();
@@ -124,6 +112,20 @@ public class reviewBean {
     public void setDocReview(Collection<ReviewTb> docReview) {
         this.docReview = docReview;
     }
+
+    public Collection<ReviewTb> getHosReview() {
+        HospitalTb hos=new HospitalTb();
+        hos=ejb.getHospitalByEmail(this.username);
+        hosReview=ejb.getReviewByHospitalId(hos.getHospitalId());
+
+        return hosReview;
+    }
+
+    public void setHosReview(Collection<ReviewTb> hosReview) {
+        this.hosReview = hosReview;
+    }
+    
+    
     
     
 

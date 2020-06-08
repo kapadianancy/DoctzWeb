@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                                <h3 class="page-title">Add Fees</h3>
+                                <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">Add Fees</li>
+                                </ul>
+                        </div>
+                       <div class="col-sm-5 col">
+                            <a href="specialization.xhtml" class="btn btn-primary float-right mt-2">View All</a>
+                       </div>
+                    </div>
+                </div>
+                                        
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                             <h:form>
+                                 
+                                 <h:inputHidden value="#{feesBean.hospitalId}"/>
+                                 
+                                <div class="row form-row">
+                                        <div class="col-12 col-sm-12">
+                                            <label class="focus-label">Specialization</label>&nbsp; <h:message for="spec" style = "color:red"/>
+                                                <div class="form-group">
+                                                    <h:selectOneMenu class="form-control" style="height: 45px;" id="spec" value="#{feesBean.specializationId}" required="true" requiredMessage="Must be an valid Specialization">
+                                                        <f:selectItem itemLabel="---Select Specialization---" itemValue="#{null}" noSelectionOption="true"/>
+                                                        <f:selectItems value="#{specializationBean.allspec}" var="s" itemLabel="#{s.name}" itemValue="#{s.specializationId}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                         </div>
+
+                                        <div class="col-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Fees</label>&nbsp; <h:message for="fees" style = "color:red"/>
+                                                <h:inputText id="fees" class="form-control" value="#{feesBean.fees}" validatorMessage="Enter Valid Fees"
+                                                             required="true" requiredMessage="Must not be empty">
+                                                     <f:validateLength minimum="2" />
+                                                </h:inputText>
+                                            </div>
+                                        </div>
+                                   </div>
+                                 <div style="color: red;">#{specializationBean.errorMsg}</div>
+                                 
+                                 <h:commandButton class="btn btn-primary btn-block" action="#{feesBean.addFees()}" value="Add"/>
+			</h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        
+                </div></div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

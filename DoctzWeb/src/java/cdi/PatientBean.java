@@ -9,6 +9,7 @@ import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
 import client.mydoctor;
+import client.myhospital;
 import entity.*;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -36,9 +37,10 @@ public class PatientBean {
     Response res;
     myclient c;
     mydoctor d;
+    myhospital h;
     Collection<PatientTb> allpatient;
     GenericType<Collection<PatientTb>> gpatient;
-    Collection<PatientTb> docPatient;
+    Collection<PatientTb> docPatient,hosPatient;
     
     private int patientid,userid,age;
     private String patientname,gender,address,username,password,email;
@@ -71,16 +73,19 @@ public class PatientBean {
            // a = new myadmin(token);
             c = new myclient(token);
             d=new mydoctor(token);
+            h=new myhospital(token);
           
         }
         else
         {
           c=new myclient();
           d=new mydoctor();
+          h=new myhospital();
          // a=new myadmin();
         }
          
         docPatient=new ArrayList<PatientTb>();
+        hosPatient=new ArrayList<PatientTb>();
          allpatient=new ArrayList<PatientTb>();
          gpatient=new GenericType<Collection<PatientTb>>(){};
          
@@ -111,6 +116,19 @@ public class PatientBean {
 
     public void setDocPatient(Collection<PatientTb> docPatient) {
         this.docPatient = docPatient;
+    }
+
+    public Collection<PatientTb> getHosPatient() {
+        HospitalTb hos=new HospitalTb();
+        GenericType<Collection<PatientTb>> g=new GenericType<Collection<PatientTb>>(){};
+        hos=ejb.getHospitalByEmail(emailStr);
+        res=h.getPatientOfHospital(Response.class,String.valueOf(hos.getHospitalId()));
+        this.setHosPatient(res.readEntity(g));
+        return hosPatient;
+    }
+
+    public void setHosPatient(Collection<PatientTb> hosPatient) {
+        this.hosPatient = hosPatient;
     }
 
    
@@ -268,9 +286,9 @@ public class PatientBean {
 //        System.err.println("email:"+this.getEmail());
 //        System.err.println("id:"+this.getUserid());
         
-        System.out.println(this.currentUser.getPatientName());
+   //     System.out.println(this.currentUser.getPatientName());
         res=c.editPatientProfile(Response.class, String.valueOf(this.getPatientid()), this.getPatientname(), this.getGender(), this.getAddress(), String.valueOf(this.getAge()), this.getUsername(),this.getEmail(),String.valueOf(this.getContact()), String.valueOf(this.getUserid()));
-        System.out.println("res:"+res);
+     //   System.out.println("res:"+res);
         if(res.getStatus() > 0)
         {
             this.errorMsg="";

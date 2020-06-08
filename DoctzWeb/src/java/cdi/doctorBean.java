@@ -10,6 +10,8 @@ import client.myadmin;
 import client.myclient;
 import client.mydoctor;
 import entity.DoctorTb;
+import entity.HospitalTb;
+import entity.PatientTb;
 import entity.SpecializationTb;
 import java.io.File;
 import java.io.IOException;
@@ -90,7 +92,7 @@ public class doctorBean {
     String spec,hos;
     String emailStr="";
    
-    private Collection<DoctorTb> alldocs;
+    private Collection<DoctorTb> alldocs,hosDoc;
     private Collection<DoctorTb> searchDocs,serachGenderDocs;
     private String ajaxvalue="";
     
@@ -141,14 +143,14 @@ public class doctorBean {
           //a=new myadmin();
         }
          
-        
+        hosDoc=new ArrayList<DoctorTb>(); 
         gdoc=new GenericType<Collection<DoctorTb>>(){};
         alldocs=new ArrayList<DoctorTb>();
         searchDocs=new ArrayList<DoctorTb>();
         
         if(null != session.getAttribute("username"))
            {
-               System.out.println(session);
+               //System.out.println(session);
                 emailStr=session.getAttribute("username").toString();
            }
     }
@@ -158,6 +160,7 @@ public class doctorBean {
     }
 
 
+    
 
      
       public int getHosId() {
@@ -187,6 +190,7 @@ public class doctorBean {
         this.date = date;
     }
 
+<<<<<<< HEAD
     public String getDocument() {
         return document;
     }
@@ -195,6 +199,23 @@ public class doctorBean {
         this.document = document;
     }
 
+=======
+    public Collection<DoctorTb> getHosDoc() {
+        HospitalTb hos=new HospitalTb();
+        GenericType<Collection<DoctorTb>> h=new GenericType<Collection<DoctorTb>>(){};
+        hos=ejb.getHospitalByEmail(emailStr);
+        res=c.getDoctorOfHospital(Response.class,String.valueOf(hos.getHospitalId()));
+        this.setHosDoc(res.readEntity(h));
+        return hosDoc;
+    }
+
+    public void setHosDoc(Collection<DoctorTb> hosDoc) {
+        this.hosDoc = hosDoc;
+    }
+
+    
+    
+>>>>>>> eb76cd08f01eeb1fa1a7f0289a5f50a82e7357be
     
     
     public Collection<DoctorTb> getSearchDocs() 

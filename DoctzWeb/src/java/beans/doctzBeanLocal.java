@@ -101,6 +101,8 @@ public interface doctzBeanLocal {
         
         public int updateFees(int feesId,int hospitalId,int specializaionId,int fees);
         
+        public FeesTb getFeesByFeesId(int fid);
+        
         public Collection<FeesTb> getFeesByHospital(int hospitalId);
         
         public Collection<FeesTb> getFeesBySpeciality(int specializaionId);
@@ -130,7 +132,8 @@ public interface doctzBeanLocal {
         public Collection<AppointmentTb> getAllAppointment();
         
         public Collection<AppointmentTb> getAppointmentByDoctor(int did);
-
+        
+        public Collection<AppointmentTb> getAppointmentByHospital(int hid);
 // -----------------------------------------appointment tracking--------------------------
 
         public Collection<AppointmentTb> getAllPatientAppointment(int patientId);
@@ -250,6 +253,8 @@ public interface doctzBeanLocal {
        public void changePassword(String email,String password);
        
        public Collection<ReviewTb> getReviewByDoctorId(int id);
+       
+       public Collection<ReviewTb> getReviewByHospitalId(int id);
        
        public Collection<HospitalTb> getHospitalByDoctorId(int id);
        

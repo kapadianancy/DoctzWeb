@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "AppointmentTb.findByDate", query = "SELECT a FROM AppointmentTb a WHERE a.date = :date"),
     @NamedQuery(name = "AppointmentTb.findByTime", query = "SELECT a FROM AppointmentTb a WHERE a.time = :time"),
     @NamedQuery(name = "AppointmentTb.findByStatus", query = "SELECT a FROM AppointmentTb a WHERE a.status = :status"),
+    @NamedQuery(name = "AppointmentTb.findByHospitalId", query = "SELECT a FROM AppointmentTb a WHERE a.hospitalId.hospitalId = :hospitalId and a.isActive=1"),
     @NamedQuery(name = "AppointmentTb.findByDoctorId", query = "SELECT a FROM AppointmentTb a WHERE a.doctorId = :doctorId and a.hospitalId =:hospitalId and a.isActive=1"),
     @NamedQuery(name = "AppointmentTb.findPatientOfDoctor", query = "SELECT distinct(a.patientId) FROM AppointmentTb a WHERE a.doctorId = :doctorId"),
     @NamedQuery(name = "AppointmentTb.findPatientOfHospital", query = "SELECT distinct(a.patientId) FROM AppointmentTb a WHERE a.hospitalId = :hospitalId"),

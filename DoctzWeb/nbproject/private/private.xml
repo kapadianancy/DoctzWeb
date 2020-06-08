@@ -3,12 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/doctor/patientAttachment.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/attachmentBean.java</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBean.java</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/doctor/addAttachment.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/doctor/editProfile.xhtml</file>
             <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/doctorBean.java</file>
+=======
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/doctor/appointment.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/appointmentTracking.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/doctor/schedule.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/hospitalBooking.xhtml</file>
+            <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/hospital/editProfile.xhtml</file>
+>>>>>>> eb76cd08f01eeb1fa1a7f0289a5f50a82e7357be
         </group>
     </open-files>
 </project-private>
