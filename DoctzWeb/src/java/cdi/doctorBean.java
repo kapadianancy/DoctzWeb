@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
+import java.sql.Time;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,6 +26,8 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -46,6 +50,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import servlets.test;
 
 /**
  *
@@ -75,9 +80,11 @@ public class doctorBean {
     private String certi;
     private String edu;
     private String profile;
+    private String document;
     private int isActive;
     private String date,email;
     private long contact;
+    private String username;
     private Part uploadedProfile,uploadedDocument;
     
     String spec,hos;
@@ -163,12 +170,29 @@ public class doctorBean {
         this.hosId = hosId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getDocument() {
+        return document;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
     }
 
     
@@ -618,7 +642,45 @@ public class doctorBean {
         this.currDoc = currDoc;
     }
    
+    public String editDoctor(int did)
+    {
+        res=d.getDoctorById(Response.class, String.valueOf(did));
+        GenericType<DoctorTb> g=new GenericType<DoctorTb>(){};
+        currDoc=res.readEntity(g);
+        this.id=currDoc.getDoctorId();
+        this.name=currDoc.getDoctorName();
+        this.gender=currDoc.getGender();
+        this.exp=currDoc.getExperience();
+        this.sid=currDoc.getSpecializationId().getSpecializationId();
+        this.uid=currDoc.getUserId().getUserId();
+        this.certi=currDoc.getCertificates();
+        this.edu=currDoc.getEducation();
+        this.profile=currDoc.getProfile();
+        this.document=currDoc.getDocuments();
+        this.username=currDoc.getUserId().getUserName();
+        this.email=currDoc.getUserId().getEmail();
+        this.contact=currDoc.getUserId().getContact();
+        
+        return "editProfile.xhtml";
+    }
    
-   
+   public String update()
+   {
+        String path="";
+        if(uploadedProfile == null)
+        {
+            String str=this.getProfile();
+            path=str.replace("resources/img/doctors/", "");
+        }
+        else
+        {
+            this.uploadProfile();
+            path=this.uploadedProfile.getSubmittedFileName();
+        }
+        
+        res=d.editDoctorProfile(Response.class, String.valueOf(this.id),this.name,String.valueOf(this.sid),this.exp,this.gender,this.certi,this.edu,this.email,String.valueOf(this.contact),this.username,String.valueOf(this.uid),path);
+        System.out.println(res);
+        return "dashboard.xhtml?faces-redirect=true";   
+   }
     
 }

@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+        <title>Doctz</title>
+		
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="/DoctzWeb/resources/img/favicon.png" />
+     
+        
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/bootstrap.min.css" />
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/font-awesome.min.css" />
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/feathericon.min.css" />
+		
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/plugins/morris/morris.css" />
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/css/style.css" />
+		
+        <link rel="stylesheet" href="/DoctzWeb/resources/admin/plugins/datatables/datatables.min.css" /></head><body>
+  
+        <div class="main-wrapper">
+        <div id="top"><html xmlns="http://www.w3.org/1999/xhtml">
+    		<!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <a href="dashboard.xhtml" class="logo">
+                        <img src="/DoctzWeb/resources/img/logo.png" alt="Logo" />
+                    </a>
+                    <a href="index.xhtml" class="logo logo-small">
+                            <img src="/DoctzWeb/resources/img/logo.png" alt="Logo" width="30" height="30" />
+                    </a>
+                </div>
+				<!-- /Logo -->
+				
+				
+				<!-- Header Right Menu -->
+				<ul class="nav user-menu">
+
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<span class="user-img"><img class="rounded-circle" src="/DoctzWeb/resources/img/patients/patient6.jpg" width="31" alt="Ryan Taylor" /></span>
+						</a>
+						<div class="dropdown-menu">
+							<div class="user-header">
+								<div class="avatar avatar-sm">
+									<img src="/DoctzWeb/resources/img/patients/patient6.jpg" alt="User Image" class="avatar-img rounded-circle" />
+								</div>
+								<div class="user-text">
+									<h6>Nidhi Mehta</h6>
+									<p class="text-muted mb-0">Administrator</p>
+								</div>
+							</div>
+							<a class="dropdown-item" href="logout.jsp">Logout</a>
+						</div>
+					</li>
+					<!-- /User Menu -->
+					
+				</ul>
+				<!-- /Header Right Menu -->
+				
+            </div>
+			<!-- /Header -->
+</html>
+        </div>
+        <div>
+            <div id="left"><html xmlns="http://www.w3.org/1999/xhtml">
+   
+    <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+                            <ul>
+                                    
+                                    <li class="active"> 
+                                            <a href="dashboard.xhtml"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                                    </li>
+                                  
+                                    <li> 
+                                            <a href="specialities.xhtml"><i class="fe fe-document"></i> <span>Specialities</span></a>
+                                    </li>
+                                    
+                                <li class="submenu">
+                                        <a href="#" class=""><i class="fe fe-users"></i> <span> Hospitals </span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                                <li><a href="authenticateHospital.xhtml"> Authenticate Hospitals </a></li>
+                                                <li><a href="hospitals.xhtml"> Hospital List </a></li>
+                                                
+                                        </ul>
+                                </li>
+                                <li class="submenu">
+                                    <a href="#" class=""><i class="fe fe-user-plus"></i> <span> Doctors </span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                                <li><a href="authenticateDoctor.xhtml"> Authenticate Doctors </a></li>
+                                                <li><a href="doctors.xhtml"> Doctor List </a></li>
+                                                
+                                        </ul>
+                                </li>
+                                    
+                                    <li> 
+                                            <a href="patients.xhtml"><i class="fe fe-user"></i> <span>Patients</span></a>
+                                    </li>
+                                    <li> 
+                                            <a href="appointment.xhtml"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+                                    </li>
+                                    <li> 
+                                            <a href="state.xhtml"><i class="fe fe-star-o"></i> <span>State</span></a>
+                                    </li>
+                                    <li> 
+                                            <a href="city.xhtml"><i class="fe fe-activity"></i> <span>City</span></a>
+                                    </li>
+                                
+                                 <li> 
+                                     <a href="area.xhtml"><i class="fe fe-vector"></i><span>Area</span></a>
+                                    </li>
+                                 
+                            </ul>
+                    </div>
+                </div>
+            </div>
+			<!-- /Sidebar -->
+			
+    
+</html>
+            </div>
+            <div id="content" class="left_content">
+<form id="j_idt10" name="j_idt10" method="post" action="/DoctzWeb/faces/admin/authenticateHospital.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt10" value="j_idt10" />
+
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                        <div class="row">
+                                <div class="col-sm-7 col-auto">
+                                        <h3 class="page-title">Authenticate Hospital</h3>
+                                        <ul class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                                <li class="breadcrumb-item active">Authenticate Hospital</li>
+                                        </ul>
+                                </div>
+                               
+                        </div>
+                </div>
+					<!-- /Page Header -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="card">
+								<div class="card-body">
+									<div class="table-responsive">
+                                                        <table class="datatable table table-hover table-center mb-0">
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th>Name</th>
+                                                                                <th>Address</th>
+                                                                                <th>Area</th>
+                                                                                <th>City</th>
+                                                                                <th>Pincode</th>
+                                                                                <th>Opening Time</th>
+                                                                                <th>Closing Time</th>
+                                                                                <th>Document</th>
+                                                                                
+                                                                                <th class="text-right">Authenticate?</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <h2 class="table-avatar">
+                                                                                        <a class="avatar avatar-sm mr-2">
+                                                                                            <img class="avatar-img" src="/DoctzWeb/resources/img/hospital/h7.jpg" alt="Speciality" />
+                                                                                        </a>
+                                                                                    <a>Kiran Hospital</a>
+                                                                                </h2>
+                                                                            </td>
+                                                                            
+                                                                            <td>Nr Sumul DairyTunki, Katargam</td>
+                                                                            <td>Varachha</td>
+                                                                            <td>Surat</td>
+                                                                            <td>395004</td>
+                                                                            <td>6:00:00 </td>
+                                                                            <td>12:00:00</td>
+                                                                            <td><script type="text/javascript" src="/DoctzWeb/faces/javax.faces.resource/jsf.js?ln=javax.faces&amp;stage=Development"></script><a href="#" onclick="mojarra.jsfcljs(document.getElementById('j_idt10'),{'j_idt10:j_idt12:0:j_idt14':'j_idt10:j_idt12:0:j_idt14'},'');return false">resources/img/hospital/h7.jpg</a></td>
+
+                                                                            <td class="text-right">
+                                                                                    <div class="actions"><input type="submit" name="j_idt10:j_idt12:0:j_idt16" value="Yes" class="btn btn-sm bg-success-light" /><input type="submit" name="j_idt10:j_idt12:0:j_idt17" value="No" class="btn btn-sm bg-danger-light" />
+                                                                                          
+                                                                                  
+                                                                                    </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <h2 class="table-avatar">
+                                                                                        <a class="avatar avatar-sm mr-2">
+                                                                                            <img class="avatar-img" src="/DoctzWeb/resources/img/hospital/h8.jpg" alt="Speciality" />
+                                                                                        </a>
+                                                                                    <a>Baps Hospital </a>
+                                                                                </h2>
+                                                                            </td>
+                                                                            
+                                                                            <td>Shri Pramukh Swami Maharaj Marg,, Adajan Char Rasta</td>
+                                                                            <td>Adajan</td>
+                                                                            <td>Surat</td>
+                                                                            <td>395009</td>
+                                                                            <td>10:00:00</td>
+                                                                            <td>8:00:00 </td>
+                                                                            <td><a href="#" onclick="mojarra.jsfcljs(document.getElementById('j_idt10'),{'j_idt10:j_idt12:1:j_idt14':'j_idt10:j_idt12:1:j_idt14'},'');return false">resources/img/hospitalDoc/SEM7_Syllabus.pdf</a></td>
+
+                                                                            <td class="text-right">
+                                                                                    <div class="actions"><input type="submit" name="j_idt10:j_idt12:1:j_idt16" value="Yes" class="btn btn-sm bg-success-light" /><input type="submit" name="j_idt10:j_idt12:1:j_idt17" value="No" class="btn btn-sm bg-danger-light" />
+                                                                                          
+                                                                                  
+                                                                                    </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <h2 class="table-avatar">
+                                                                                        <a class="avatar avatar-sm mr-2">
+                                                                                            <img class="avatar-img" src="/DoctzWeb/resources/img/hospital/40281.jpg" alt="Speciality" />
+                                                                                        </a>
+                                                                                    <a>temp</a>
+                                                                                </h2>
+                                                                            </td>
+                                                                            
+                                                                            <td>adajan</td>
+                                                                            <td>Adajan</td>
+                                                                            <td>Surat</td>
+                                                                            <td>395009</td>
+                                                                            <td>8:00:00 </td>
+                                                                            <td>11:00:00</td>
+                                                                            <td><a href="#" onclick="mojarra.jsfcljs(document.getElementById('j_idt10'),{'j_idt10:j_idt12:2:j_idt14':'j_idt10:j_idt12:2:j_idt14'},'');return false">resources/img/hospitalDoc/Sem_6_Syllabus.pdf</a></td>
+
+                                                                            <td class="text-right">
+                                                                                    <div class="actions"><input type="submit" name="j_idt10:j_idt12:2:j_idt16" value="Yes" class="btn btn-sm bg-success-light" /><input type="submit" name="j_idt10:j_idt12:2:j_idt17" value="No" class="btn btn-sm bg-danger-light" />
+                                                                                          
+                                                                                  
+                                                                                    </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                   
+                                                                         
+                                                                </tbody>
+                                                        </table>
+									</div>
+								</div>
+							</div>
+						</div>			
+					</div>
+				
+                
+                            </div>			
+			</div>
+                
+			<!-- /Page Wrapper -->
+			
+			
+			
+			
+			<!-- Delete Modal -->
+			
+			<!-- /Delete Modal --><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="-6759899087441849775:9184929303284877449" autocomplete="off" />
+</form>
+            </div>
+        </div>
+        </div></body>
+    
+    <!-- jQuery -->
+    
+     <script src="/DoctzWeb/resources/admin/js/jquery-3.2.1.min.js"></script>
+      
+		<!-- Bootstrap Core JS -->
+        <script src="/DoctzWeb/resources/admin/js/popper.min.js"></script>
+        <script src="/DoctzWeb/resources/admin/js/bootstrap.min.js"></script>
+		
+		<!-- Slimscroll JS -->
+        <script src="/DoctzWeb/resources/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        
+        
+        <script src="/DoctzWeb/resources/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="/DoctzWeb/resources/admin/plugins/datatables/datatables.min.js"></script>
+        
+		
+        <script src="/DoctzWeb/resources/admin/plugins/raphael/raphael.min.js"></script>    
+        <script src="/DoctzWeb/resources/admin/plugins/morris/morris.min.js"></script>  
+        <script src="/DoctzWeb/resources/admin/js/chart.morris.js"></script>
+
+        <!-- Custom JS -->
+        <script src="/DoctzWeb/resources/admin/js/script.js"></script>
+        
+    
+
+		
+      
+</html>

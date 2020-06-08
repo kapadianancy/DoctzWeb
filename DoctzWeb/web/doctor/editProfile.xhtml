@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+                 <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                                <h3 class="page-title">Edit Profile</h3>
+                                <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">Edit Profile</li>
+                                </ul>
+                        </div>
+                       
+                    </div>
+                </div>
+                                        
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                                <div class="row form-row">
+                                   <div class="col-12 col-sm-12">
+                                        <h:form id="frm" enctype="multipart/form-data">
+                                                    
+                                            <h:inputHidden value="#{doctorBean.id}"/>
+                                            <h:inputHidden value="#{doctorBean.uid}"/>
+                                            <h:inputHidden value="#{doctorBean.profile}"/>
+                                                   
+                                                    
+                                                        <div class="form-group">
+                                                            <label class="focus-label">Doctor Name</label> &nbsp; <h:message for="doctorname" style = "color:red"/>
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="doctorname" value="${doctorBean.name}"/>
+                  
+                                                        </div>
+                                            
+                                                                                                           
+                                                        <div class="form-group">
+                                                            <label class="focus-label">Username</label>&nbsp;<h:message for="username" style = "color:red"/>
+                                                            <h:inputText required="true" requiredMessage="Must not be empty" class="form-control" id="username" value="${doctorBean.username}">
+                                                                
+                                                            </h:inputText>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                             <label class="focus-label">Gender</label>&nbsp; <h:message for="gender" style = "color:red"/>
+                                                            <h:selectOneRadio required="true" requiredMessage="Must not be empty" id="gender" value="${doctorBean.gender}">
+                                                               <f:selectItem itemValue="Male" itemLabel="Male"/>                                                            
+                                                               <f:selectItem itemValue="Female" itemLabel="Female" />                                                               
+                                                            </h:selectOneRadio>
+                                                        </div>
+                                                        
+                                                        
+                                                    <div class="form-group">
+                                                    <label class="focus-label">Experience In Years</label>&nbsp; <h:message for="experience" style = "color:red"/>
+                                                        
+                                                            <h:inputText required="true"  requiredMessage="Must not be empty" class="form-control floating" id="experience" value="${doctorBean.exp}">
+                                                            
+                                                            </h:inputText>
+                                                        </div>
+                                                        
+                                                       
+                                                        <label class="focus-label">Education</label>&nbsp; <h:message for="education" style = "color:red"/>
+                                                        <div class="form-group">
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="education" value="${doctorBean.edu}"/>
+                                                        </div>
+                                                        
+                                                        
+                                                        <div class="form-group">
+                                                            <label class="focus-label">Specialization</label>&nbsp; <h:message for="specialization" style = "color:red"/>
+                                                            <h:selectOneMenu   class="form-control" style="height:45px;" id="specialization" value="#{doctorBean.sid}" required="true" requiredMessage="Select Valid Specialization">
+                                                               <f:selectItem itemLabel="Select Specialization" itemValue="#{null}" noSelectionOption="true"/>    
+                                                               <f:selectItems value="#{specializationBean.allspec}" var="s" itemLabel="#{s.name}" itemValue="#{s.specializationId}"/>
+                                                            </h:selectOneMenu>
+                                                         </div>
+                                               
+                                                        <div class="form-group">
+                                                            <label class="focus-label">Certificate</label>&nbsp;<h:message for="certificates" style = "color:red"/>
+                                                            <h:inputText class="form-control floating" required="true" requiredMessage="Must not be empty" id="certificates" value="${doctorBean.certi}"/>
+                                                        </div> 
+                                                        
+                                                        
+                                                         
+                                                        <div class="form-group">
+                                                            <label class="focus-label">Profile</label>
+                                                            <br/><img class="avatar-img" src="/DoctzWeb/#{doctorBean.profile}" alt="profile" height="64" width="64"/>
+                                                             <br/>              
+                                                             <h:inputFile id="profile" class="form-control" value="#{doctorBean.uploadedProfile}">
+                                                               
+                                                            </h:inputFile>    
+                                                        </div>
+ 
+                                                        <div class="form-group">
+                                                            <label class="focus-label">Email</label>&nbsp;<h:message for="email" style = "color:red"/>
+                                                            <h:inputText required="true" validatorMessage="Invalid email" requiredMessage="Must not be empty" class="form-control" id="email" value="${doctorBean.email}">
+                                                                 <f:validateRegex pattern="[a-z._0-9]+@.+\..+" />
+                                                            </h:inputText>
+                                                        </div>
+                                                        
+                                                         
+                                                        <div class="form-group form-focus">
+                                                            <label class="focus-label">Contact</label>&nbsp; <h:message for="contact" style = "color:red"/>
+                                                            <h:inputText   required="true" validatorMessage="Invalid contact" requiredMessage="Must not be empty" class="form-control" id="contact" value="${doctorBean.contact}">
+                                                                <f:validateLength minimum="10" maximum="10"/>
+                                                            </h:inputText>
+                                                        </div>
+                                                    
+                                                        <h:commandButton class="btn btn-primary btn-block btn-lg login-btn" value="Edit Doctor Profile" action="${doctorBean.update()}" />
+                                                    </h:form>
+                                   </div>
+                                				
+		
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        
+                </div></div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

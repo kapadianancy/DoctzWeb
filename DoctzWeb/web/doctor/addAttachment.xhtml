@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+               <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                                <h3 class="page-title">Add Attachment</h3>
+                                <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">Add Attachment</li>
+                                </ul>
+                        </div>
+                       <div class="col-sm-5 col">
+                            <a href="patientAttachment.xhtml" class="btn btn-primary float-right mt-2">View All</a>
+                       </div>
+                    </div>
+                </div>
+                                        
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                             <h:form enctype="multipart/form-data">
+								<div class="row form-row">
+									<div class="col-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Patient Name</label>&nbsp; <h:message for="name" style = "color:red"/>
+                                                                                     
+                                                                                <h:selectOneMenu   class="form-control" style="height:45px;" id="name" value="#{attachmentBean.pid}" required="true" requiredMessage="Select Valid Patient">
+                                                                               <f:selectItem itemLabel="Select Patient" itemValue="#{null}" noSelectionOption="true"/>    
+                                                                               <f:selectItems value="#{patientBean.docPatient}" var="s" itemLabel="#{s.patientName}" itemValue="#{s.patientId}"/>
+                                                                            </h:selectOneMenu>
+                                                                             </div>
+                                                                         </div>
+
+                                                                        <div class="col-12 col-sm-12">
+                                                                            <div class="form-group">
+                                                                                <label>Attachment</label>&nbsp; <h:message for="attachment" style = "color:red"/>
+                                                                                <h:inputFile id="attachment" class="form-control" value="#{attachmentBean.uploadedAttachment}"
+                                                                                                 >
+                                                                                        <f:validator validatorId="validateDocumentBean"/>
+                                                                                </h:inputFile> 
+                                                                            </div>
+                                                                        </div>
+                                                                    
+									
+									
+								</div>
+                                 
+                                 <h:commandButton class="btn btn-primary btn-block" action="#{attachmentBean.addAttachment()}" value="Add Attachment"/>
+								
+							</h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        
+                </div></div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

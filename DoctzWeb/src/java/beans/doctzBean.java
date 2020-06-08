@@ -1120,7 +1120,7 @@ public class doctzBean implements doctzBeanLocal {
         
         DoctorAttachmentTb a=new DoctorAttachmentTb();
        
-        a.setAttachment(attachment);
+        a.setAttachment("resources/img/docAttachment/"+attachment);
         a.setDoctorId(d);
         a.setPatientId(p);
         
