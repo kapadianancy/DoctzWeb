@@ -1468,6 +1468,16 @@ public class doctzBean implements doctzBeanLocal {
         return em.createNamedQuery("AppointmentTb.findPendingByHospital").setParameter("hospitalId",hid).setParameter("status","pending").getResultList();
     }
 
+ 
+    public Collection<AppointmentTb> getPatientPendingAppoitment(int pid) {
+      return em.createNamedQuery("AppointmentTb.findPendingByPatient").setParameter("patientId",pid).setParameter("status","pending").getResultList();
+    }
+
+    @Override
+    public Collection<DoctorAttachmentTb> getPatientAttachment(int pid){
+        return em.createNamedQuery("DoctorAttachmentTb.findByPatientId").setParameter("patientId",pid).getResultList();
+    }
+    
     
     @Override
     public void increaseTotalPatient(int did, int hid, Date date, Time time) {

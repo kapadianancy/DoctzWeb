@@ -277,10 +277,18 @@ public interface doctzBeanLocal {
        
        public Collection<HospitalTb> nearMeHospital(double currentlati,double currentlongi,double newlati,double newlongi);
         
+       
+       //---------------------------------------------------------------------------
        public AppointmentTb getAppointmentById(int id);
        
        public Collection<AppointmentTb> getDoctorPendingAppoitment(int did);
        
        public Collection<AppointmentTb> getHospitalPendingAppoitment(int hid);
+
+       public Collection<AppointmentTb> getPatientPendingAppoitment(int pid);
+       
+       public Collection<DoctorAttachmentTb> getPatientAttachment(int pid);
+       
+       
 
 }
