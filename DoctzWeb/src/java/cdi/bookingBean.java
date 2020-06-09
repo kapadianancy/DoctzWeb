@@ -34,6 +34,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import servlets.test;
+import sun.security.krb5.internal.APOptions;
 
 /**
  *
@@ -59,6 +60,7 @@ public class bookingBean {
     Collection<AppointmentTb> adminall;
     Collection<AppointmentTb> docAppointment,hosAppointment;
     Collection<AppointmentTb> docPending;
+    Collection<AppointmentTb> PatientPending;
     GenericType<Collection<AppointmentTb>> gall;
     
     
@@ -92,6 +94,7 @@ public class bookingBean {
          currpatient=new PatientTb();
          all=new ArrayList<AppointmentTb>();
          docPending=new ArrayList<AppointmentTb>();
+         PatientPending=new ArrayList<AppointmentTb>();
          gall=new GenericType<Collection<AppointmentTb>>(){};
          
     }
@@ -105,6 +108,19 @@ public class bookingBean {
     public void setDocPending(Collection<AppointmentTb> docPending) {
         this.docPending = docPending;
     }
+
+    public Collection<AppointmentTb> getPatientPending() {
+        
+        PatientTb p=ejb.getPatientByEmail(this.username);
+        PatientPending=ejb.getPatientPendingAppoitment(p.getPatientId());
+        return PatientPending;
+    }
+
+    public void setPatientPending(Collection<AppointmentTb> PatientPending) {
+        this.PatientPending = PatientPending;
+    }
+    
+    
     
     
 
@@ -147,9 +163,8 @@ public class bookingBean {
     }
 
     public Collection<AppointmentTb> getAll() {
-        res=c.getAllPatientAppointment(Response.class, this.getCurrpatient().getPatientId().toString());
-        all=res.readEntity(gall);
-        
+        PatientTb p=ejb.getPatientByEmail(this.username);
+        all=ejb.getAllPatientAppointment(p.getPatientId());
         return all;
     }
 
@@ -192,8 +207,8 @@ public class bookingBean {
     }
 
     public PatientTb getCurrpatient() {
-         HttpSession session = request.getSession(true);
-        currpatient=ejb.getPatientByEmail(session.getAttribute("username").toString());
+        //HttpSession session = request.getSession(false);
+        currpatient=ejb.getPatientByEmail(this.username);
         return currpatient;
     }
 

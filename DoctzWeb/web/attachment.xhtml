@@ -20,10 +20,10 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.xhtml">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Appoinment Tracking</li>
+									<li class="breadcrumb-item active" aria-current="page">Attachment/Invoice</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Appoinment Tracking</h2>
+							<h2 class="breadcrumb-title">Attachment/Invoice</h2>
 						</div>
 					</div>
 				</div>
@@ -109,14 +109,14 @@
 <div class="col-md-7 col-lg-8 col-xl-9">
             <div class="card">
                     <div class="card-body pt-0">
-                        <h2 style="color:#0de0fe; padding-top: 10px; padding-bottom: 5px;">Appointment Tracking</h2>
+                        <h2 style="color:#0de0fe; padding-top: 10px; padding-bottom: 5px;">Attachment/Invoice</h2>
                         <div class="tab-content pt-0" style="padding-top: 10px;">
                         <div id="pat_appointments" class="tab-pane fade show active">
                        <div class="card card-table mb-0">
                             <div class="card-body">
                                     <div class="table-responsive"> 
                                         
-                                         <h:dataTable class="table table-hover table-center mb-0" value="#{bookingBean.all}" var="a">
+                                        <h:dataTable class="table table-hover table-center mb-0" value="#{attachmentBean.pall}" var="a">
                                <h:column>    				
                         <f:facet name = "header">Doctor</f:facet>    				
                         <h2 class="table-avatar">
@@ -128,30 +128,16 @@
                      </h:column>
 
                      <h:column>
-                        <f:facet name = "header">Hospital</f:facet>
+                        <f:facet name = "header">Attachment</f:facet>
                         <h2 class="table-avatar">
-                            <a class="avatar avatar-sm mr-2">
-                                <img class="avatar-img rounded-circle" src="/DoctzWeb/#{a.hospitalId.logo}" alt="User Image"/>
-                            </a>
-                            <a>#{a.hospitalId.hospitalName}</a>
+                            
+                            <a href="/DoctzWeb/#{a.attachment}" target="blank">View Attachment</a>
                     </h2>
                      </h:column>
-
-                     <h:column>
-                        <f:facet name = "header">Date</f:facet>
-                        #{a.date.toLocaleString().substring(0,12)}
-                     </h:column>
-
-                     <h:column>
-                        <f:facet name = "header">Time</f:facet>
-                        #{a.time.toLocaleString().substring(12,20)}
-                     </h:column>
-                        <h:column>
-                        <f:facet name = "header">Status</f:facet>
-                        <span class="badge badge-pill #{bookingBean.getStatus(a.appointmentId)}">#{a.status}</span>
-                     </h:column>
+                     
+                     
                     </h:dataTable>
-                                        <h:panelGroup rendered="#{empty bookingBean.all}">
+                                        <h:panelGroup rendered="#{empty attachmentBean.pall}">
                             <div style="position: absolute;
                                         text-align: center;
                                         font-size: 60px;

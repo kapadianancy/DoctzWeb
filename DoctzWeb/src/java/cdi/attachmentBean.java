@@ -10,6 +10,7 @@ import client.myclient;
 import client.mydoctor;
 import entity.DoctorAttachmentTb;
 import entity.DoctorTb;
+import entity.PatientTb;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,18 +40,20 @@ public class attachmentBean {
     @EJB doctzBeanLocal ejb;
     Response res;
     mydoctor d;
+    myclient c;
     private int aid;
     private int pid;
     private int did;
     private String attachment;
     private Collection<DoctorAttachmentTb> dall;
+    private Collection<DoctorAttachmentTb> pall;
     private GenericType<Collection<DoctorAttachmentTb>> g;
     private String email;
     private Part uploadedAttachment;
     
-    // private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\docAttachment\\";
+    private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\web\\resources\\img\\docAttachment\\";
      
-  private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\docAttachment\\";
+ // private String folder = "C:\\Users\\Admin\\Desktop\\doctzWeb-git\\DoctzWeb\\DoctzWeb\\web\\resources\\img\\docAttachment\\";
 
     
     public attachmentBean() {
@@ -66,13 +69,15 @@ public class attachmentBean {
           token = request.getSession().getAttribute("token").toString();
           System.out.println("Token="+token);
           d=new mydoctor(token);
-        
+          c=new myclient(token);
         }
         else
         {
          d=new mydoctor();
+         c=new myclient();
         }
         dall=new ArrayList<DoctorAttachmentTb>();
+        pall=new ArrayList<DoctorAttachmentTb>();
         g=new GenericType<Collection<DoctorAttachmentTb>>(){};
     }
 
@@ -87,6 +92,17 @@ public class attachmentBean {
         this.dall = dall;
     }
 
+    public Collection<DoctorAttachmentTb> getPall() {
+        PatientTb p=ejb.getPatientByEmail(this.email);
+        pall=ejb.getPatientAttachment(p.getPatientId());
+        return pall;
+    }
+
+    public void setPall(Collection<DoctorAttachmentTb> pall) {
+        this.pall = pall;
+    }
+
+    
     
     public int getAid() {
         return aid;
