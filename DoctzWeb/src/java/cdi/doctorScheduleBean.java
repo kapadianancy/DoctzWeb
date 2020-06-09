@@ -9,6 +9,7 @@ import beans.doctzBeanLocal;
 import client.myadmin;
 import client.myclient;
 import client.mydoctor;
+import client.myhospital;
 import entity.DoctorScheduleTb;
 import entity.DoctorTb;
 import entity.FeesTb;
@@ -42,6 +43,7 @@ public class doctorScheduleBean {
     @EJB doctzBeanLocal ejb;
     Response res;
     mydoctor d;
+    myhospital h;
     
     private int sid,hid,did;
     Date date;
@@ -54,7 +56,7 @@ public class doctorScheduleBean {
     Collection<DoctorTb> hall;
     
     Collection<DoctorScheduleTb> all;
-    Collection<DoctorScheduleTb> docSchedule;
+    Collection<DoctorScheduleTb> docSchedule,hosDocSchedule;
     GenericType<Collection<DoctorScheduleTb>> gall;
     
     GenericType<DoctorTb> gdoc;
@@ -77,12 +79,14 @@ public class doctorScheduleBean {
 //          c = new myclient(token); 
 //          a=new myadmin(token);
           d=new mydoctor(token);
+          h=new myhospital(token);
         }
         else
         {
 //          c=new myclient();
 //          a=new myadmin();
           d=new mydoctor();
+          h=new myhospital();
         }
         gall=new GenericType<Collection<DoctorScheduleTb>>(){};
         all=new ArrayList<DoctorScheduleTb>();
@@ -91,6 +95,7 @@ public class doctorScheduleBean {
         fees=new ArrayList<FeesTb>();
         gdoc=new GenericType<DoctorTb>(){};
         docSchedule=new ArrayList<DoctorScheduleTb>();
+        hosDocSchedule=new ArrayList<DoctorScheduleTb>();
         doc=new DoctorTb();
     }
 
@@ -181,7 +186,26 @@ public class doctorScheduleBean {
         //System.out.println("schedule---------"+docSchedule);
         return docSchedule;
     }
+    
+    public String getScheduleByDocAndHos(int did)
+    {
+        return "schedule.xhtml?faces-redirect=true&did="+did;
+    }
 
+    public Collection<DoctorScheduleTb> getHosDocSchedule() {
+        HospitalTb hid=ejb.getHospitalByEmail(this.username);
+        String d=params.get("did");
+        res=h.getScheduleByHospitalAndDoctorId(Response.class, String.valueOf(hid.getHospitalId()),d);
+        this.setHosDocSchedule(res.readEntity(gall));
+        return hosDocSchedule;
+    }
+
+    public void setHosDocSchedule(Collection<DoctorScheduleTb> hosDocSchedule) {
+        this.hosDocSchedule = hosDocSchedule;
+    }
+
+    
+    
     public void setDocSchedule(Collection<DoctorScheduleTb> doctorSchedule) {
         this.docSchedule= doctorSchedule;
     }

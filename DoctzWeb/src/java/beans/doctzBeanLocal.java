@@ -281,6 +281,6 @@ public interface doctzBeanLocal {
        
        public Collection<AppointmentTb> getDoctorPendingAppoitment(int did);
        
-       
+       public Collection<AppointmentTb> getHospitalPendingAppoitment(int hid);
 
 }

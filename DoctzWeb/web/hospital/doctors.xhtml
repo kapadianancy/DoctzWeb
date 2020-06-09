@@ -40,8 +40,10 @@
                                                             <th>Specialization</th>
                                                             <th>Experience</th>
                                                             <th>Gender</th>
+                                                            <th>Schedule</th>
                                                             <th>Certificates</th>
                                                             <th>Education</th>
+                                                            
 
                                                     </tr>
                                             </thead>
@@ -60,8 +62,12 @@
                                                         <td>#{d.experience} </td>
 
                                                         <td>#{d.gender} </td>
+                                                         <td>
+                                                             <h:commandButton class="btn btn-sm bg-success-light" value="View Schedule" action="#{doctorScheduleBean.getScheduleByDocAndHos(d.doctorId)}"></h:commandButton>
+                                                        </td>
                                                         <td>#{d.certificates} </td>
                                                         <td>#{d.education} </td>
+                                                       
                                                            
                                                     </tr>
                                                 </ui:repeat>

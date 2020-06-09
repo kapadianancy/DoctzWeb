@@ -58,7 +58,7 @@ public class bookingBean {
     Collection<AppointmentTb> all;
     Collection<AppointmentTb> adminall;
     Collection<AppointmentTb> docAppointment,hosAppointment;
-    Collection<AppointmentTb> docPending;
+    Collection<AppointmentTb> docPending,hosPending;
     GenericType<Collection<AppointmentTb>> gall;
     
     
@@ -92,6 +92,7 @@ public class bookingBean {
          currpatient=new PatientTb();
          all=new ArrayList<AppointmentTb>();
          docPending=new ArrayList<AppointmentTb>();
+         hosPending=new ArrayList<AppointmentTb>();
          gall=new GenericType<Collection<AppointmentTb>>(){};
          
     }
@@ -105,6 +106,17 @@ public class bookingBean {
     public void setDocPending(Collection<AppointmentTb> docPending) {
         this.docPending = docPending;
     }
+
+    public Collection<AppointmentTb> getHosPending() {
+        HospitalTb hos=ejb.getHospitalByEmail(this.username);
+        hosPending=ejb.getHospitalPendingAppoitment(hos.getHospitalId());
+        return hosPending;
+    }
+
+    public void setHosPending(Collection<AppointmentTb> hosPending) {
+        this.hosPending = hosPending;
+    }
+    
     
     
 
@@ -348,9 +360,6 @@ public class bookingBean {
                 t1=new Time(ft.parse(t).getTime());
                 DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 date1 = Date.valueOf(date);
-                
-                System.out.println("Time------"+t1+"date----"+date);
-               
                 
             } catch (ParseException ex) {
                 Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
