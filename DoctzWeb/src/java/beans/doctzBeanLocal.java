@@ -270,12 +270,16 @@ public interface doctzBeanLocal {
        
        public void decreaseTotalPatient(int did,int hid,Date date,Time time);
        
+       public void increaseTotalPatient(int did,int hid,Date date,Time time);
+       
        
        // --------------------------emergency module ------------------------------
        
        public Collection<HospitalTb> nearMeHospital(double currentlati,double currentlongi,double newlati,double newlongi);
         
        public AppointmentTb getAppointmentById(int id);
+       
+       public Collection<AppointmentTb> getDoctorPendingAppoitment(int did);
        
        
 

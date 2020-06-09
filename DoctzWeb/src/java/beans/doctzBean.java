@@ -718,7 +718,8 @@ public class doctzBean implements doctzBeanLocal {
     public int cancelAppointment(int appointmentId) {
         int status=0;
         AppointmentTb a =em.find(AppointmentTb.class,appointmentId);
-        a.setIsActive(0);
+        //a.setIsActive(0);
+        a.setStatus("cancel");
         em.merge(a);
         status=1;
         return status;
@@ -1456,12 +1457,25 @@ public class doctzBean implements doctzBeanLocal {
     public Collection<AppointmentTb> getAppointmentByHospital(int hid) {
         return em.createNamedQuery("AppointmentTb.findByHospitalId").setParameter("hospitalId",hid).getResultList();
     }
+
+    @Override
+    public Collection<AppointmentTb> getDoctorPendingAppoitment(int did) {
+        return em.createNamedQuery("AppointmentTb.findPendingByDoctor").setParameter("doctorId",did).setParameter("status","pending").getResultList();
+    }
+
+    @Override
+    public void increaseTotalPatient(int did, int hid, Date date, Time time) {
+    
+       Collection<DoctorScheduleTb> ds=em.createNamedQuery("DoctorScheduleTb.findScheduleByDoctorAndHospitalAndDateAndTime").setParameter("doctorId", did).setParameter("hospitalId",hid).setParameter("date", date).setParameter("time", time).getResultList();
+       DoctorScheduleTb d=new DoctorScheduleTb();
+       for(DoctorScheduleTb d1:ds)
+       {
+           d=em.find(DoctorScheduleTb.class, d1.getScheduleId());
+           d.setNumberOfPatient(d.getNumberOfPatient()+1);
+       }
+    }
     
     
-    
-    
-    
-     
     
     
 }

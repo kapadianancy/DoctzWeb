@@ -58,6 +58,7 @@ public class bookingBean {
     Collection<AppointmentTb> all;
     Collection<AppointmentTb> adminall;
     Collection<AppointmentTb> docAppointment,hosAppointment;
+    Collection<AppointmentTb> docPending;
     GenericType<Collection<AppointmentTb>> gall;
     
     
@@ -90,9 +91,22 @@ public class bookingBean {
          app=new AppointmentTb();
          currpatient=new PatientTb();
          all=new ArrayList<AppointmentTb>();
+         docPending=new ArrayList<AppointmentTb>();
          gall=new GenericType<Collection<AppointmentTb>>(){};
          
     }
+
+    public Collection<AppointmentTb> getDocPending() {
+        DoctorTb doc=ejb.getDoctorByEmail(this.username);
+        docPending=ejb.getDoctorPendingAppoitment(doc.getDoctorId());
+        return docPending;
+    }
+
+    public void setDocPending(Collection<AppointmentTb> docPending) {
+        this.docPending = docPending;
+    }
+    
+    
 
     public Collection<AppointmentTb> getDocAppointment() {
         DoctorTb doc=new DoctorTb();
@@ -323,6 +337,27 @@ public class bookingBean {
         //System.out.println("cdi.bookingBean.getStatus()------"+status);
         return status;
         
+    }
+    public String cancelAppointment(int aid,int did,int hid,String date,String t)
+    {
+        SimpleDateFormat ft =new SimpleDateFormat ("hh:mm:ss");
+        Time t1=null;
+        java.sql.Date date1=null;
+          
+            try {
+                t1=new Time(ft.parse(t).getTime());
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                date1 = Date.valueOf(date);
+                
+                System.out.println("Time------"+t1+"date----"+date);
+               
+                
+            } catch (ParseException ex) {
+                Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        ejb.increaseTotalPatient(did, hid, date1, t1);
+        res=d.cancelAppointment(Response.class, String.valueOf(aid));
+        return "cancelAppointment.xhtml";
     }
     
 }
