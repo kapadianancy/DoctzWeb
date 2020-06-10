@@ -270,9 +270,7 @@ public class bookingBean {
             try {
                 t1=new Time(ft.parse(t).getTime());
                 session.setAttribute("time",t1);
-                //System.out.println("Time------"+t1);
-               
-                
+                  
             } catch (ParseException ex) {
                 Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -382,4 +380,9 @@ public class bookingBean {
         return "cancelAppointment.xhtml";
     }
     
+       public String completeAppointment(int aid)
+    {
+        int i=ejb.completeAppointment(aid);
+        return "appointment.xhtml?faces-redirect=true";
+    }
 }

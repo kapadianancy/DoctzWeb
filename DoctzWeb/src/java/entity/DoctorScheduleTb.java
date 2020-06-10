@@ -32,8 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "DoctorScheduleTb.findAll", query = "SELECT d FROM DoctorScheduleTb d"),
     @NamedQuery(name = "DoctorScheduleTb.findByDoctorId", query = "SELECT d FROM DoctorScheduleTb d where d.doctorId.doctorId = :doctorId and d.isActive=1"),
-    @NamedQuery(name = "DoctorScheduleTb.findCount", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d"),
-    @NamedQuery(name = "DoctorScheduleTb.verifySchedule", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d where d.doctorId.doctorId=:did and d.date=:d and (d.toTime<=:f1 or d.fromTime>=:f1) and (d.fromTime>= :t1 or d.toTime<= :t1)"),
+    @NamedQuery(name = "DoctorScheduleTb.findCount", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d where d.doctorId.doctorId = :doctorId and d.date = :date and d.isActive = 1"),
+    @NamedQuery(name = "DoctorScheduleTb.verifySchedule", query = "SELECT count(d.scheduleId) FROM DoctorScheduleTb d where d.doctorId.doctorId=:did and d.date=:d and (d.toTime<=:f1 or d.fromTime>=:f1) and (d.fromTime>= :t1 or d.toTime<= :t1) and (d.fromTime<= :f1 or d.toTime>= :t1)"),
     @NamedQuery(name = "DoctorScheduleTb.findByScheduleId", query = "SELECT d FROM DoctorScheduleTb d WHERE d.scheduleId = :scheduleId"),
     @NamedQuery(name = "DoctorScheduleTb.findByAvailabilityOfBooking", query = "SELECT d.doctorId FROM DoctorScheduleTb d where d.isActive=1 GROUP BY d.doctorId ORDER BY sum(d.numberOfPatient) DESC"),
     @NamedQuery(name = "DoctorScheduleTb.findByAvailabilityOfBookingAndSpec", query = "SELECT d.doctorId FROM DoctorScheduleTb d where d.isActive=1 and d.doctorId.specializationId.name =:spec  GROUP BY d.doctorId ORDER BY sum(d.numberOfPatient) DESC"),

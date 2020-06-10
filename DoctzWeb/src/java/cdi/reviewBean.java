@@ -46,22 +46,21 @@ public class reviewBean {
     
     Collection<ReviewTb> all;
     GenericType<Collection<ReviewTb>> grev;
-    Collection<ReviewTb> docReview,hosReview;
-    private String username;
+    Collection<ReviewTb> docReview,hosReview,hreview;
+    private String username,hname;
 //    private PatientTb p=new PatientTb(); 
-    
+     HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+     HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+       
     
     Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
     
     public reviewBean() {
         all=new ArrayList<ReviewTb>();
         grev=new GenericType<Collection<ReviewTb>>(){};
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         String token="";
 
         HttpSession session = request.getSession(false);
-        username=session.getAttribute("username").toString();
         
         if(null != session.getAttribute("token"))
         {
@@ -89,6 +88,7 @@ public class reviewBean {
          }
        docReview=new ArrayList<ReviewTb>();
        hosReview=new ArrayList<ReviewTb>();
+       hreview=new ArrayList<ReviewTb>();
         
     }
 
@@ -101,8 +101,18 @@ public class reviewBean {
         this.email = email;
     }
 
+    public String getHname() {
+        return hname;
+    }
+
+    public void setHname(String hname) {
+        this.hname = hname;
+    }
+
 
     public Collection<ReviewTb> getDocReview() {
+        HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
         DoctorTb d=new DoctorTb();
         d=ejb.getDoctorByEmail(this.username);
         docReview=ejb.getReviewByDoctorId(d.getDoctorId());
@@ -114,6 +124,8 @@ public class reviewBean {
     }
 
     public Collection<ReviewTb> getHosReview() {
+        HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
         HospitalTb hos=new HospitalTb();
         hos=ejb.getHospitalByEmail(this.username);
         hosReview=ejb.getReviewByHospitalId(hos.getHospitalId());
@@ -123,6 +135,24 @@ public class reviewBean {
 
     public void setHosReview(Collection<ReviewTb> hosReview) {
         this.hosReview = hosReview;
+    }
+
+    public Collection<ReviewTb> getHreview() {
+        HttpSession session = request.getSession(false);
+        if(null != params.get("hos"))
+        {
+            session.setAttribute("hos", params.get("hos"));
+        }
+        int id=Integer.parseInt(session.getAttribute("hos").toString());
+        HospitalTb hospital=new HospitalTb();
+        hospital=ejb.getHospitalById(id);
+        this.hname=hospital.getHospitalName();
+        hreview=ejb.getReviewByHospitalId(hospital.getHospitalId());
+        return hreview;
+    }
+
+    public void setHreview(Collection<ReviewTb> hreview) {
+        this.hreview = hreview;
     }
     
     
@@ -186,10 +216,11 @@ public class reviewBean {
     {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession(true);
+ 
         //System.out.println(session.getAttribute("did").toString()+"------------");
         if(! email.equals(""))
         {
-           // System.out.println(did);
+               
             PatientTb p=ejb.getPatientByEmail(email);
             res=c.addReview(Response.class, String.valueOf(p.getPatientId()), String.valueOf(session.getAttribute("did").toString()), "0", this.review);
             return "doctorProfile.xhtml?faces-redirect=true&did="+session.getAttribute("did").toString();
@@ -201,6 +232,24 @@ public class reviewBean {
         
     }
     
-    
+     public String addHosReview()
+    {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession(true);
+        //System.out.println(session.getAttribute("did").toString()+"------------");
+        if(! email.equals(""))
+        {
+           int id=Integer.parseInt(session.getAttribute("hos").toString());
+           
+            PatientTb p=ejb.getPatientByEmail(email);
+            res=c.addReview(Response.class, String.valueOf(p.getPatientId()),"0",String.valueOf(id), this.review);
+            return "hosReview.xhtml?faces-redirect=true&hos="+id;
+        }
+        else
+        {
+            return "login.xhtml?faces-redirect=true";
+        }
+        
+    }
     
 }

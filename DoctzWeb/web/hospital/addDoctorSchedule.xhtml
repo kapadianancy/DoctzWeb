@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+            <ui:define name="content">
+                
+                 <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                                <h3 class="page-title">Add Doctor Schedule</h3>
+                                <ul class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="dashboard.xhtml">Dashboard</a></li>
+                                        <li class="breadcrumb-item active">Add Doctor Schedule</li>
+                                </ul>
+                        </div>
+                       <div class="col-sm-5 col">
+                            <a href="doctors.xhtml" class="btn btn-primary float-right mt-2">View Doctors</a>
+                       </div>
+                    </div>
+                </div>
+                                        
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                             <h:form>
+                                 
+                                   <div style="color: red; font-size: 20px;">#{doctorScheduleBean.msgError}</div>
+                               
+                                <div class="row form-row">
+                                        <div class="col-12 col-sm-12">
+                                            <label class="focus-label">Doctor</label>&nbsp; <h:message for="spec" style = "color:red"/>
+                                                <div class="form-group">
+                                                    <h:selectOneMenu class="form-control" style="height: 45px;" id="spec" value="#{doctorScheduleBean.did}" required="true" requiredMessage="Must be an valid Specialization">
+                                                        <f:selectItem itemLabel="---Select Doctor---" itemValue="#{null}" noSelectionOption="true"/>
+                                                        <f:selectItems value="#{doctorBean.alldocs}" var="d" itemLabel="#{d.doctorName}" itemValue="#{d.doctorId}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+                                         </div>
+                                    
+                                          <div class="col-12 col-sm-12">
+                                            <label class="focus-label">Date</label>&nbsp; <h:message for="date" style = "color:red"/>
+                                            <div class="form-group form-focus">
+                                                <h:inputText  class="form-control floating"  required="true" requiredMessage="Must not be empty" id = "date" value="#{doctorScheduleBean.date}">
+                                                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                                                </h:inputText>
+                                            </div>
+                                          </div>
+                                    
+                                           <div class="col-12 col-sm-12">
+                                            <label class="focus-label">From Time</label>&nbsp; <h:message for="ftime" style = "color:red"/>
+                                                        <div class="form-group form-focus">
+                                                            <h:inputText class="form-control floating" validatorMessage="Enter Valid Time(Format : hh:mm:ss)" required="true" requiredMessage="Must not be empty" id = "ftime" value="#{doctorScheduleBean.fromTime}">
+                                                               <f:validateRegex pattern="[0-9]{1,2}(:)[0-9]{1,2}(:)[0-9]{1,2}" />
+                                                            </h:inputText>
+                                                        </div>
+                                           </div>
+                                    
+                                     <div class="col-12 col-sm-12">
+                                            <label class="focus-label">To Time</label>&nbsp; <h:message for="ttime" style = "color:red"/>
+                                                        <div class="form-group form-focus">
+                                                            <h:inputText class="form-control floating" validatorMessage="Enter Valid Time(Format : hh:mm:ss)" required="true" requiredMessage="Must not be empty" id = "ttime" value="#{doctorScheduleBean.toTime}">
+                                                               <f:validateRegex pattern="[0-9]{1,2}(:)[0-9]{1,2}(:)[0-9]{1,2}" />
+                                                            </h:inputText>
+                                                        </div>
+                                           </div>
+                                    
+                                        <div class="col-12 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Number of Patient</label>&nbsp; <h:message for="nop" style = "color:red"/>
+                                                <h:inputText id="nop" class="form-control" value="#{doctorScheduleBean.patients}" validatorMessage="Enter Valid Number Of Patient"
+                                                             required="true" requiredMessage="Must not be empty">
+                                                     <f:validateLength minimum="1" />
+                                                </h:inputText>
+                                            </div>
+                                        </div>
+                                   </div>
+                               
+                                 <h:commandButton class="btn btn-primary btn-block" action="#{doctorScheduleBean.addSchedule()}" value="Add"/>
+			</h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                        
+                </div></div>
+            
+            
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

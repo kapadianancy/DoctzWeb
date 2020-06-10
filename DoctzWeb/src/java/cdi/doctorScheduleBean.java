@@ -14,12 +14,17 @@ import entity.DoctorScheduleTb;
 import entity.DoctorTb;
 import entity.FeesTb;
 import entity.HospitalTb;
+
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -30,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
+import servlets.test;
 
 
 /**
@@ -46,9 +52,9 @@ public class doctorScheduleBean {
     myhospital h;
     
     private int sid,hid,did;
-    Date date;
-    Time fromTime,toTime;
-    int patients;
+    private Date date;
+    private String fromTime,toTime,msgError;
+    private int patients;
     private String username;
     
     Collection<HospitalTb> hos;
@@ -72,7 +78,7 @@ public class doctorScheduleBean {
         String token="";
 
         HttpSession session = request.getSession(false);
-        username=session.getAttribute("username").toString();
+        
         if(null != session.getAttribute("token"))
         {
           token = request.getSession().getAttribute("token").toString();
@@ -131,19 +137,19 @@ public class doctorScheduleBean {
         this.date = date;
     }
 
-    public Time getFromTime() {
+    public String getFromTime() {
         return fromTime;
     }
 
-    public void setFromTime(Time fromTime) {
+    public void setFromTime(String fromTime) {
         this.fromTime = fromTime;
     }
 
-    public Time getToTime() {
+    public String getToTime() {
         return toTime;
     }
 
-    public void setToTime(Time toTime) {
+    public void setToTime(String toTime) {
         this.toTime = toTime;
     }
 
@@ -162,6 +168,15 @@ public class doctorScheduleBean {
     public void setHall(Collection<DoctorTb> hall) {
         this.hall = hall;
     }
+
+    public String getMsgError() {
+        return msgError;
+    }
+
+    public void setMsgError(String msgError) {
+        this.msgError = msgError;
+    }
+    
     
     
 
@@ -178,7 +193,8 @@ public class doctorScheduleBean {
     }
 
     public Collection<DoctorScheduleTb> getDocSchedule() {
-        
+        HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
         doc=ejb.getDoctorByEmail(this.username);
         //System.out.println("doc---------"+doc);
         res=d.getDoctorSchedule(Response.class,String.valueOf(doc.getDoctorId()));
@@ -193,6 +209,8 @@ public class doctorScheduleBean {
     }
 
     public Collection<DoctorScheduleTb> getHosDocSchedule() {
+         HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
         HospitalTb hid=ejb.getHospitalByEmail(this.username);
         String d=params.get("did");
         res=h.getScheduleByHospitalAndDoctorId(Response.class, String.valueOf(hid.getHospitalId()),d);
@@ -272,5 +290,37 @@ public class doctorScheduleBean {
         this.fees = fees;
     }
     
+    public String addSchedule()
+    {
+        HttpSession session = request.getSession(false);
+        username=session.getAttribute("username").toString();
+        HospitalTb hid=ejb.getHospitalByEmail(this.username);
+        SimpleDateFormat ft =new SimpleDateFormat ("hh:mm:ss");
+        java.sql.Time t1=null;
+        java.sql.Time t2=null;
+        
+            try {
+                t1=new Time(ft.parse(this.fromTime).getTime());
+                t2=new Time(ft.parse(this.toTime).getTime());
+                         
+            } catch (ParseException ex) {
+                Logger.getLogger(test.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        //res=h.addSchedule(Response.class, String.valueOf(hid.getHospitalId()),String.valueOf(this.did),d,String.valueOf(t1),String.valueOf(t2),String.valueOf(this.patients));
+       int status=ejb.addSchedule(hid.getHospitalId(), this.did,this.date, t1, t2, this.patients);
+        
+       // System.out.println("Status------------------------->>>>>>>>>>>>>"+status);
+        if(status == 1)
+        {
+            return "doctors.xhtml?faces-redirect=true";
+        }
+        else
+        {
+            this.msgError="Doctor is not available for this time period.";
+            return "addDoctorSchedule.xhtml";
+        }
+        
+        
+    }
    
 }

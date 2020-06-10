@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./masterPage.xhtml">
+
+            <ui:define name="content">
+             <div class="main-wrapper">
+                <h:form>
+                <div class="write-review" style="padding: 50px;">
+                    
+                    <div class="widget review-listing">
+                                                        <ul class="comments-list">
+                                    <!-- Comment List -->
+                                    <ui:repeat value="#{reviewBean.hreview}" var="r">
+                                                <li>
+                                                        <div class="comment">
+                                                                <img class="avatar avatar-sm rounded-circle" alt="User Image" src="/DoctzWeb/resources/img/patients/patient2.jpg"/>
+                                                                <div class="comment-body">
+                                                                        <div class="meta-data">
+                                                                            <span class="comment-author">#{r.patientId.patientName}</span>
+                                                                                
+                                                                        </div>
+                                                                        <p class="comment-content">
+                                                                                #{r.review}
+                                                                        </p>
+                                                                        
+                                                                </div>
+                                                        </div>
+                                                </li>
+                                        </ui:repeat>
+                                                <!-- /Comment List -->
+
+                                        </ul>
+
+                                       
+
+                                </div>
+                    
+                    <h4>Write a review for <strong>#{reviewBean.hname}</strong></h4>
+
+                                        <!-- Write Review Form -->
+                                        
+                                        
+                                        
+                                                
+                                                <div class="form-group">
+                                                        <label>Your review</label>
+                                                        
+                                                        <h:inputText id="reviewtxt" class="form-control" value="#{reviewBean.review}" ></h:inputText>
+
+                                                  
+                                                </div>
+                                            <hr></hr>
+                                                
+                                                
+                                                <div class="submit-section">
+                                                     
+                                                    <h:commandLink class="btn btn-primary submit-btn" value="Add Review" action="#{reviewBean.addHosReview()}"/>
+                                                    
+                                                </div>
+                                        
+                                        <!-- /Write Review Form -->
+
+                                </div>
+                </h:form>
+                    </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

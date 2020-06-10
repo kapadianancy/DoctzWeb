@@ -106,13 +106,17 @@
 												<a href="doctor-profile.html">
                                                                                                     <img src="/DoctzWeb/#{h.logo}" class="img-fluid" alt="User Image" style="height: 165px;"/>
 												</a>
+                                                                                            
+                                                                                            
 											</div>
+                                                                                    
                                                                                     <div class="doc-info-cont">
-                                                                                        <h4 class="doc-name"><a href="doctor-profile.html">#{h.hospitalName}</a></h4>
+                                                                                        <h4 class="doc-name"><a href="searchDoctors.xhtml?hos=#{h.hospitalId}">#{h.hospitalName}</a></h4>
                                                                                         <p class="doc-speciality">Opening Time : #{h.openingTime.toLocaleString().substring(12,20)}</p>
                                                                                         <p class="doc-speciality">Closing Time : #{h.closingTime.toLocaleString().substring(12,20)}</p>
                                                                                         <p class="doc-speciality">City : #{h.cityId.cityName}</p>
-                                                                                        
+                                                                                        <h5><a href="hosReview.xhtml?hos=#{h.hospitalId}" style="color: #20c0f3;">Reviews</a></h5>
+                                                                                                   
 											</div>
 											
 										</div>
@@ -128,6 +132,7 @@
 												</ul>
 											</div>
 											<div class="clinic-booking">
+                                                                                            
                                                                                             <a class="view-pro-btn" href="searchDoctors.xhtml?hos=#{h.hospitalId}">View Details</a>
                                                                                             <a class="apt-btn" href="hospitalDoctors.xhtml?hos=#{h.hospitalId}">Book Appointment</a>
 											</div>

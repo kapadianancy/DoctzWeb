@@ -626,7 +626,7 @@ public class doctzBean implements doctzBeanLocal {
     @Override
     public int addReview(int patientId, int doctorId, int hospitalId, String review) {
         int status=0;
-        System.err.println(patientId+" "+doctorId+" "+hospitalId+" "+review);
+        //System.err.println(patientId+" "+doctorId+" "+hospitalId+" "+review);
         
         PatientTb p=em.find(PatientTb.class,patientId);
         Collection<ReviewTb> r2=p.getReviewTbCollection();
@@ -724,6 +724,19 @@ public class doctzBean implements doctzBeanLocal {
         status=1;
         return status;
     }
+
+    @Override
+    public int completeAppointment(int appointmentId) {
+        int status=0;
+        AppointmentTb a =em.find(AppointmentTb.class,appointmentId);
+        //a.setIsActive(0);
+        a.setStatus("complete");
+        em.merge(a);
+        status=1;
+        return status;   
+    }
+    
+    
 
     @Override
     public Collection<AppointmentTb> getAllDoctorAppointment(int hospitalId, int doctorId) {
@@ -1092,14 +1105,15 @@ public class doctzBean implements doctzBeanLocal {
   // ------------------------------------add schedule-----------------------------------------------  
 
     @Override
-    public long addSchedule(int hospitalId, int doctorId, Date date, Time fromTime, Time toTime, int numberOfPatients) {
+    public int addSchedule(int hospitalId, int doctorId, Date date, Time fromTime, Time toTime, int numberOfPatients) {
         int status=0;
-        List<Long> temp=em.createNamedQuery("DoctorScheduleTb.findCount").getResultList();
+        List<Long> temp=em.createNamedQuery("DoctorScheduleTb.findCount").setParameter("doctorId", doctorId).setParameter("date", date).getResultList();
         long count=0;
         for(long i:temp)
         {
             count=i;
         }
+        //System.out.println("Count----------->"+count);
         
         List<Long> temp1=em.createNamedQuery("DoctorScheduleTb.verifySchedule").setParameter("did",doctorId).
                 setParameter("d",date).setParameter("f1",fromTime).setParameter("t1",toTime).getResultList();
@@ -1109,10 +1123,38 @@ public class doctzBean implements doctzBeanLocal {
         {
             result=j;
         }
+       // System.out.println("Query Result----------->"+result);
         
-        return count;
-        //return status;
-        //return result;
+        if(count == result)
+        {
+            HospitalTb h=em.find(HospitalTb.class,hospitalId);
+            Collection<DoctorScheduleTb> f1=h.getDoctorScheduleTbCollection();
+
+           DoctorTb d=em.find(DoctorTb.class,doctorId);        
+           Collection<DoctorScheduleTb> f2=d.getDoctorScheduleTbCollection();
+
+            DoctorScheduleTb ds=new DoctorScheduleTb();
+            
+            ds.setHospitalId(h);
+            ds.setDoctorId(d);
+            ds.setDate(date);
+            ds.setFromTime(fromTime);
+            ds.setToTime(toTime);
+            ds.setNumberOfPatient(numberOfPatients);
+            ds.setIsActive(1);
+
+        
+            em.persist(ds);
+            f1.add(ds);
+            f2.add(ds);
+            h.setDoctorScheduleTbCollection(f2);
+            d.setDoctorScheduleTbCollection(f1);
+            em.merge(h);   
+            status=1;   
+        }
+       
+        return status;
+      
     }
     
     

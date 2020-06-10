@@ -230,7 +230,7 @@ public class HospitalRestResource {
     @POST
     @Path("/addSchedule/{hospitalId}/{doctorId}/{date}/{fromTime}/{toTime}/{numberOfPatients}")
     @Produces(MediaType.APPLICATION_JSON)
-    public long addSchedule(@PathParam("hospitalId") int hospitalId,@PathParam("doctorId") int doctorId,@PathParam("date") Date date,@PathParam("fromTime") Time fromTime,@PathParam("toTime") Time toTime,@PathParam("numberOfPatients") int numberOfPatients)
+    public int addSchedule(@PathParam("hospitalId") int hospitalId,@PathParam("doctorId") int doctorId,@PathParam("date") Date date,@PathParam("fromTime") Time fromTime,@PathParam("toTime") Time toTime,@PathParam("numberOfPatients") int numberOfPatients)
     {
        return ejb.addSchedule(hospitalId, doctorId, date, fromTime, toTime, numberOfPatients);
     }

@@ -27,7 +27,7 @@ public class myhospital {
     private WebTarget webTarget;
     private Client client;
     private static final String BASE_URI = "http://localhost:8001/DoctzWeb/webresources";
-    
+
     public myhospital(String token) {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         client.register(new RestFilter(token));
@@ -69,7 +69,7 @@ public class myhospital {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
     }
 
-    public <T> T editHospitalProfile(Class<T> responseType, String hospitalId, String hospitalName, String address, String areaId, String cityId, String pincode, String latitude, String longitude,String openingTime, String closingTime, String logo, String email, String contact, String username, String userId) throws ClientErrorException {
+    public <T> T editHospitalProfile(Class<T> responseType, String hospitalId, String hospitalName, String address, String areaId, String cityId, String pincode, String latitude, String longitude, String openingTime, String closingTime, String logo, String email, String contact, String username, String userId) throws ClientErrorException {
         return webTarget.path(java.text.MessageFormat.format("editHospitalProfile/{0}/{1}/{2}/{3}/{4}/{5}/{6}/{7}/{8}/{9}/{10}/{11}/{12}/{13}/{14}", new Object[]{hospitalId, hospitalName, address, areaId, cityId, pincode, latitude, longitude, openingTime, closingTime, logo, email, contact, username, userId})).request().post(null, responseType);
     }
 
