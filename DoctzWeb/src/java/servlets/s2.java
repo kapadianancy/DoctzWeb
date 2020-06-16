@@ -155,7 +155,6 @@ public class s2 extends HttpServlet {
             
             long i=ejb.getTotalHosDoctors(6);
             
-//        
 
             out.println(i+"</body>");
             out.println("</html>");

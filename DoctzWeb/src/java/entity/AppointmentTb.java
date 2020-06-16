@@ -33,6 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "AppointmentTb.monthWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a GROUP BY extract(month from a.date)"),
     @NamedQuery(name = "AppointmentTb.monthWiseDate", query = "SELECT extract(month from a.date) FROM AppointmentTb a GROUP BY extract(month from a.date)"),
+    @NamedQuery(name = "AppointmentTb.doctorWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a GROUP BY a.doctorId"),
+    @NamedQuery(name = "AppointmentTb.doctorWiseDoctor", query = "SELECT a.doctorId FROM AppointmentTb a GROUP BY a.doctorId.doctorId"), 
     @NamedQuery(name = "AppointmentTb.findAll", query = "SELECT a FROM AppointmentTb a WHERE a.isActive=1"),
     @NamedQuery(name = "AppointmentTb.findByAppointmentId", query = "SELECT a FROM AppointmentTb a WHERE a.appointmentId = :appointmentId"),
     @NamedQuery(name = "AppointmentTb.findByDoctor", query = "SELECT a FROM AppointmentTb a WHERE a.doctorId.doctorId =:doctorId"),

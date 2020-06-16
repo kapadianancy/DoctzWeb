@@ -31,12 +31,8 @@
             chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
 
             var x=document.getElementById("temp").textContent;
-            alert(x)
-            //Object obj=x;
-            //alert(obj);
-            chart.data = x;
-            //chart.data = [{month: "5",appointment: 4},{month: "6",appointment: 8}];
-            
+         
+            chart.data = JSON.parse(x);
 
             chart.innerRadius = am4core.percent(40);
             chart.depth = 50;
@@ -58,7 +54,7 @@
 			
                 <div class="content container-fluid">
                     <div id="chartdiv"></div>
-                    <label id="temp">#{bookingBean.getMonthWiseApp()}</label>
+                    <label id="temp" style="display: none;">#{bookingBean.getMonthWiseApp()}</label>
                    
                 </div>
         </div>

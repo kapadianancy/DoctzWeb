@@ -5,6 +5,7 @@
  */
 package beans;
 
+import classes.doctorWise;
 import classes.monthWise;
 import entity.*;
 import java.sql.Time;
@@ -297,6 +298,7 @@ public interface doctzBeanLocal {
        
        public Collection<monthWise> monthWiseAppointment();
                
+       public Collection<doctorWise> doctorWiseAppointment();
        
        
 
