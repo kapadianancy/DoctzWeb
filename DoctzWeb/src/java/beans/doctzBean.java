@@ -5,6 +5,7 @@
  */
 package beans;
 
+import classes.monthWise;
 import entity.*;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -1532,6 +1533,24 @@ public class doctzBean implements doctzBeanLocal {
            d.setNumberOfPatient(d.getNumberOfPatient()+1);
        }
     }
+
+    @Override
+    public Collection<monthWise> monthWiseAppointment() {
+        Collection<monthWise> result=new ArrayList<monthWise>();
+        List<Long> counts=em.createNamedQuery("AppointmentTb.monthWiseCount").getResultList();
+        List<Integer> months=em.createNamedQuery("AppointmentTb.monthWiseDate").getResultList();
+        for(int i=0;i<months.size();i++)
+        {
+            monthWise obj=new monthWise();
+            obj.setMonth(months.get(i));
+            obj.setCount(Integer.parseInt(counts.get(i).toString()));
+            result.add(obj);
+        }
+        return result;
+    }
+
+    
+    
     
     
     

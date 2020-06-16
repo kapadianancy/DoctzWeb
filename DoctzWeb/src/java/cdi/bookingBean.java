@@ -6,6 +6,7 @@
 package cdi;
 
 import beans.doctzBeanLocal;
+import classes.monthWise;
 import client.myadmin;
 import client.myclient;
 import client.mydoctor;
@@ -384,5 +385,30 @@ public class bookingBean {
     {
         int i=ejb.completeAppointment(aid);
         return "appointment.xhtml?faces-redirect=true";
+    }
+       
+       
+    public String getMonthWiseApp()
+    {
+        String str="[";
+        Collection<monthWise> result=new ArrayList<>();
+       
+        result= ejb.monthWiseAppointment();
+        int s=result.size();
+        int i=0;
+        for(monthWise m:result)
+        {
+            i++;
+            str+="{month: \""+m.getMonth()+"\",appointment: "+m.getCount()+"}";
+            if(i!=s)
+            {
+                str+=",";
+            }
+           
+            System.out.println("cdi.bookingBean.getMonthWiseApp()----------"+m.getCount()+" "+m.getMonth());
+        }
+        str+="]";
+        
+        return str;
     }
 }

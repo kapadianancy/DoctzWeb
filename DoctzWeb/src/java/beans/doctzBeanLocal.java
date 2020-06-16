@@ -5,6 +5,7 @@
  */
 package beans;
 
+import classes.monthWise;
 import entity.*;
 import java.sql.Time;
 import java.util.Collection;
@@ -290,6 +291,12 @@ public interface doctzBeanLocal {
        public Collection<AppointmentTb> getPatientPendingAppoitment(int pid);
        
        public Collection<DoctorAttachmentTb> getPatientAttachment(int pid);
+       
+       
+       //-------------------charts--------------------------------
+       
+       public Collection<monthWise> monthWiseAppointment();
+               
        
        
 

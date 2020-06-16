@@ -6,6 +6,7 @@
 package servlets;
 
 import beans.doctzBeanLocal;
+import classes.monthWise;
 import client.myclient;
 import client.mydoctor;
 import client.myhospital;
@@ -627,11 +628,17 @@ public class test extends HttpServlet {
 //                out.println("\nSpec: "+s.getName()+"<br>");
 //            
 
-            GenericType<DoctorTb> ds=new GenericType<DoctorTb>(){};
-            DoctorTb d=new DoctorTb();
-            res=d1.getDoctorById(Response.class, "4");
-            d=res.readEntity(ds);
-            out.println(d.getDoctorName());
+//            GenericType<DoctorTb> ds=new GenericType<DoctorTb>(){};
+//            DoctorTb d=new DoctorTb();
+//            res=d1.getDoctorById(Response.class, "4");
+//            d=res.readEntity(ds);
+//            out.println(d.getDoctorName());
+
+Collection<monthWise> result=ejb.monthWiseAppointment();
+for(monthWise r:result)
+{
+    out.print(r.getMonth()+" "+r.getCount()+"\n");
+}
             
             out.println("check servlet");
             out.println("</body>");
