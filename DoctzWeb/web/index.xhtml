@@ -97,8 +97,8 @@
 							
 								<!-- Doctor Widget -->
                                                                 <ui:repeat value="#{doctorBean.alldocs}" var="d">
-								<div class="profile-widget" style="height: 450px;">
-									<div class="doc-img">
+								<div class="profile-widget" >
+                                                                    <div class="doc-img" style="height: 152px; width: 228px;">
 										<a href="faces/doctorProfile.xhtml?did=#{d.doctorId}">
                                                                                     <img class="img-fluid" alt="User Image" src="/DoctzWeb/#{d.profile}" />
 										</a>
