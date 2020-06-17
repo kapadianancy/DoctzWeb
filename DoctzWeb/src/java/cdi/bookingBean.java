@@ -7,6 +7,7 @@ package cdi;
 
 import beans.doctzBeanLocal;
 import classes.doctorWise;
+import classes.hospitalWise;
 import classes.monthWise;
 import client.myadmin;
 import client.myclient;
@@ -389,6 +390,8 @@ public class bookingBean {
     }
        
        
+    //---------------------------------------charts---------------------------------   
+       
     public String getMonthWiseApp()
     {
         String str="[";
@@ -476,8 +479,7 @@ public class bookingBean {
         for(doctorWise m:result)
         {
             i++;
-           //{"name": "Dr. Bhumik Patel ","appointment": 1,"href": "http://localhost:8001/DoctzWeb/resources/img/doctors/bhumik.jpg"}
-               str+="{\"name\": \""+m.getD().getUserId().getEmail()+" \",\"appointment\": "+m.getCount()+",\"href\": \"http://localhost:8001/DoctzWeb/"+m.getD().getProfile()+"\"}";
+            str+="{\"name\": \""+m.getD().getUserId().getEmail()+" \",\"appointment\": "+m.getCount()+",\"href\": \"http://localhost:8001/DoctzWeb/"+m.getD().getProfile()+"\"}";
                if(i!=s)
                {
                    str+=",";
@@ -487,6 +489,214 @@ public class bookingBean {
           
         return str;
     }
+    
+    public String getDoctorMonthWiseApp()
+    {
+        HttpSession session = request.getSession(true);
+        DoctorTb d1=new DoctorTb();
+        d1=ejb.getDoctorByEmail(session.getAttribute("username").toString());
+        
+        String str="[";
+        Collection<monthWise> result=new ArrayList<>();
        
+        result= ejb.doctorMonthWiseAppoitment(d1.getDoctorId());
+        int s=result.size();
+        int i=0;
+        String monthname="";
+        for(monthWise m:result)
+        {
+            if(m.getMonth()== 1)
+            {
+                monthname="January";
+            }
+            else if(m.getMonth()== 2)
+            {
+                monthname="February";
+            }
+             else if(m.getMonth()== 3)
+            {
+                monthname="March";
+            }
+              else if(m.getMonth()== 4)
+            {
+                monthname="April";
+            }
+             else if(m.getMonth()== 5)
+            {
+                monthname="May";
+            }
+             else if(m.getMonth()== 6)
+            {
+                monthname="June";
+            }
+            else if(m.getMonth()== 7)
+            {
+                monthname="July";
+            }
+             else if(m.getMonth()== 8)
+            {
+                monthname="August";
+            }
+             else if(m.getMonth()== 9)
+            {
+                monthname="September";
+            }
+             else if(m.getMonth()== 10)
+            {
+                monthname="October";
+            }
+             else if(m.getMonth()== 11)
+            {
+                monthname="November";
+            }
+            else
+            {
+                monthname="December";
+            }
+           
+            
+            i++;
+            str+="{\"month\": \""+monthname+"\",\"appointment\": "+m.getCount()+"}";
+            if(i!=s)
+            {
+                str+=",";
+            }
+           
+          //  System.out.println("cdi.bookingBean.getMonthWiseApp()----------"+m.getCount()+" "+m.getMonth());
+        }
+        str+="]";
+        
+        return str;
+    }
+    
+    public String getHospitalWiseApp()
+    {
+        HttpSession session = request.getSession(true);
+        DoctorTb d1=new DoctorTb();
+        d1=ejb.getDoctorByEmail(session.getAttribute("username").toString());
+        String str="[";
+        Collection<hospitalWise> result=new ArrayList<>();
+       
+        result= ejb.doctorHospitalWiseAppoitment(d1.getDoctorId());
+        int s=result.size();
+        int i=0;
+        for(hospitalWise m:result)
+        {
+            i++;
+            str+="{\"name\": \""+m.getHospital().getUserId().getEmail()+" \",\"appointment\": "+m.getCount()+"}";
+               if(i!=s)
+               {
+                   str+=",";
+               }
+    }
+           str+="]";
+          
+        return str;
+    }
+    
+     public String getHospitalMonthWiseApp()
+    {
+        HttpSession session = request.getSession(true);
+        HospitalTb d1=new HospitalTb();
+        d1=ejb.getHospitalByEmail(session.getAttribute("username").toString());
+        
+        String str="[";
+        Collection<monthWise> result=new ArrayList<>();
+       
+        result= ejb.HospitalMonthWiseAppointment(d1.getHospitalId());
+        int s=result.size();
+        int i=0;
+        String monthname="";
+        for(monthWise m:result)
+        {
+            if(m.getMonth()== 1)
+            {
+                monthname="January";
+            }
+            else if(m.getMonth()== 2)
+            {
+                monthname="February";
+            }
+             else if(m.getMonth()== 3)
+            {
+                monthname="March";
+            }
+              else if(m.getMonth()== 4)
+            {
+                monthname="April";
+            }
+             else if(m.getMonth()== 5)
+            {
+                monthname="May";
+            }
+             else if(m.getMonth()== 6)
+            {
+                monthname="June";
+            }
+            else if(m.getMonth()== 7)
+            {
+                monthname="July";
+            }
+             else if(m.getMonth()== 8)
+            {
+                monthname="August";
+            }
+             else if(m.getMonth()== 9)
+            {
+                monthname="September";
+            }
+             else if(m.getMonth()== 10)
+            {
+                monthname="October";
+            }
+             else if(m.getMonth()== 11)
+            {
+                monthname="November";
+            }
+            else
+            {
+                monthname="December";
+            }
+           
+            
+            i++;
+            str+="{\"month\": \""+monthname+"\",\"appointment\": "+m.getCount()+"}";
+            if(i!=s)
+            {
+                str+=",";
+            }
+           
+          //  System.out.println("cdi.bookingBean.getMonthWiseApp()----------"+m.getCount()+" "+m.getMonth());
+        }
+        str+="]";
+        
+        return str;
+    }
+    
+     public String getHopitalDoctorWiseApp()
+    {
+        HttpSession session = request.getSession(true);
+        HospitalTb d1=new HospitalTb();
+        d1=ejb.getHospitalByEmail(session.getAttribute("username").toString());
+        
+        String str="[";
+        Collection<doctorWise> result=new ArrayList<>();
+       
+        result= ejb.HospitalDoctorWiseAppoitment(d1.getHospitalId());
+        int s=result.size();
+        int i=0;
+        for(doctorWise m:result)
+        {
+            i++;
+            str+="{\"name\": \""+m.getD().getUserId().getEmail()+" \",\"appointment\": "+m.getCount()+"}";
+               if(i!=s)
+               {
+                   str+=",";
+               }
+    }
+           str+="]";
+          
+        return str;
+    }  
             
 }
