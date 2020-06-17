@@ -6,6 +6,7 @@
 package beans;
 
 import classes.doctorWise;
+import classes.hospitalWise;
 import classes.monthWise;
 import entity.*;
 import java.sql.Time;
@@ -1557,6 +1558,66 @@ public class doctzBean implements doctzBeanLocal {
         Collection<doctorWise> result=new ArrayList<doctorWise>();
         List<Long> counts=em.createNamedQuery("AppointmentTb.doctorWiseCount").getResultList();
         List<DoctorTb> doctors=em.createNamedQuery("AppointmentTb.doctorWiseDoctor").getResultList();
+        for(int i=0;i<doctors.size();i++)
+        {
+            doctorWise obj=new doctorWise();
+            obj.setCount(Integer.parseInt(counts.get(i).toString()));
+            obj.setD(doctors.get(i));
+            result.add(obj);
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<monthWise> doctorMonthWiseAppoitment(int did) {
+        Collection<monthWise> result=new ArrayList<monthWise>();
+        List<Long> counts=em.createNamedQuery("AppointmentTb.DoctormonthWiseCount").setParameter("doctorId",did).getResultList();
+        List<Integer> months=em.createNamedQuery("AppointmentTb.DoctormonthWiseDate").setParameter("doctorId",did).getResultList();
+        for(int i=0;i<months.size();i++)
+        {
+            monthWise obj=new monthWise();
+            obj.setMonth(months.get(i));
+            obj.setCount(Integer.parseInt(counts.get(i).toString()));
+            result.add(obj);
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<hospitalWise> doctorHospitalWiseAppoitment(int did) {
+        Collection<hospitalWise> result=new ArrayList<hospitalWise>();
+        List<Long> counts=em.createNamedQuery("AppointmentTb.DoctorHospitalWiseCount").setParameter("doctorId",did).getResultList();
+        List<HospitalTb> hospitals=em.createNamedQuery("AppointmentTb.DoctorHospitalWiseHospital").setParameter("doctorId",did).getResultList();
+        for(int i=0;i<hospitals.size();i++)
+        {
+            hospitalWise obj=new hospitalWise();
+            obj.setCount(Integer.parseInt(counts.get(i).toString()));
+            obj.setHospital(hospitals.get(i));
+            result.add(obj);
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<monthWise> HospitalMonthWiseAppointment(int hid) {
+        Collection<monthWise> result=new ArrayList<monthWise>();
+        List<Long> counts=em.createNamedQuery("AppointmentTb.HospitalmonthWiseCount").setParameter("hospitalId",hid).getResultList();
+        List<Integer> months=em.createNamedQuery("AppointmentTb.HospitalmonthWiseDate").setParameter("hospitalId",hid).getResultList();
+        for(int i=0;i<months.size();i++)
+        {
+            monthWise obj=new monthWise();
+            obj.setMonth(months.get(i));
+            obj.setCount(Integer.parseInt(counts.get(i).toString()));
+            result.add(obj);
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<doctorWise> HospitalDoctorWiseAppoitment(int hid) {
+       Collection<doctorWise> result=new ArrayList<doctorWise>();
+        List<Long> counts=em.createNamedQuery("AppointmentTb.HospitalDoctorWiseCount").setParameter("hospitalId",hid).getResultList();
+        List<DoctorTb> doctors=em.createNamedQuery("AppointmentTb.HospitalDoctorWiseDoctor").setParameter("hospitalId",hid).getResultList();
         for(int i=0;i<doctors.size();i++)
         {
             doctorWise obj=new doctorWise();

@@ -31,6 +31,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "appointment_tb")
 ////@XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "AppointmentTb.DoctormonthWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a where a.doctorId.doctorId = :doctorId GROUP BY extract(month from a.date)"),
+    @NamedQuery(name = "AppointmentTb.DoctormonthWiseDate", query = "SELECT extract(month from a.date) FROM AppointmentTb a where a.doctorId.doctorId = :doctorId GROUP BY extract(month from a.date)"),
+    @NamedQuery(name = "AppointmentTb.DoctorHospitalWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a where a.doctorId.doctorId = :doctorId GROUP BY a.hospitalId.hospitalId"),
+    @NamedQuery(name = "AppointmentTb.DoctorHospitalWiseHospital", query = "SELECT a.hospitalId FROM AppointmentTb a where a.doctorId.doctorId = :doctorId GROUP BY a.hospitalId.hospitalId"),
+    @NamedQuery(name = "AppointmentTb.HospitalmonthWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a where a.hospitalId.hospitalId = :hospitalId GROUP BY extract(month from a.date)"),
+    @NamedQuery(name = "AppointmentTb.HospitalmonthWiseDate", query = "SELECT extract(month from a.date) FROM AppointmentTb a where a.hospitalId.hospitalId = :hospitalId GROUP BY extract(month from a.date)"),
+    @NamedQuery(name = "AppointmentTb.HospitalDoctorWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a where a.hospitalId.hospitalId = :hospitalId GROUP BY a.doctorId.doctorId"),
+    @NamedQuery(name = "AppointmentTb.HospitalDoctorWiseDoctor", query = "SELECT a.doctorId FROM AppointmentTb a where a.hospitalId.hospitalId = :hospitalId GROUP BY a.doctorId.doctorId"),
     @NamedQuery(name = "AppointmentTb.monthWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a GROUP BY extract(month from a.date)"),
     @NamedQuery(name = "AppointmentTb.monthWiseDate", query = "SELECT extract(month from a.date) FROM AppointmentTb a GROUP BY extract(month from a.date)"),
     @NamedQuery(name = "AppointmentTb.doctorWiseCount", query = "SELECT COUNT(a.appointmentId) FROM AppointmentTb a GROUP BY a.doctorId"),

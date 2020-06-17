@@ -3,12 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/admin/chart2.xhtml</file>
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/classes/doctorWise.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/beans/doctzBean.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/admin/chart1.xhtml</file>
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/web/admin/sidebar.xhtml</file>
             <file>file:/C:/Users/ADMIN/Desktop/doctzWeb-git/DoctzWeb/DoctzWeb/src/java/cdi/bookingBean.java</file>
+=======
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospital/sidebar.xhtml</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/entity/AppointmentTb.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBean.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospital/chart2.xhtml</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/beans/doctzBeanLocal.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/admin/sidebar.xhtml</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/classes/doctorWise.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/src/java/cdi/bookingBean.java</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/hospital/chart1.xhtml</file>
+            <file>file:/C:/Users/Admin/Desktop/doctzWeb-git/DoctzWeb/web/doctor/sidebar.xhtml</file>
+>>>>>>> 626ad04cd9d0f05b74f62fdc10ecc28062fd2431
         </group>
     </open-files>
 </project-private>
